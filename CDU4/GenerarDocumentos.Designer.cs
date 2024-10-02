@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ListViewItem listViewItem2 = new ListViewItem(new string[] { "1", "Tomi", "juanpi", "13/12", "Preparado" }, -1);
+            ListViewItem listViewItem1 = new ListViewItem(new string[] { "1", "Pedidos Ya S.A", "Tomas Lekerman", "01/02/2024", "Preparado" }, -1);
+            ListViewItem listViewItem2 = new ListViewItem(new string[] { "2", "Zerf S.A", "David Schupauk", "13/12/2024", "Preparado" }, -1);
+            ListViewItem listViewItem3 = new ListViewItem(new string[] { "3", "SimCorp", "Juan Cuneo", "29/06/2024", "Preparado" }, -1);
             label1 = new Label();
             pedidosPreparadosListView = new ListView();
             idColumna = new ColumnHeader();
@@ -43,20 +45,23 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(34, 9);
+            label1.Location = new Point(30, 7);
             label1.Name = "label1";
-            label1.Size = new Size(140, 20);
+            label1.Size = new Size(111, 15);
             label1.TabIndex = 0;
             label1.Text = "Pedidos Preparados";
             // 
             // pedidosPreparadosListView
             // 
             pedidosPreparadosListView.Columns.AddRange(new ColumnHeader[] { idColumna, clienteColumna, transportistaColumna, fechaDeEntregaColumna, estadoColumna });
-            listViewItem2.Tag = "";
-            pedidosPreparadosListView.Items.AddRange(new ListViewItem[] { listViewItem2 });
-            pedidosPreparadosListView.Location = new Point(34, 45);
+            pedidosPreparadosListView.FullRowSelect = true;
+            listViewItem1.Tag = "";
+            pedidosPreparadosListView.Items.AddRange(new ListViewItem[] { listViewItem1, listViewItem2, listViewItem3 });
+            pedidosPreparadosListView.LabelWrap = false;
+            pedidosPreparadosListView.Location = new Point(29, 24);
+            pedidosPreparadosListView.Margin = new Padding(3, 2, 3, 2);
             pedidosPreparadosListView.Name = "pedidosPreparadosListView";
-            pedidosPreparadosListView.Size = new Size(717, 148);
+            pedidosPreparadosListView.Size = new Size(628, 112);
             pedidosPreparadosListView.TabIndex = 1;
             pedidosPreparadosListView.UseCompatibleStateImageBehavior = false;
             pedidosPreparadosListView.View = View.Details;
@@ -64,28 +69,34 @@
             // idColumna
             // 
             idColumna.Text = "Orden";
+            idColumna.Width = 47;
             // 
             // clienteColumna
             // 
             clienteColumna.Text = "Cliente";
+            clienteColumna.Width = 90;
             // 
             // transportistaColumna
             // 
             transportistaColumna.Text = "Transportista";
+            transportistaColumna.Width = 102;
             // 
             // fechaDeEntregaColumna
             // 
             fechaDeEntregaColumna.Text = "Fecha de entrega";
+            fechaDeEntregaColumna.Width = 102;
             // 
             // estadoColumna
             // 
             estadoColumna.Text = "Estado";
+            estadoColumna.Width = 283;
             // 
             // generarBoton
             // 
-            generarBoton.Location = new Point(583, 216);
+            generarBoton.Location = new Point(510, 140);
+            generarBoton.Margin = new Padding(3, 2, 3, 2);
             generarBoton.Name = "generarBoton";
-            generarBoton.Size = new Size(168, 46);
+            generarBoton.Size = new Size(147, 34);
             generarBoton.TabIndex = 2;
             generarBoton.Text = "Generar documento";
             generarBoton.UseVisualStyleBackColor = true;
@@ -94,22 +105,24 @@
             // confirmarBoton
             // 
             confirmarBoton.Enabled = false;
-            confirmarBoton.Location = new Point(583, 268);
+            confirmarBoton.Location = new Point(510, 178);
+            confirmarBoton.Margin = new Padding(3, 2, 3, 2);
             confirmarBoton.Name = "confirmarBoton";
-            confirmarBoton.Size = new Size(168, 44);
+            confirmarBoton.Size = new Size(147, 33);
             confirmarBoton.TabIndex = 3;
             confirmarBoton.Text = "Confirmar Entrega";
             confirmarBoton.UseVisualStyleBackColor = true;
             // 
             // GenerarDocumentos
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(807, 472);
+            ClientSize = new Size(682, 577);
             Controls.Add(confirmarBoton);
             Controls.Add(generarBoton);
             Controls.Add(pedidosPreparadosListView);
             Controls.Add(label1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "GenerarDocumentos";
             Text = "GenerarDocumentos";
             ResumeLayout(false);
