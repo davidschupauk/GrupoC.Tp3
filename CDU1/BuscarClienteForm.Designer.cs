@@ -1,6 +1,6 @@
-﻿namespace GrupoC.Tp3.CDU2
+﻿namespace GrupoC.Tp3.CDU1
 {
-    partial class GenerarOrdenDeSeleccionForm
+    partial class BuscarClienteForm
     {
         /// <summary>
         /// Required designer variable.

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GrupoC.Tp3.CDU1
 {
-    internal class RegistrarOrdenDePreparacionModel
+    internal class BuscarClienteModel
     {
     }
 }

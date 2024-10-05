@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace GrupoC.Tp3.CDU1
 {
-    public partial class RegistrarOrdenDePreparacionForm : Form
+    public partial class BuscarClienteForm : Form
     {
-        public RegistrarOrdenDePreparacionForm()
+        public BuscarClienteForm()
         {
             InitializeComponent();
         }
