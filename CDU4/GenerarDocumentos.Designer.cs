@@ -28,16 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ListViewItem listViewItem1 = new ListViewItem(new string[] { "1", "Pedidos Ya S.A", "Tomas Lekerman", "01/02/2024", "Preparado" }, -1);
-            ListViewItem listViewItem2 = new ListViewItem(new string[] { "2", "Zerf S.A", "David Schupauk", "13/12/2024", "Preparado" }, -1);
-            ListViewItem listViewItem3 = new ListViewItem(new string[] { "3", "SimCorp", "Juan Cuneo", "29/06/2024", "Preparado" }, -1);
             label1 = new Label();
             pedidosPreparadosListView = new ListView();
-            idColumna = new ColumnHeader();
-            clienteColumna = new ColumnHeader();
-            transportistaColumna = new ColumnHeader();
-            fechaDeEntregaColumna = new ColumnHeader();
-            estadoColumna = new ColumnHeader();
+            Orden = new ColumnHeader();
+            Cliente = new ColumnHeader();
+            Transportista = new ColumnHeader();
+            Fecha = new ColumnHeader();
+            Estado = new ColumnHeader();
             generarBoton = new Button();
             confirmarBoton = new Button();
             SuspendLayout();
@@ -53,43 +50,37 @@
             // 
             // pedidosPreparadosListView
             // 
-            pedidosPreparadosListView.Columns.AddRange(new ColumnHeader[] { idColumna, clienteColumna, transportistaColumna, fechaDeEntregaColumna, estadoColumna });
+            pedidosPreparadosListView.Columns.AddRange(new ColumnHeader[] { Orden, Cliente, Transportista, Fecha, Estado });
             pedidosPreparadosListView.FullRowSelect = true;
-            listViewItem1.Tag = "";
-            pedidosPreparadosListView.Items.AddRange(new ListViewItem[] { listViewItem1, listViewItem2, listViewItem3 });
             pedidosPreparadosListView.LabelWrap = false;
             pedidosPreparadosListView.Location = new Point(29, 24);
             pedidosPreparadosListView.Margin = new Padding(3, 2, 3, 2);
+            pedidosPreparadosListView.MultiSelect = false;
             pedidosPreparadosListView.Name = "pedidosPreparadosListView";
             pedidosPreparadosListView.Size = new Size(628, 112);
             pedidosPreparadosListView.TabIndex = 1;
             pedidosPreparadosListView.UseCompatibleStateImageBehavior = false;
             pedidosPreparadosListView.View = View.Details;
             // 
-            // idColumna
+            // Orden
             // 
-            idColumna.Text = "Orden";
-            idColumna.Width = 47;
+            Orden.Text = "Orden";
             // 
-            // clienteColumna
+            // Cliente
             // 
-            clienteColumna.Text = "Cliente";
-            clienteColumna.Width = 90;
+            Cliente.Text = "Cliente";
             // 
-            // transportistaColumna
+            // Transportista
             // 
-            transportistaColumna.Text = "Transportista";
-            transportistaColumna.Width = 102;
+            Transportista.Text = "Transportista";
             // 
-            // fechaDeEntregaColumna
+            // Fecha
             // 
-            fechaDeEntregaColumna.Text = "Fecha de entrega";
-            fechaDeEntregaColumna.Width = 102;
+            Fecha.Text = "Fecha";
             // 
-            // estadoColumna
+            // Estado
             // 
-            estadoColumna.Text = "Estado";
-            estadoColumna.Width = 283;
+            Estado.Text = "Estado";
             // 
             // generarBoton
             // 
@@ -125,6 +116,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "GenerarDocumentos";
             Text = "GenerarDocumentos";
+            Load += GenerarDocumentos_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -133,12 +125,12 @@
 
         private Label label1;
         private ListView pedidosPreparadosListView;
-        private ColumnHeader idColumna;
-        private ColumnHeader clienteColumna;
-        private ColumnHeader transportistaColumna;
-        private ColumnHeader fechaDeEntregaColumna;
         private Button generarBoton;
-        private ColumnHeader estadoColumna;
         private Button confirmarBoton;
+        private ColumnHeader Orden;
+        private ColumnHeader Cliente;
+        private ColumnHeader Transportista;
+        private ColumnHeader Fecha;
+        private ColumnHeader Estado;
     }
 }
