@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GrupoC.Tp3.CDU1
+namespace GrupoC.Tp3.CDU1.GenerarOrdenDePreparacion
 {
-    internal class BuscarClienteModel
+    internal class GenerarOrdenDePreparacionModel
     {
     }
 }
