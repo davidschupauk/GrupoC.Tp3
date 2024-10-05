@@ -68,7 +68,8 @@ namespace GrupoC.Tp3.CDU4
                         productosInfo +
                         $"Fecha Documento: {pedidoseleccionado.FechaDocumento.ToString()}\n" +
                         $"Total: {pedidoseleccionado.Total}" ,
-                        "Información del Pedido"
+                        "Información del Pedido",
+                        MessageBoxButtons.OK
                         );
                 } 
             }
