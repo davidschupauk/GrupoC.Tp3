@@ -33,6 +33,11 @@
             FiltrarButton = new Button();
             label2 = new Label();
             ListadoOPListView = new ListView();
+            IDHeader1 = new ColumnHeader();
+            ClienteHeader2 = new ColumnHeader();
+            FechaHeader3 = new ColumnHeader();
+            TransportistaHeader4 = new ColumnHeader();
+            EstadoHeader5 = new ColumnHeader();
             GenerarButton = new Button();
             CancelarButton = new Button();
             SuspendLayout();
@@ -61,6 +66,7 @@
             FiltrarButton.TabIndex = 2;
             FiltrarButton.Text = "Filtrar";
             FiltrarButton.UseVisualStyleBackColor = true;
+            FiltrarButton.Click += FiltrarButton_Click;
             // 
             // label2
             // 
@@ -73,11 +79,34 @@
             // 
             // ListadoOPListView
             // 
+            ListadoOPListView.Columns.AddRange(new ColumnHeader[] { IDHeader1, ClienteHeader2, FechaHeader3, TransportistaHeader4, EstadoHeader5 });
             ListadoOPListView.Location = new Point(33, 170);
+            ListadoOPListView.MultiSelect = false;
             ListadoOPListView.Name = "ListadoOPListView";
             ListadoOPListView.Size = new Size(718, 138);
             ListadoOPListView.TabIndex = 4;
             ListadoOPListView.UseCompatibleStateImageBehavior = false;
+            ListadoOPListView.View = View.Details;
+            // 
+            // IDHeader1
+            // 
+            IDHeader1.Text = "ID Cliente";
+            // 
+            // ClienteHeader2
+            // 
+            ClienteHeader2.Text = "Nombre del Cliente";
+            // 
+            // FechaHeader3
+            // 
+            FechaHeader3.Text = "Fecha";
+            // 
+            // TransportistaHeader4
+            // 
+            TransportistaHeader4.Text = "Transportista";
+            // 
+            // EstadoHeader5
+            // 
+            EstadoHeader5.Text = "Estado";
             // 
             // GenerarButton
             // 
@@ -87,6 +116,7 @@
             GenerarButton.TabIndex = 5;
             GenerarButton.Text = "Generar";
             GenerarButton.UseVisualStyleBackColor = true;
+            GenerarButton.Click += GenerarButton_Click;
             // 
             // CancelarButton
             // 
@@ -96,6 +126,7 @@
             CancelarButton.TabIndex = 6;
             CancelarButton.Text = "Cancelar";
             CancelarButton.UseVisualStyleBackColor = true;
+            CancelarButton.Click += CancelarButton_Click;
             // 
             // GenerarOrdenDeSeleccionForm
             // 
@@ -125,5 +156,10 @@
         private ListView ListadoOPListView;
         private Button GenerarButton;
         private Button CancelarButton;
+        private ColumnHeader IDHeader1;
+        private ColumnHeader ClienteHeader2;
+        private ColumnHeader FechaHeader3;
+        private ColumnHeader TransportistaHeader4;
+        private ColumnHeader EstadoHeader5;
     }
 }

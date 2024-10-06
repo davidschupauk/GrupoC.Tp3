@@ -15,6 +15,24 @@ namespace GrupoC.Tp3.CDU2
         public GenerarOrdenDeSeleccionForm()
         {
             InitializeComponent();
+            FechaDateTimePicker.Format = DateTimePickerFormat.Custom;
+            FechaDateTimePicker.CustomFormat = "dd/MM/yyyy"; // Formato personalizado
+            FechaDateTimePicker.MinDate = DateTime.Today; // Establecer la fecha mínima a hoy
+        }
+
+        private void CancelarButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void GenerarButton_Click(object sender, EventArgs e)
+        {
+            //Pendiente
+        }
+
+        private void FiltrarButton_Click(object sender, EventArgs e)
+        {
+            //Pendiente
         }
     }
 }

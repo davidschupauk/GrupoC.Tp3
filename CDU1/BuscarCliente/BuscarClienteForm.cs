@@ -1,4 +1,6 @@
 ﻿using GrupoC.Tp3.CDU1.BuscarCliente;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace GrupoC.Tp3.CDU1
 {
@@ -102,19 +104,25 @@ namespace GrupoC.Tp3.CDU1
 
                 // Extraer la información del cliente
                 int id = int.Parse(selectedItem.SubItems[0].Text); // ID
-                string nombre = selectedItem.SubItems[1].Text; // Nombre
-                string cuit = selectedItem.SubItems[2].Text; // CUIT
-                string direccion = selectedItem.SubItems[3].Text; // Dirección
-                string telefono = selectedItem.SubItems[4].Text; // Teléfono
-                string email = selectedItem.SubItems[5].Text; // Email
 
                 // Debe pasar el cliente seleccionado a Form2
+                // Crear una instancia de GenerarOrdenDePreparacionForm
+                GenerarOrdenDePreparacionForm generarOrdenForm = new GenerarOrdenDePreparacionForm();
 
+                // Asignar los valores a las propiedades
+                generarOrdenForm.Id = id;
+
+                // Mostrar mensaje de éxito
+                MessageBox.Show("Cliente seleccionado con éxito.");
+                // Mostrar el formulario2
+                generarOrdenForm.Show();
             }
             else
             {
                 MessageBox.Show("Por favor, seleccione un cliente de la lista.");
             }
         }
-    }
+
+    }    
+    
 }

@@ -17,8 +17,7 @@ namespace GrupoC.Tp3
             ApplicationConfiguration.Initialize();
             Application.Run(new BuscarClienteForm());
             Application.Run(new GenerarOrdenDePreparacionForm());
-            //Application.Run(new OrdenDePreparacionForm());
-            //Application.Run(new GenerarOrdenDeSeleccionForm());
+            Application.Run(new GenerarOrdenDeSeleccionForm());
             Application.Run(new GenerarDocumentos());
         }
     }

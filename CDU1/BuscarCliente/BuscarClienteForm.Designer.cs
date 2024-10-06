@@ -83,6 +83,7 @@
             ClientesListView.Columns.AddRange(new ColumnHeader[] { ID, RZ, CUIT, Direccion, Telefono, Email });
             ClientesListView.FullRowSelect = true;
             ClientesListView.Location = new Point(39, 158);
+            ClientesListView.MultiSelect = false;
             ClientesListView.Name = "ClientesListView";
             ClientesListView.Size = new Size(721, 174);
             ClientesListView.TabIndex = 4;
