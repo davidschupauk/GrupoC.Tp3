@@ -42,9 +42,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(30, 7);
+            label1.Location = new Point(43, 12);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(111, 15);
+            label1.Size = new Size(170, 25);
             label1.TabIndex = 0;
             label1.Text = "Pedidos Preparados";
             // 
@@ -53,11 +54,11 @@
             pedidosPreparadosListView.Columns.AddRange(new ColumnHeader[] { Orden, Cliente, Transportista, Fecha, Estado });
             pedidosPreparadosListView.FullRowSelect = true;
             pedidosPreparadosListView.LabelWrap = false;
-            pedidosPreparadosListView.Location = new Point(29, 24);
-            pedidosPreparadosListView.Margin = new Padding(3, 2, 3, 2);
+            pedidosPreparadosListView.Location = new Point(41, 40);
+            pedidosPreparadosListView.Margin = new Padding(4, 3, 4, 3);
             pedidosPreparadosListView.MultiSelect = false;
             pedidosPreparadosListView.Name = "pedidosPreparadosListView";
-            pedidosPreparadosListView.Size = new Size(628, 112);
+            pedidosPreparadosListView.Size = new Size(895, 295);
             pedidosPreparadosListView.TabIndex = 1;
             pedidosPreparadosListView.UseCompatibleStateImageBehavior = false;
             pedidosPreparadosListView.View = View.Details;
@@ -85,10 +86,10 @@
             // 
             // generarBoton
             // 
-            generarBoton.Location = new Point(353, 140);
-            generarBoton.Margin = new Padding(3, 2, 3, 2);
+            generarBoton.Location = new Point(510, 341);
+            generarBoton.Margin = new Padding(4, 3, 4, 3);
             generarBoton.Name = "generarBoton";
-            generarBoton.Size = new Size(147, 34);
+            generarBoton.Size = new Size(210, 57);
             generarBoton.TabIndex = 2;
             generarBoton.Text = "Generar documento";
             generarBoton.UseVisualStyleBackColor = true;
@@ -97,10 +98,10 @@
             // confirmarBoton
             // 
             confirmarBoton.Enabled = false;
-            confirmarBoton.Location = new Point(510, 140);
-            confirmarBoton.Margin = new Padding(3, 2, 3, 2);
+            confirmarBoton.Location = new Point(726, 343);
+            confirmarBoton.Margin = new Padding(4, 3, 4, 3);
             confirmarBoton.Name = "confirmarBoton";
-            confirmarBoton.Size = new Size(147, 33);
+            confirmarBoton.Size = new Size(210, 55);
             confirmarBoton.TabIndex = 3;
             confirmarBoton.Text = "Confirmar Entrega";
             confirmarBoton.UseVisualStyleBackColor = true;
@@ -108,14 +109,14 @@
             // 
             // GenerarDocumentos
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(682, 577);
+            ClientSize = new Size(974, 420);
             Controls.Add(confirmarBoton);
             Controls.Add(generarBoton);
             Controls.Add(pedidosPreparadosListView);
             Controls.Add(label1);
-            Margin = new Padding(3, 2, 3, 2);
+            Margin = new Padding(4, 3, 4, 3);
             Name = "GenerarDocumentos";
             Text = "GenerarDocumentos";
             Load += GenerarDocumentos_Load;
