@@ -75,7 +75,7 @@ namespace GrupoC.Tp3.CDU1
                 }
                 else
                 {
-                    MessageBox.Show("CUIT no encontrado");
+                    MessageBox.Show("CUIT no encontrado. Por favor, ingrese un número de CUIT válido");
                 }
             }
             else
