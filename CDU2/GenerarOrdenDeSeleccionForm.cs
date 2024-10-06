@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GrupoC.Tp3.CDU1.GenerarOrdenDePreparacion;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,7 @@ namespace GrupoC.Tp3.CDU2
 {
     public partial class GenerarOrdenDeSeleccionForm : Form
     {
+        private GenerarOrdenDeSeleccionModel model = new(); //creamos una instancia de la clase GenerarOrdenDeSeleccionModel
         public GenerarOrdenDeSeleccionForm()
         {
             InitializeComponent();
@@ -27,12 +29,61 @@ namespace GrupoC.Tp3.CDU2
 
         private void GenerarButton_Click(object sender, EventArgs e)
         {
-            //Pendiente
+            // Mostrar el cuadro de confirmación
+            var confirmacion = MessageBox.Show(
+                $"¿Estás seguro de que quieres generar la orden?",
+                "Confirmar Orden",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            // Si el usuario selecciona 'Yes', confirmar la orden
+            if (confirmacion == DialogResult.Yes)
+            {
+                // Lógica para confirmar la orden
+                MessageBox.Show("La orden ha sido generada correctamente.");
+            }
+            else
+            {
+                // Si el usuario selecciona 'No', no hacer nada
+                MessageBox.Show("La confirmación ha sido cancelada.");
+            }
         }
 
         private void FiltrarButton_Click(object sender, EventArgs e)
         {
-            //Pendiente
+            // Obtener la fecha seleccionada en el DateTimePicker
+            DateTime fechaSeleccionada = FechaDateTimePicker.Value.Date; // Solo tomamos la fecha sin la hora
+
+            // Limpiar el ListView antes de agregar los elementos filtrados
+            ListadoOPListView.Items.Clear();
+
+            // Filtrar la lista de órdenes según la fecha seleccionada
+            var ordenesFiltradas = model.ListaOrdenesSeleccion
+                .Where(orden => orden.Fecha.Date == fechaSeleccionada)
+                .ToList();
+
+            // Si se encuentran órdenes con la fecha seleccionada
+            if (ordenesFiltradas.Any())
+            {
+                foreach (var orden in ordenesFiltradas)
+                {
+                    // Crear un nuevo ListViewItem para cada orden filtrada
+                    ListViewItem item = new ListViewItem(orden.IDCliente.ToString());
+                    item.SubItems.Add(orden.NumeroOrden.ToString());
+                    item.SubItems.Add(orden.Fecha.ToString("dd/MM/yyyy"));
+                    item.SubItems.Add(orden.Transportista);
+                    item.SubItems.Add(orden.Estado);
+
+                    // Añadir el item a ListadoOPListView
+                    ListadoOPListView.Items.Add(item);
+                }
+            }
+            else
+            {
+                // Si no se encuentran órdenes con la fecha seleccionada, mostrar un mensaje
+                MessageBox.Show("No se encontraron órdenes con la fecha seleccionada.", "Filtrar Órdenes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }
