@@ -1,28 +1,19 @@
 ﻿using GrupoC.Tp3.CDU1.GenerarOrdenDePreparacion;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace GrupoC.Tp3.CDU2
 {
     public partial class GenerarOrdenDeSeleccionForm : Form
     {
-        private int nextId = 1; //Campo para llevar el conteo del ID
+        private int nextId = 1; // Campo para llevar el conteo del ID
+        private GenerarOrdenDeSeleccionModel model = new(); // Creamos una instancia de la clase GenerarOrdenDeSeleccionModel
+        private OrdenesDeSeleccion ordenSeleccionada; // Campo para almacenar la orden seleccionada
 
-        private GenerarOrdenDeSeleccionModel model = new(); //creamos una instancia de la clase GenerarOrdenDeSeleccionModel
         public GenerarOrdenDeSeleccionForm()
         {
             InitializeComponent();
-            FechaDateTimePicker.Format = DateTimePickerFormat.Custom;
-            FechaDateTimePicker.CustomFormat = "dd/MM/yyyy"; // Formato personalizado
-            FechaDateTimePicker.MinDate = DateTime.Today; // Establecer la fecha mínima a hoy
         }
 
         // Método para generar un ID
@@ -38,6 +29,14 @@ namespace GrupoC.Tp3.CDU2
 
         private void GenerarButton_Click(object sender, EventArgs e)
         {
+            // Verificar si se ha seleccionado una orden
+            if (ListadoOPListView.SelectedItems.Count == 0)
+            {
+                // Si no hay elementos seleccionados, mostrar un mensaje de error
+                MessageBox.Show("Debe seleccionar una orden para generar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Salir del método
+            }
+
             // Mostrar el cuadro de confirmación
             var confirmacion = MessageBox.Show(
                 $"¿Estás seguro de que quieres generar la orden?",
@@ -97,7 +96,52 @@ namespace GrupoC.Tp3.CDU2
 
         private void GenerarOrdenDeSeleccionForm_Load(object sender, EventArgs e)
         {
+            // Generar un ID único para la orden de selección
             IDOSTextBox.Text = GenerateID().ToString();
+
+            // Configurar el DateTimePicker
+            FechaDateTimePicker.Format = DateTimePickerFormat.Custom;
+            FechaDateTimePicker.CustomFormat = "dd/MM/yyyy"; // Formato personalizado
+
+            // Cargar la lista de órdenes de selección en el ListView
+            CargarListaOrdenes();
+        }
+
+        // Método para cargar la lista de órdenes de selección
+        private void CargarListaOrdenes()
+        {
+            // Limpiamos el ListView antes de agregar nuevos elementos
+            ListadoOPListView.Items.Clear();
+
+            // Cargar las órdenes de selección en el ListView
+            foreach (var orden in model.ListaOrdenesSeleccion)
+            {
+                ListViewItem item = new ListViewItem(orden.IDCliente.ToString()); // Primera columna: ID del cliente
+                item.SubItems.Add(orden.NumeroOrden.ToString()); // Segunda columna: Número de la orden
+                item.SubItems.Add(orden.Fecha.ToString("dd/MM/yyyy")); // Tercera columna: Fecha
+                item.SubItems.Add(orden.Transportista); // Cuarta columna: Transportista
+                item.SubItems.Add(orden.Estado); // Quinta columna: Estado de la orden
+
+                // Asignar el objeto OrdenesDeSeleccion completo al Tag del ListViewItem (opcional)
+                item.Tag = orden;
+
+                // Agregar el item al ListView
+                ListadoOPListView.Items.Add(item);
+            }
+        }
+
+        // Evento para manejar el clic en el ListView
+        private void ListadoOPListView_MouseClick(object sender, MouseEventArgs e)
+        {
+            // Verificar si se hizo clic en un item
+            if (ListadoOPListView.SelectedItems.Count > 0)
+            {
+                // Obtener el item seleccionado
+                ListViewItem item = ListadoOPListView.SelectedItems[0];
+
+                // Asignar la orden seleccionada al campo
+                ordenSeleccionada = (OrdenesDeSeleccion)item.Tag;
+            }
         }
     }
 }
