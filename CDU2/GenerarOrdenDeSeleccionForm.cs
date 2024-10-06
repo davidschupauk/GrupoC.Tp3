@@ -14,6 +14,9 @@ namespace GrupoC.Tp3.CDU2
 {
     public partial class GenerarOrdenDeSeleccionForm : Form
     {
+        private int nextId = 1; //Campo para llevar el conteo del ID
+
+        private GenerarOrdenDeSeleccionModel model = new(); //creamos una instancia de la clase GenerarOrdenDeSeleccionModel
         public GenerarOrdenDeSeleccionForm()
         {
             InitializeComponent();
