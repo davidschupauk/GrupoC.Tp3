@@ -51,32 +51,73 @@ namespace GrupoC.Tp3.CDU4
             {
                 // Obtener el ítem seleccionado
                 ListViewItem selectedItem = pedidosPreparadosListView.SelectedItems[0];
-                selectedItem.SubItems[4].Text = "Documentación Generada";
-                Pedidos? pedidoseleccionado = modelo.ListaPedidos.Find(Pedido => Pedido.Orden.ToString() == selectedItem.Text);
-                if (pedidoseleccionado != null)
+                if (selectedItem.SubItems[4].Text == "Preparado")
                 {
-                    string productosInfo = "";
-                    for (int i = 0; i < pedidoseleccionado.Producto.Length; i++)
+                    selectedItem.SubItems[4].Text = "Documentación Generada";
+                    Pedidos? pedidoseleccionado = modelo.ListaPedidos.Find(Pedido => Pedido.Orden.ToString() == selectedItem.Text);
+                    if (pedidoseleccionado != null)
                     {
-                        productosInfo += $"Producto: {pedidoseleccionado.Producto[i]}, {pedidoseleccionado.Cantidad[i]} unidades\n";
+                        string productosInfo = "";
+                        for (int i = 0; i < pedidoseleccionado.Producto.Length; i++)
+                        {
+                            productosInfo += $"Producto: {pedidoseleccionado.Producto[i]}, {pedidoseleccionado.Cantidad[i]} unidades\n";
+                        }
+                        MessageBox.Show(
+                            $"Razón Social: {pedidoseleccionado.RazonSocial}\n" +
+                            $"Domicilio: {pedidoseleccionado.Domicilio}\n" +
+                            $"CUIT: {pedidoseleccionado.CUIT}\n" +
+                            $"Remito: {pedidoseleccionado.IdRemito}\n" +
+                            productosInfo +
+                            $"Fecha Documento: {pedidoseleccionado.FechaDocumento.ToString()}\n" +
+                            $"Total: {pedidoseleccionado.Total}",
+                            "Información del Pedido",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information
+                            );
                     }
-                    MessageBox.Show(
-                        $"Razón Social: {pedidoseleccionado.RazonSocial}\n" +
-                        $"Domicilio: {pedidoseleccionado.Domicilio}\n" +
-                        $"CUIT: {pedidoseleccionado.CUIT}\n" +
-                        $"Remito: {pedidoseleccionado.IdRemito}\n" +
-                        productosInfo +
-                        $"Fecha Documento: {pedidoseleccionado.FechaDocumento.ToString()}\n" +
-                        $"Total: {pedidoseleccionado.Total}" ,
-                        "Información del Pedido",
-                        MessageBoxButtons.OK
-                        );
-                } 
+                }
+                else
+                {
+                    MessageBox.Show("La documentacion de esta orden ya fue generada previamente", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
             }
             else
             {
                 // No se seleccionó nada
-                MessageBox.Show("Por favor selecciona un pedido primero.");
+                MessageBox.Show("Por favor selecciona un pedido primero.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+        }
+
+        private void confirmarBoton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Orden Entregada", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            ListViewItem selectedItem = pedidosPreparadosListView.SelectedItems[0];
+            selectedItem.SubItems[4].Text = "Orden Entregada";
+        }
+
+        private void pedidosPreparadosListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (pedidosPreparadosListView.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = pedidosPreparadosListView.SelectedItems[0];
+                if (selectedItem.SubItems[4].Text == "Documentación Generada")
+                {
+                    confirmarBoton.Enabled = true;
+                    return;
+                }
+                if (selectedItem.SubItems[4].Text == "Preparado")
+                {
+                    confirmarBoton.Enabled = false;
+                    return;
+                }
+                if (selectedItem.SubItems[4].Text == "Orden Entregada")
+                {
+                    generarBoton.Enabled = false;
+                    return;
+
+                }
             }
         }
     }

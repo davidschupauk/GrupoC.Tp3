@@ -61,6 +61,7 @@
             pedidosPreparadosListView.TabIndex = 1;
             pedidosPreparadosListView.UseCompatibleStateImageBehavior = false;
             pedidosPreparadosListView.View = View.Details;
+            pedidosPreparadosListView.SelectedIndexChanged += pedidosPreparadosListView_SelectedIndexChanged;
             // 
             // Orden
             // 
@@ -84,7 +85,7 @@
             // 
             // generarBoton
             // 
-            generarBoton.Location = new Point(510, 140);
+            generarBoton.Location = new Point(353, 140);
             generarBoton.Margin = new Padding(3, 2, 3, 2);
             generarBoton.Name = "generarBoton";
             generarBoton.Size = new Size(147, 34);
@@ -96,13 +97,14 @@
             // confirmarBoton
             // 
             confirmarBoton.Enabled = false;
-            confirmarBoton.Location = new Point(510, 178);
+            confirmarBoton.Location = new Point(510, 140);
             confirmarBoton.Margin = new Padding(3, 2, 3, 2);
             confirmarBoton.Name = "confirmarBoton";
             confirmarBoton.Size = new Size(147, 33);
             confirmarBoton.TabIndex = 3;
             confirmarBoton.Text = "Confirmar Entrega";
             confirmarBoton.UseVisualStyleBackColor = true;
+            confirmarBoton.Click += confirmarBoton_Click;
             // 
             // GenerarDocumentos
             // 
