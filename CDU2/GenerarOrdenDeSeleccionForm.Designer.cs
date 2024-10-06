@@ -40,6 +40,8 @@
             EstadoHeader5 = new ColumnHeader();
             GenerarButton = new Button();
             CancelarButton = new Button();
+            label3 = new Label();
+            IDOSTextBox = new TextBox();
             SuspendLayout();
             // 
             // label1
@@ -128,11 +130,31 @@
             CancelarButton.UseVisualStyleBackColor = true;
             CancelarButton.Click += CancelarButton_Click;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(432, 27);
+            label3.Name = "label3";
+            label3.Size = new Size(180, 20);
+            label3.TabIndex = 7;
+            label3.Text = "ID ORDEN DE SELECCION";
+            // 
+            // IDOSTextBox
+            // 
+            IDOSTextBox.Enabled = false;
+            IDOSTextBox.Location = new Point(626, 24);
+            IDOSTextBox.Name = "IDOSTextBox";
+            IDOSTextBox.ReadOnly = true;
+            IDOSTextBox.Size = new Size(125, 27);
+            IDOSTextBox.TabIndex = 9;
+            // 
             // GenerarOrdenDeSeleccionForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(IDOSTextBox);
+            Controls.Add(label3);
             Controls.Add(CancelarButton);
             Controls.Add(GenerarButton);
             Controls.Add(ListadoOPListView);
@@ -143,6 +165,7 @@
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "GenerarOrdenDeSeleccionForm";
             Text = "Generar Orden de Selección";
+            Load += GenerarOrdenDeSeleccionForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -161,5 +184,7 @@
         private ColumnHeader FechaHeader3;
         private ColumnHeader TransportistaHeader4;
         private ColumnHeader EstadoHeader5;
+        private Label label3;
+        private TextBox IDOSTextBox;
     }
 }
