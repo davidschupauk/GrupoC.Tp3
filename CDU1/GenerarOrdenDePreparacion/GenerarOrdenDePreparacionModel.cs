@@ -8,13 +8,14 @@ namespace GrupoC.Tp3.CDU1.GenerarOrdenDePreparacion
 {
     public class GenerarOrdenDePreparacionModel
     {
+
         // Definir una lista de productos
         public List<Producto> ListaProductos { get; set; }
 
         // Constructor para inicializar la lista de productos
         public GenerarOrdenDePreparacionModel()
         {
-            // Aquí puedes inicializar con algunos productos ficticios o cargar los productos desde otro lugar
+            // Productos ficticios
             ListaProductos = new List<Producto>
             {
                 new Producto(1, 1001, "Mouse Inalámbrico", "1-2-1", 50),
