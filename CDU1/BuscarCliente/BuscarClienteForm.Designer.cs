@@ -145,6 +145,7 @@
             Controls.Add(CuitTextBox);
             Controls.Add(BuscarButton);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "BuscarClienteForm";
             Text = "Buscar Cliente";
             Load += BuscarClienteForm_Load;

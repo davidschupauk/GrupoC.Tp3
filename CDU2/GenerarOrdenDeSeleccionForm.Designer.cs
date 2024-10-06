@@ -109,6 +109,7 @@
             Controls.Add(FiltrarButton);
             Controls.Add(FechaDateTimePicker);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "GenerarOrdenDeSeleccionForm";
             Text = "Generar Orden de Selección";
             ResumeLayout(false);
