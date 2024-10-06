@@ -141,9 +141,27 @@ namespace GrupoC.Tp3.CDU1
 
         private void ConfirmarButton_Click(object sender, EventArgs e)
         {
-            // Aquí puedes confirmar la orden con los productos seleccionados
-            MessageBox.Show($"Se han seleccionado {productosSeleccionados.Count} productos.");
+            // Mostrar el cuadro de confirmación
+            var confirmacion = MessageBox.Show(
+                $"¿Estás seguro de que quieres confirmar la orden con {productosSeleccionados.Count} productos?",
+                "Confirmar Orden",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            // Si el usuario selecciona 'Yes', confirmar la orden
+            if (confirmacion == DialogResult.Yes)
+            {
+                // Lógica para confirmar la orden
+                MessageBox.Show("La orden ha sido confirmada correctamente.");
+            }
+            else
+            {
+                // Si el usuario selecciona 'No', no hacer nada
+                MessageBox.Show("La confirmación ha sido cancelada.");
+            }
         }
+
 
         private void CancelarButton_Click(object sender, EventArgs e) // Botón cancelar y vuelve al menú
         {
