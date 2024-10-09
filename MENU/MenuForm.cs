@@ -2,13 +2,6 @@
 using GrupoC.Tp3.CDU2;
 using GrupoC.Tp3.CDU4;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GrupoC.Tp3.MENU
@@ -25,10 +18,24 @@ namespace GrupoC.Tp3.MENU
 
         }
 
-        private void botonGenerarOrdenPreparacion_Click(object sender, EventArgs e)
+        private void botonGenerarOrdenDePreparacion_Click(object sender, EventArgs e)
         {
-            GenerarOrdenDePreparacionForm generarOrdenDePreparacion = new GenerarOrdenDePreparacionForm();
-            generarOrdenDePreparacion.Show();
+            // Abrir el formulario de búsqueda de clientes
+            BuscarClienteForm buscarClienteForm = new BuscarClienteForm();
+            if (buscarClienteForm.ShowDialog() == DialogResult.OK)
+            {
+                // Si se selecciona un cliente, abrir el formulario de Generar Orden de Preparación
+                int clienteId = buscarClienteForm.ClienteSeleccionadoId; // Asume que este es el ID del cliente seleccionado
+                GenerarOrdenDePreparacionForm generarOrdenDePreparacionForm = new GenerarOrdenDePreparacionForm();
+                generarOrdenDePreparacionForm.Id = clienteId; // Pasa el ID del cliente al formulario
+                generarOrdenDePreparacionForm.ShowDialog();
+            }
+        }
+
+        private void botonGenerarOrdenSeleccion_Click(object sender, EventArgs e)
+        {
+            GenerarOrdenDeSeleccionForm generarOrdenDeSeleccion = new GenerarOrdenDeSeleccionForm();
+            generarOrdenDeSeleccion.Show();
         }
 
         private void botonGenerarDocumentos_Click(object sender, EventArgs e)
@@ -37,24 +44,10 @@ namespace GrupoC.Tp3.MENU
             generarDocumentos.Show();
         }
 
-
-
         private void botonSalir_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("¡Gracias por utilizar el modulo de preparación de ordenes!");
+            MessageBox.Show("¡Gracias por utilizar el módulo de preparación de órdenes!");
             Application.Exit();
-        }
-
-        private void botonBuscarCliente_Click(object sender, EventArgs e)
-        {
-            BuscarClienteForm buscarCliente = new BuscarClienteForm();
-            buscarCliente.Show();
-        }
-
-        private void botonGenerarOrdenSeleccion_Click(object sender, EventArgs e)
-        {
-            GenerarOrdenDeSeleccionForm generarOrdenDeSeleccion = new GenerarOrdenDeSeleccionForm();
-            generarOrdenDeSeleccion.Show();
         }
     }
 }

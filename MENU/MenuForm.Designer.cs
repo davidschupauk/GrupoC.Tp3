@@ -23,48 +23,48 @@
         #region Windows Form Designer generated code
 
         /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
+        /// Required method for Designer support - do not modify the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            botonGenerarOrdenPreparacion = new Button();
+            botonGenerarOrdenDePreparacion = new Button();
             botonGenerarOrdenSeleccion = new Button();
             botonGenerarDocumentos = new Button();
             label1 = new Label();
             botonSalir = new Button();
-            botonBuscarCliente = new Button();
             SuspendLayout();
             // 
-            // botonGenerarOrdenPreparacion
+            // botonGenerarOrdenDePreparacion
             // 
-            botonGenerarOrdenPreparacion.Location = new Point(25, 100);
-            botonGenerarOrdenPreparacion.Margin = new Padding(2, 2, 2, 2);
-            botonGenerarOrdenPreparacion.Name = "botonGenerarOrdenPreparacion";
-            botonGenerarOrdenPreparacion.Size = new Size(606, 54);
-            botonGenerarOrdenPreparacion.TabIndex = 0;
-            botonGenerarOrdenPreparacion.Text = "Generar orden de preparación";
-            botonGenerarOrdenPreparacion.UseVisualStyleBackColor = true;
-            botonGenerarOrdenPreparacion.Click += botonGenerarOrdenPreparacion_Click;
+            this.botonGenerarOrdenDePreparacion = new System.Windows.Forms.Button();           
+            this.botonGenerarOrdenDePreparacion.Location = new System.Drawing.Point(25, 42);
+            this.botonGenerarOrdenDePreparacion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.botonGenerarOrdenDePreparacion.Name = "botonGenerarOrdenDePreparacion";
+            this.botonGenerarOrdenDePreparacion.Size = new System.Drawing.Size(606, 54);
+            this.botonGenerarOrdenDePreparacion.TabIndex = 0;
+            this.botonGenerarOrdenDePreparacion.Text = "Generar orden de preparación";
+            this.botonGenerarOrdenDePreparacion.UseVisualStyleBackColor = true;
+            this.botonGenerarOrdenDePreparacion.Click += new System.EventHandler(this.botonGenerarOrdenDePreparacion_Click);
+
             // 
             // botonGenerarOrdenSeleccion
             // 
-            botonGenerarOrdenSeleccion.Location = new Point(24, 158);
+            botonGenerarOrdenSeleccion.Location = new Point(25, 100);
             botonGenerarOrdenSeleccion.Margin = new Padding(2, 2, 2, 2);
             botonGenerarOrdenSeleccion.Name = "botonGenerarOrdenSeleccion";
             botonGenerarOrdenSeleccion.Size = new Size(606, 54);
-            botonGenerarOrdenSeleccion.TabIndex = 2;
+            botonGenerarOrdenSeleccion.TabIndex = 1;
             botonGenerarOrdenSeleccion.Text = "Generar orden de selección";
             botonGenerarOrdenSeleccion.UseVisualStyleBackColor = true;
             botonGenerarOrdenSeleccion.Click += botonGenerarOrdenSeleccion_Click;
             // 
             // botonGenerarDocumentos
             // 
-            botonGenerarDocumentos.Location = new Point(23, 216);
+            botonGenerarDocumentos.Location = new Point(25, 158);
             botonGenerarDocumentos.Margin = new Padding(2, 2, 2, 2);
             botonGenerarDocumentos.Name = "botonGenerarDocumentos";
             botonGenerarDocumentos.Size = new Size(606, 54);
-            botonGenerarDocumentos.TabIndex = 3;
+            botonGenerarDocumentos.TabIndex = 2;
             botonGenerarDocumentos.Text = "Generar Documentos y confirmar entrega";
             botonGenerarDocumentos.UseVisualStyleBackColor = true;
             botonGenerarDocumentos.Click += botonGenerarDocumentos_Click;
@@ -76,42 +76,30 @@
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
             label1.Size = new Size(245, 20);
-            label1.TabIndex = 5;
+            label1.TabIndex = 3;
             label1.Text = "Preparación y despacho de ordenes";
             // 
             // botonSalir
             // 
-            botonSalir.Location = new Point(518, 285);
+            botonSalir.Location = new Point(518, 216);
             botonSalir.Margin = new Padding(2, 2, 2, 2);
             botonSalir.Name = "botonSalir";
             botonSalir.Size = new Size(113, 42);
-            botonSalir.TabIndex = 6;
+            botonSalir.TabIndex = 4;
             botonSalir.Text = "Salir";
             botonSalir.UseVisualStyleBackColor = true;
             botonSalir.Click += botonSalir_Click;
-            // 
-            // botonBuscarCliente
-            // 
-            botonBuscarCliente.Location = new Point(24, 42);
-            botonBuscarCliente.Margin = new Padding(2, 2, 2, 2);
-            botonBuscarCliente.Name = "botonBuscarCliente";
-            botonBuscarCliente.Size = new Size(606, 54);
-            botonBuscarCliente.TabIndex = 7;
-            botonBuscarCliente.Text = "Buscar cliente";
-            botonBuscarCliente.UseVisualStyleBackColor = true;
-            botonBuscarCliente.Click += botonBuscarCliente_Click;
             // 
             // MenuForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(640, 337);
-            Controls.Add(botonBuscarCliente);
+            ClientSize = new Size(640, 275);
             Controls.Add(botonSalir);
             Controls.Add(label1);
             Controls.Add(botonGenerarDocumentos);
             Controls.Add(botonGenerarOrdenSeleccion);
-            Controls.Add(botonGenerarOrdenPreparacion);
+            Controls.Add(botonGenerarOrdenDePreparacion);
             Margin = new Padding(2, 2, 2, 2);
             Name = "MenuForm";
             Text = "Preparación y despacho de ordenes";
@@ -122,11 +110,10 @@
 
         #endregion
 
-        private Button botonGenerarOrdenPreparacion;
+        private Button botonGenerarOrdenDePreparacion;
         private Button botonGenerarOrdenSeleccion;
         private Button botonGenerarDocumentos;
         private Label label1;
         private Button botonSalir;
-        private Button botonBuscarCliente;
     }
 }
