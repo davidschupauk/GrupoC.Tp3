@@ -85,18 +85,20 @@ namespace GrupoC.Tp3.CDU2
 
                     // Añadir el item a ListadoOPListView
                     ListadoOPListView.Items.Add(item);
+
                 }
                 foreach (ColumnHeader column in ListadoOPListView.Columns)
                 {
-                    column.Width = -2; // Ajusta el ancho de la columna al contenido
+                    column.Width = -1; // Ajusta el ancho de la columna al contenido
                 }
             }
             else
             {
                 // Si no se encuentran órdenes con la fecha seleccionada, mostrar un mensaje
                 MessageBox.Show("No se encontraron órdenes con la fecha seleccionada.", "Filtrar Órdenes", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            }            
         }
+
 
         private void GenerarOrdenDeSeleccionForm_Load(object sender, EventArgs e)
         {
@@ -116,6 +118,7 @@ namespace GrupoC.Tp3.CDU2
         {
             // Limpiamos el ListView antes de agregar nuevos elementos
             ListadoOPListView.Items.Clear();
+            
 
             // Cargar las órdenes de selección en el ListView
             foreach (var orden in model.ListaOrdenesSeleccion)
@@ -132,6 +135,7 @@ namespace GrupoC.Tp3.CDU2
                 // Agregar el item al ListView
                 ListadoOPListView.Items.Add(item);
             }
+
         }
 
         // Evento para manejar el clic en el ListView
