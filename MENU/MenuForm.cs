@@ -2,6 +2,7 @@
 using GrupoC.Tp3.CDU2;
 using GrupoC.Tp3.CDU3;
 using GrupoC.Tp3.CDU4;
+using GrupoC.Tp3.CDU5;
 using System;
 using System.Windows.Forms;
 
@@ -57,11 +58,17 @@ namespace GrupoC.Tp3.MENU
             Application.Exit();
         }
 
-        
+
         private void ConfirmarOrdenDeSeleccion_Click(object sender, EventArgs e)
         {
             ConfirmarOrdenDeSeleccion confirmarOrdendeSeleccion = new ConfirmarOrdenDeSeleccion();
             confirmarOrdendeSeleccion.Show();
+        }
+
+        private void consultarOrdenButton_Click(object sender, EventArgs e)
+        {
+            ConsultarOrden consultarOrden = new ConsultarOrden();
+            consultarOrden.Show();
         }
     }
 }

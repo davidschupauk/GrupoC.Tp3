@@ -1,6 +1,6 @@
 ﻿namespace GrupoC.Tp3.CDU5
 {
-    partial class ConsultarOrdenForm
+    partial class ConsultarOrden
     {
         /// <summary>
         /// Required designer variable.

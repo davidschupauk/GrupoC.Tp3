@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GrupoC.Tp3.CDU4;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,9 +11,11 @@ using System.Windows.Forms;
 
 namespace GrupoC.Tp3.CDU5
 {
-    public partial class ConsultarOrdenForm : Form
+    public partial class ConsultarOrden : Form
     {
-        public ConsultarOrdenForm()
+        private ConsultarOrdenModel modelo = new();
+
+        public ConsultarOrden()
         {
             InitializeComponent();
         }
