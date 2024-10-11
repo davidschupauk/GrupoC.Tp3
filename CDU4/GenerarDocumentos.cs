@@ -43,6 +43,10 @@ namespace GrupoC.Tp3.CDU4
                 item.Tag = Pedido;
                 pedidosPreparadosListView.Items.Add(item);
             }
+            foreach (ColumnHeader column in pedidosPreparadosListView.Columns)
+            {
+                column.Width = -2; // Ajusta el ancho de la columna al contenido
+            }
         }
 
         private void generarBoton_Click(object sender, EventArgs e)

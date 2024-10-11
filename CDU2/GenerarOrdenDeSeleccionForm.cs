@@ -86,6 +86,10 @@ namespace GrupoC.Tp3.CDU2
                     // Añadir el item a ListadoOPListView
                     ListadoOPListView.Items.Add(item);
                 }
+                foreach (ColumnHeader column in ListadoOPListView.Columns)
+                {
+                    column.Width = -2; // Ajusta el ancho de la columna al contenido
+                }
             }
             else
             {

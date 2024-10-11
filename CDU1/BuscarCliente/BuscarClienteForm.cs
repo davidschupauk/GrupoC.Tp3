@@ -35,6 +35,10 @@ namespace GrupoC.Tp3.CDU1
                 item.Tag = cliente; // Guardar el objeto cliente en el Tag para fácil acceso
                 ClientesListView.Items.Add(item);
             }
+            foreach (ColumnHeader column in ClientesListView.Columns)
+            {
+                column.Width = -2; // Ajusta el ancho de la columna al contenido
+            }
         }
 
         private void CancelarButton_Click(object sender, EventArgs e) // Botón Cancelar y vuelve al menú

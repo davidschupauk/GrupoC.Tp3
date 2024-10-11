@@ -145,7 +145,7 @@
             // ProductosClienteListView
             // 
             ProductosClienteListView.FullRowSelect = true; // Habilitar selección completa de la fila
-            ProductosClienteListView.Columns.AddRange(new ColumnHeader[] { IDCliente, CodigoDelProducto, Descripcion, Posicion, Cantidad });
+            ProductosClienteListView.Columns.AddRange(new ColumnHeader[] { CodigoDelProducto, Descripcion, Posicion, Cantidad });
             ProductosClienteListView.Location = new Point(55, 264);
             ProductosClienteListView.Margin = new Padding(5, 5, 5, 5);
             ProductosClienteListView.MultiSelect = false;

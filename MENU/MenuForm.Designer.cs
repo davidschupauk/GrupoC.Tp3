@@ -2,15 +2,8 @@
 {
     partial class MenuForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,9 +15,6 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             botonGenerarOrdenDePreparacion = new Button();
@@ -36,23 +26,19 @@
             // 
             // botonGenerarOrdenDePreparacion
             // 
-            this.botonGenerarOrdenDePreparacion = new System.Windows.Forms.Button();
-            this.botonGenerarOrdenDePreparacion.Location = new System.Drawing.Point(25, 42);
-            this.botonGenerarOrdenDePreparacion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.botonGenerarOrdenDePreparacion.Name = "botonGenerarOrdenDePreparacion";
-            this.botonGenerarOrdenDePreparacion.Size = new System.Drawing.Size(606, 54);
-            this.botonGenerarOrdenDePreparacion.TabIndex = 0;
-            this.botonGenerarOrdenDePreparacion.Text = "Generar orden de preparación";
-            this.botonGenerarOrdenDePreparacion.UseVisualStyleBackColor = true;
-            this.botonGenerarOrdenDePreparacion.Click += new System.EventHandler(this.botonGenerarOrdenDePreparacion_Click);
-
+            botonGenerarOrdenDePreparacion.Location = new Point(50, 80);
+            botonGenerarOrdenDePreparacion.Size = new Size(700, 80);
+            botonGenerarOrdenDePreparacion.Name = "botonGenerarOrdenDePreparacion";
+            botonGenerarOrdenDePreparacion.TabIndex = 0;
+            botonGenerarOrdenDePreparacion.Text = "Generar orden de preparación";
+            botonGenerarOrdenDePreparacion.UseVisualStyleBackColor = true;
+            botonGenerarOrdenDePreparacion.Click += new System.EventHandler(this.botonGenerarOrdenDePreparacion_Click);
             // 
             // botonGenerarOrdenSeleccion
             // 
-            botonGenerarOrdenSeleccion.Location = new Point(25, 100);
-            botonGenerarOrdenSeleccion.Margin = new Padding(2, 2, 2, 2);
+            botonGenerarOrdenSeleccion.Location = new Point(50, 180);
+            botonGenerarOrdenSeleccion.Size = new Size(700, 80);
             botonGenerarOrdenSeleccion.Name = "botonGenerarOrdenSeleccion";
-            botonGenerarOrdenSeleccion.Size = new Size(606, 54);
             botonGenerarOrdenSeleccion.TabIndex = 1;
             botonGenerarOrdenSeleccion.Text = "Generar orden de selección";
             botonGenerarOrdenSeleccion.UseVisualStyleBackColor = true;
@@ -60,10 +46,9 @@
             // 
             // botonGenerarDocumentos
             // 
-            botonGenerarDocumentos.Location = new Point(25, 158);
-            botonGenerarDocumentos.Margin = new Padding(2, 2, 2, 2);
+            botonGenerarDocumentos.Location = new Point(50, 280);
+            botonGenerarDocumentos.Size = new Size(700, 80);
             botonGenerarDocumentos.Name = "botonGenerarDocumentos";
-            botonGenerarDocumentos.Size = new Size(606, 54);
             botonGenerarDocumentos.TabIndex = 2;
             botonGenerarDocumentos.Text = "Generar Documentos y confirmar entrega";
             botonGenerarDocumentos.UseVisualStyleBackColor = true;
@@ -72,19 +57,17 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(24, 7);
-            label1.Margin = new Padding(2, 0, 2, 0);
+            label1.Location = new Point(50, 20);
             label1.Name = "label1";
-            label1.Size = new Size(245, 20);
+            label1.Size = new Size(300, 30);
             label1.TabIndex = 3;
-            label1.Text = "Preparación y despacho de ordenes";
+            label1.Text = "Preparación y despacho de órdenes";
             // 
             // botonSalir
             // 
-            botonSalir.Location = new Point(518, 216);
-            botonSalir.Margin = new Padding(2, 2, 2, 2);
+            botonSalir.Location = new Point(600, 400);
+            botonSalir.Size = new Size(150, 60);
             botonSalir.Name = "botonSalir";
-            botonSalir.Size = new Size(113, 42);
             botonSalir.TabIndex = 4;
             botonSalir.Text = "Salir";
             botonSalir.UseVisualStyleBackColor = true;
@@ -94,15 +77,14 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(640, 275);
+            ClientSize = new Size(800, 600);
             Controls.Add(botonSalir);
             Controls.Add(label1);
             Controls.Add(botonGenerarDocumentos);
             Controls.Add(botonGenerarOrdenSeleccion);
             Controls.Add(botonGenerarOrdenDePreparacion);
-            Margin = new Padding(2, 2, 2, 2);
             Name = "MenuForm";
-            Text = "Preparación y despacho de ordenes";
+            Text = "Preparación y despacho de órdenes";
             Load += MenuForm_Load;
             ResumeLayout(false);
             PerformLayout();
