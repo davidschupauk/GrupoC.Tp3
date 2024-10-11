@@ -121,27 +121,39 @@ namespace GrupoC.Tp3.CDU1
             }
         }
 
-
-        // Botón para quitar el producto seleccionado de la lista de productos seleccionados
         private void QuitarButton_Click(object sender, EventArgs e)
         {
-            if (ProductosSeleccionadosListView.SelectedItems.Count > 0)
+            if (ProductosSeleccionadosListView.SelectedItems.Count == 0)
             {
-                // Obtener el producto seleccionado
-                var itemSeleccionado = ProductosSeleccionadosListView.SelectedItems[0];
-                var producto = (Producto)itemSeleccionado.Tag; // Obtenemos el objeto Producto
-
-                // Remover el producto de la lista de productos seleccionados
-                productosSeleccionados.Remove(producto);
-
-                // Remover el producto de la ListView de productos seleccionados
-                ProductosSeleccionadosListView.Items.Remove(itemSeleccionado);
+                MessageBox.Show("Por favor, elija un producto seleccionado para quitar.", "Producto no seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
+
+            var itemSeleccionado = ProductosSeleccionadosListView.SelectedItems[0];
+            var producto = (Producto)itemSeleccionado.Tag;
+
+            productosSeleccionados.Remove(producto);
+
+            ProductosSeleccionadosListView.Items.Remove(itemSeleccionado);
         }
+
 
         private void ConfirmarButton_Click(object sender, EventArgs e)
         {
-            // Mostrar el cuadro de confirmación
+            if (productosSeleccionados.Count == 0)
+            {
+                MessageBox.Show("Debe seleccionar productos.", "Productos no seleccionados", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Verificar si el campo de transportista está vacío
+            if (string.IsNullOrWhiteSpace(TransportistaTextBox.Text))
+            {
+                MessageBox.Show("Por favor, introduzca un número de transportista válido.", "Campo obligatorio", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Mostrar el cuadro de confirmación si las validaciones anteriores pasan
             var confirmacion = MessageBox.Show(
                 $"¿Estás seguro de que quieres confirmar la orden con {productosSeleccionados.Count} productos?",
                 "Confirmar Orden",
@@ -149,18 +161,17 @@ namespace GrupoC.Tp3.CDU1
                 MessageBoxIcon.Question
             );
 
-            // Si el usuario selecciona 'Yes', confirmar la orden
             if (confirmacion == DialogResult.Yes)
             {
-                // Lógica para confirmar la orden
                 MessageBox.Show("La orden ha sido confirmada correctamente.");
             }
             else
             {
-                // Si el usuario selecciona 'No', no hacer nada
                 MessageBox.Show("La confirmación ha sido cancelada.");
             }
         }
+
+
 
 
         private void CancelarButton_Click(object sender, EventArgs e) // Botón cancelar y vuelve al menú

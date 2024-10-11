@@ -1,81 +1,71 @@
 ﻿using GrupoC.Tp3.CDU1.BuscarCliente;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using System;
+using System.Windows.Forms;
 
 namespace GrupoC.Tp3.CDU1
 {
     public partial class BuscarClienteForm : Form
     {
-        private BuscarClienteModel model = new(); //creamos una instancia de la clase BuscarClienteModel
+        private BuscarClienteModel model = new(); // Creamos una instancia de la clase BuscarClienteModel
 
-        public BuscarClienteForm() //Inicializa
+        public int ClienteSeleccionadoId { get; private set; } // Propiedad para almacenar el ID del cliente seleccionado
+
+        public BuscarClienteForm() // Inicializa
         {
             InitializeComponent();
         }
 
-        private void BuscarClienteForm_Load(object sender, EventArgs e) //Se carga la lista directamente
+        private void BuscarClienteForm_Load(object sender, EventArgs e) // Se carga la lista directamente
         {
             ClientesListView.Enabled = true;
-            CargarLista(); //Llama al procedimiento
+            CargarLista(); // Llama al procedimiento
         }
+
         private void CargarLista()
         {
-
-            foreach (var Clientes in model.ListaClientes) //Cargar a la lista.
+            foreach (var cliente in model.ListaClientes) // Cargar a la lista.
             {
                 ListViewItem item = new ListViewItem();
-                item.Text = Clientes.Id.ToString();
-                item.SubItems.Add(Clientes.Nombre);
-                item.SubItems.Add(Clientes.CUIT);
-                item.SubItems.Add(Clientes.Direccion);
-                item.SubItems.Add(Clientes.Telefono);
-                item.SubItems.Add(Clientes.Email);
+                item.Text = cliente.Id.ToString();
+                item.SubItems.Add(cliente.Nombre);
+                item.SubItems.Add(cliente.CUIT);
+                item.SubItems.Add(cliente.Direccion);
+                item.SubItems.Add(cliente.Telefono);
+                item.SubItems.Add(cliente.Email);
+                item.Tag = cliente; // Guardar el objeto cliente en el Tag para fácil acceso
                 ClientesListView.Items.Add(item);
             }
         }
-        private void CancelarButton_Click(object sender, EventArgs e) //Boton Cancelar y vuelve al menú
+
+        private void CancelarButton_Click(object sender, EventArgs e) // Botón Cancelar y vuelve al menú
         {
             this.Close();
         }
-        private void BuscarButton_Click(object sender, EventArgs e) //Boton Buscar CUIT
-        {
 
-            if (!string.IsNullOrEmpty(CuitTextBox.Text)) //Aca van las validaciones 
+        private void BuscarButton_Click(object sender, EventArgs e) // Botón Buscar CUIT
+        {
+            if (!string.IsNullOrEmpty(CuitTextBox.Text)) // Validaciones
             {
                 string cuitBuscado = CuitTextBox.Text.Trim();
 
                 if (model.IsValidCuit(cuitBuscado)) // Función IsValidCuit para validar el CUIT
                 {
-                    var cliente = model.BuscarClientePorCuit(cuitBuscado); // Llama al metodo de busqueda
+                    var cliente = model.BuscarClientePorCuit(cuitBuscado); // Llama al método de búsqueda
 
                     if (cliente != null)
                     {
-                        // Limpia la lista antes de mostrar el cliente encontrado
                         ClientesListView.Items.Clear();
 
-                        //Llamo al metodo que carga ese cliente
                         AgregarClienteALaLista(cliente);
                     }
-                    //if (XXXXXXXXX)
-                    //{
-
-                    //    if (XXXXXXXXX)
-                    //    {
-                    //        //Busca el CUIT y muestra datos completos en lista
-                    //    }
-                    //    else
-                    //    {
-                    //        MessageBox.Show("CUIT no encontrado");
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    MessageBox.Show("Por favor, ingrese un número de CUIT válido");
-                    //}
+                    else
+                    {
+                        MessageBox.Show("CUIT no encontrado.");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("CUIT no encontrado. Por favor, ingrese un número de CUIT válido");
+                    MessageBox.Show("Por favor, ingrese un número de CUIT válido");
                 }
             }
             else
@@ -83,6 +73,7 @@ namespace GrupoC.Tp3.CDU1
                 MessageBox.Show("Por favor, ingrese un número de CUIT válido");
             }
         }
+
         private void AgregarClienteALaLista(Clientes cliente)
         {
             ListViewItem item = new ListViewItem();
@@ -92,37 +83,26 @@ namespace GrupoC.Tp3.CDU1
             item.SubItems.Add(cliente.Direccion);
             item.SubItems.Add(cliente.Telefono);
             item.SubItems.Add(cliente.Email);
+            item.Tag = cliente;
             ClientesListView.Items.Add(item);
         }
-        private void SeleccionarButton_Click(object sender, EventArgs e) // Boton Seleccionar
+
+        private void SeleccionarButton_Click(object sender, EventArgs e)
         {
-            // Verificar si hay un cliente seleccionado en el ListView
             if (ClientesListView.SelectedItems.Count > 0)
             {
-                // Obtener el cliente seleccionado
                 var selectedItem = ClientesListView.SelectedItems[0];
+                var cliente = (Clientes)selectedItem.Tag;
 
-                // Extraer la información del cliente
-                int id = int.Parse(selectedItem.SubItems[0].Text); // ID
+                ClienteSeleccionadoId = cliente.Id;
 
-                // Debe pasar el cliente seleccionado a Form2
-                // Crear una instancia de GenerarOrdenDePreparacionForm
-                GenerarOrdenDePreparacionForm generarOrdenForm = new GenerarOrdenDePreparacionForm();
-
-                // Asignar los valores a las propiedades
-                generarOrdenForm.Id = id;
-
-                // Mostrar mensaje de éxito
-                MessageBox.Show("Cliente seleccionado con éxito.");
-                // Mostrar el formulario2
-                generarOrdenForm.Show();
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             else
             {
                 MessageBox.Show("Por favor, seleccione un cliente de la lista.");
             }
         }
-
-    }    
-    
+    }
 }
