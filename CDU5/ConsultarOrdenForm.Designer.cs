@@ -43,10 +43,11 @@
             FechaDateTimePicker = new DateTimePicker();
             label3 = new Label();
             listadoOrdenListView1 = new ListView();
-            columnHeader1 = new ColumnHeader();
-            columnHeader2 = new ColumnHeader();
-            columnHeader3 = new ColumnHeader();
+            sku = new ColumnHeader();
+            nombre = new ColumnHeader();
+            cantidad = new ColumnHeader();
             label4 = new Label();
+            ubicación = new ColumnHeader();
             SuspendLayout();
             // 
             // filtrarButton
@@ -156,7 +157,7 @@
             // 
             // listadoOrdenListView1
             // 
-            listadoOrdenListView1.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3 });
+            listadoOrdenListView1.Columns.AddRange(new ColumnHeader[] { sku, nombre, cantidad, ubicación });
             listadoOrdenListView1.FullRowSelect = true;
             listadoOrdenListView1.LabelWrap = false;
             listadoOrdenListView1.Location = new Point(46, 265);
@@ -169,20 +170,20 @@
             listadoOrdenListView1.View = View.Details;
             listadoOrdenListView1.SelectedIndexChanged += listadoOrdenListView1_SelectedIndexChanged;
             // 
-            // columnHeader1
+            // sku
             // 
-            columnHeader1.Text = "Cod Producto";
-            columnHeader1.Width = 100;
+            sku.Text = "Codigo Producto";
+            sku.Width = 120;
             // 
-            // columnHeader2
+            // nombre
             // 
-            columnHeader2.Text = "Nombre producto";
-            columnHeader2.TextAlign = HorizontalAlignment.Center;
-            columnHeader2.Width = 120;
+            nombre.Text = "Nombre producto";
+            nombre.TextAlign = HorizontalAlignment.Center;
+            nombre.Width = 120;
             // 
-            // columnHeader3
+            // cantidad
             // 
-            columnHeader3.Text = "Cantidad";
+            cantidad.Text = "Cantidad";
             // 
             // label4
             // 
@@ -192,6 +193,12 @@
             label4.Size = new Size(114, 15);
             label4.TabIndex = 10;
             label4.Text = "Orden seleccionada:";
+            // 
+            // ubicación
+            // 
+            ubicación.Text = "Ubicación deposito";
+            ubicación.TextAlign = HorizontalAlignment.Center;
+            ubicación.Width = 120;
             // 
             // ConsultarOrdenForm
             // 
@@ -232,9 +239,10 @@
         private DateTimePicker FechaDateTimePicker;
         private Label label3;
         private ListView listadoOrdenListView1;
-        private ColumnHeader columnHeader1;
-        private ColumnHeader columnHeader2;
-        private ColumnHeader columnHeader3;
+        private ColumnHeader sku;
+        private ColumnHeader nombre;
+        private ColumnHeader cantidad;
         private Label label4;
+        private ColumnHeader ubicación;
     }
 }
