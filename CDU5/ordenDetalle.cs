@@ -11,6 +11,7 @@ namespace GrupoC.Tp3.CDU5
         public int NroOrden { get; set; }
         public string NombreProducto { get; set; }
         public int Cantidad { get; set; }
+        public int CodigoProducto { get; set; }
         public string UbicacionDeposito { get; set; }
     }
 }

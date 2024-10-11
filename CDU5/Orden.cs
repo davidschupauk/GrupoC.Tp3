@@ -12,6 +12,7 @@ namespace GrupoC.Tp3.CDU5
         public string Cliente { get; set; }
         public string Estado { get; set; }
         public string Transportista { get; set; }
+        public DateOnly Fecha { get; set; }
 
     }
 }

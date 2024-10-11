@@ -101,7 +101,7 @@
             generarBoton.Name = "generarBoton";
             generarBoton.Size = new Size(147, 34);
             generarBoton.TabIndex = 2;
-            generarBoton.Text = "Generar documento";
+            generarBoton.Text = "Generar remito";
             generarBoton.UseVisualStyleBackColor = true;
             generarBoton.Click += generarBoton_Click;
             // 
@@ -173,7 +173,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(908, 525);
+            ClientSize = new Size(790, 525);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(ClienteTextBox);
