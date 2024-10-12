@@ -22,15 +22,9 @@ namespace GrupoC.Tp3.MENU
 
         private void botonGenerarOrdenDePreparacion_Click(object sender, EventArgs e)
         {
-            BuscarClienteForm buscarClienteForm = new BuscarClienteForm();
-            if (buscarClienteForm.ShowDialog() == DialogResult.OK)
-            {
-
-                int clienteId = buscarClienteForm.ClienteSeleccionadoId;
-                GenerarOrdenDePreparacionForm generarOrdenDePreparacionForm = new GenerarOrdenDePreparacionForm();
-                generarOrdenDePreparacionForm.Id = clienteId;
-                generarOrdenDePreparacionForm.ShowDialog();
-            }
+            GenerarOrdenDePreparacionForm generarOrdenDePreparacionForm = new GenerarOrdenDePreparacionForm();
+            generarOrdenDePreparacionForm.Show();
+            
         }
 
         private void botonGenerarOrdenSeleccion_Click(object sender, EventArgs e)

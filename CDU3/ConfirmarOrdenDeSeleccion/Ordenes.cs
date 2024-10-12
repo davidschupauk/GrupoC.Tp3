@@ -1,4 +1,4 @@
-﻿using GrupoC.Tp3.CDU1.BuscarCliente;
+﻿using GrupoC.Tp3.CDU1.GenerarOrdenDePreparacion;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 

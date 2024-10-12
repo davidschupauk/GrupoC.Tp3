@@ -1,4 +1,4 @@
-﻿using GrupoC.Tp3.CDU1.BuscarCliente;
+﻿using GrupoC.Tp3.CDU1.GenerarOrdenDePreparacion;
 using System;
 using System.Collections.Generic;
 using System.Linq;
