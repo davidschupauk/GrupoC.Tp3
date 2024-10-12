@@ -115,7 +115,7 @@ namespace GrupoC.Tp3.CDU2
                         itemsAEliminar.Add(item); // Agregar el item a la lista temporal
 
                         // Obtener el IDCliente del item
-                        var ordenSeleccionada = (OrdenesDeSeleccion)item.Tag; // referencia en el Tag
+                        var ordenSeleccionada = (OrdenesDeSeleccion)item.Tag;
 
                         // Buscar en la lista de órdenes de preparación
                         var ordenPreparacion = model.ListaOrdenesPreparacion
@@ -138,13 +138,16 @@ namespace GrupoC.Tp3.CDU2
                     MessageBox.Show($"Orden número {numeroOrden} generada con éxito!\n\nDetalles de los productos:\n{detalles}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Limpiar el formulario
-                    IDOSTextBox.Clear(); // Limpiar el TextBox de IDOrden
                     IDClienteTextBox.Clear(); // Limpiar el TextBox de IDCliente
                     IDOPTextBox.Clear(); // Limpiar el TextBox de IDOperación
                     OrdenDeSeleccionListView.Items.Clear(); // Limpiar el ListView
 
+                    // Generar el nuevo número correlativo para la próxima orden
+                    int nuevoNumeroOrden = numeroOrden + 1;
+                    IDOSTextBox.Text = nuevoNumeroOrden.ToString(); // Actualizar el TextBox de IDOrden
+
                     // Recargar la lista original de órdenes
-                    CargarListaOrdenes(); // Método que recarga todas las órdenes originales
+                    CargarListaOrdenes();
                 }
             }
         }
