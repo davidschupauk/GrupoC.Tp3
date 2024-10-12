@@ -8,7 +8,9 @@ namespace GrupoC.Tp3.CDU3
     {
         public int NroOrden { get; set; }
         public string Cliente { get; set; }
+        public string FechaEntrega { get; set; }
         public string Estado { get; set; }
+
     }
 
 }

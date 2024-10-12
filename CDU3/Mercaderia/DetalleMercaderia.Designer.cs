@@ -33,7 +33,7 @@
             cod_producto = new ColumnHeader();
             descripcion = new ColumnHeader();
             cantidad = new ColumnHeader();
-            confirmar_button = new Button();
+            confirmarOrdenEmpaqueta_button = new Button();
             cancelar_button = new Button();
             SuspendLayout();
             // 
@@ -72,21 +72,21 @@
             cantidad.Text = "Cantidad";
             cantidad.Width = 80;
             // 
-            // confirmar_button
+            // confirmarOrdenEmpaqueta_button
             // 
-            confirmar_button.Location = new Point(182, 266);
-            confirmar_button.Name = "confirmar_button";
-            confirmar_button.Size = new Size(106, 46);
-            confirmar_button.TabIndex = 2;
-            confirmar_button.Text = "Confirmar";
-            confirmar_button.UseVisualStyleBackColor = true;
-            confirmar_button.Click += ConfirmarButton_Click;
+            confirmarOrdenEmpaqueta_button.Location = new Point(165, 261);
+            confirmarOrdenEmpaqueta_button.Name = "confirmarOrdenEmpaqueta_button";
+            confirmarOrdenEmpaqueta_button.Size = new Size(229, 44);
+            confirmarOrdenEmpaqueta_button.TabIndex = 2;
+            confirmarOrdenEmpaqueta_button.Text = "Confirmar Orden Empaquetada";
+            confirmarOrdenEmpaqueta_button.UseVisualStyleBackColor = true;
+            confirmarOrdenEmpaqueta_button.Click += ConfirmarButton_Click;
             // 
             // cancelar_button
             // 
-            cancelar_button.Location = new Point(316, 266);
+            cancelar_button.Location = new Point(400, 261);
             cancelar_button.Name = "cancelar_button";
-            cancelar_button.Size = new Size(106, 46);
+            cancelar_button.Size = new Size(181, 42);
             cancelar_button.TabIndex = 3;
             cancelar_button.Text = "Cancelar";
             cancelar_button.UseVisualStyleBackColor = true;
@@ -98,7 +98,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(632, 378);
             Controls.Add(cancelar_button);
-            Controls.Add(confirmar_button);
+            Controls.Add(confirmarOrdenEmpaqueta_button);
             Controls.Add(list_detalle_mercaderia);
             Controls.Add(label1);
             Name = "DetalleMercaderia";
@@ -115,7 +115,7 @@
         private ColumnHeader cod_producto;
         private ColumnHeader descripcion;
         private ColumnHeader cantidad;
-        private Button confirmar_button;
+        private Button confirmarOrdenEmpaqueta_button;
         private Button cancelar_button;
     }
 }

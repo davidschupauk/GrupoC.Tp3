@@ -15,7 +15,7 @@ namespace GrupoC.Tp3.CDU3
         }
         private void confirmarOrdenDeSeleccionlistView_MouseClick(object sender, MouseEventArgs e)
         {
-           
+
 
         }
         private void CancelarButton_Click(object sender, EventArgs e)
@@ -38,6 +38,7 @@ namespace GrupoC.Tp3.CDU3
                 ListViewItem item = new ListViewItem();
                 item.Text = Orden.NroOrden.ToString();
                 item.SubItems.Add(Orden.Cliente);
+                item.SubItems.Add(Orden.FechaEntrega);
                 item.SubItems.Add(Orden.Estado);
                 item.Tag = Orden;
                 confirmarOrdenDeSeleccionlistView.Items.Add(item);
@@ -53,7 +54,7 @@ namespace GrupoC.Tp3.CDU3
                 return; // Salir del método
             }
 
-             DetalleMercaderia detallemercaderiaForm = new DetalleMercaderia();
+            DetalleMercaderia detallemercaderiaForm = new DetalleMercaderia();
 
             // Mostrar el formulario2
             detallemercaderiaForm.Show();
@@ -68,8 +69,46 @@ namespace GrupoC.Tp3.CDU3
             {
                 // Obtener el item seleccionado
                 var itemSeleccionado = confirmarOrdenDeSeleccionlistView.SelectedItems[0];
-               
+
             }
+        }
+
+        private void FiltraLista()
+        {
+            confirmarOrdenDeSeleccionlistView.Items.Clear();
+
+            int ordenId;
+            bool isOrdenIdValid = int.TryParse(orden_id.Text, out ordenId); // Verifica que el valor de orden_id sea numérico
+
+            string clienteId = cliente_id.Text; // Obtén el valor del cliente_id
+
+            foreach (var Orden in modelo.Ordenes)
+            {
+
+                if (isOrdenIdValid && Orden.NroOrden == ordenId && Orden.Cliente == clienteId)
+                {
+                    // Cargar a la lista si coincide
+                    ListViewItem item = new ListViewItem();
+                    item.Text = Orden.NroOrden.ToString();
+                    item.SubItems.Add(Orden.Cliente);
+                    item.SubItems.Add(Orden.Estado);
+                    item.Tag = Orden;
+                    confirmarOrdenDeSeleccionlistView.Items.Add(item);
+                }
+            }
+        }
+
+        private void buscar_Click(object sender, EventArgs e)
+        {
+            FiltraLista();
+
+        }
+
+        private void reiniciar_filtro_Click(object sender, EventArgs e)
+        {
+            cliente_id.Text = string.Empty;
+            orden_id.Text = string.Empty;
+            CargarLista();
         }
     }
 }
