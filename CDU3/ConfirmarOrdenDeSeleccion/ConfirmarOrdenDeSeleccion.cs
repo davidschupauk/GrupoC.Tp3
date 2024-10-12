@@ -1,22 +1,19 @@
 ﻿using GrupoC.Tp3.CDU1;
 using GrupoC.Tp3.CDU2;
-using GrupoC.Tp3.CDU3.Mercaderia;
+using GrupoC.Tp3.CDU3;
 
 namespace GrupoC.Tp3.CDU3
 {
     public partial class ConfirmarOrdenDeSeleccion : Form
     {
         private Ordenes ordenSeleccionada;
+        private Mercaderias mercaderias;
         private ConfirmarOrdenDeSeleccionModelo modelo = new();
+        private DetalleMercaderiaModel modelo2 = new();
 
         public ConfirmarOrdenDeSeleccion()
         {
             InitializeComponent();
-        }
-        private void confirmarOrdenDeSeleccionlistView_MouseClick(object sender, MouseEventArgs e)
-        {
-           
-
         }
         private void CancelarButton_Click(object sender, EventArgs e)
         {
@@ -38,11 +35,30 @@ namespace GrupoC.Tp3.CDU3
                 ListViewItem item = new ListViewItem();
                 item.Text = Orden.NroOrden.ToString();
                 item.SubItems.Add(Orden.Cliente);
+                item.SubItems.Add(Orden.FechaEntrega);
                 item.SubItems.Add(Orden.Estado);
                 item.Tag = Orden;
                 confirmarOrdenDeSeleccionlistView.Items.Add(item);
             }
         }
+
+        private void CargarListaMercaderia()
+        {
+            list_detalle_mercaderia.Items.Clear();
+
+            foreach (var mercaderia in modelo2.Mercaderias)
+            {
+                //Cargar a la lista.
+                ListViewItem item = new ListViewItem();
+                item.Text = mercaderia.CodProducto.ToString();
+                item.SubItems.Add(mercaderia.Ubicacion);
+                item.SubItems.Add(mercaderia.Descripcion);
+                item.SubItems.Add(mercaderia.Cantidad.ToString());
+                item.Tag = mercaderia;
+                list_detalle_mercaderia.Items.Add(item);
+            }
+        }
+
         private void ConsultarButton_Click(object sender, EventArgs e)
         {
             // Verificar si se ha seleccionado una orden
@@ -53,11 +69,7 @@ namespace GrupoC.Tp3.CDU3
                 return; // Salir del método
             }
 
-             DetalleMercaderia detallemercaderiaForm = new DetalleMercaderia();
-
-            // Mostrar el formulario2
-            detallemercaderiaForm.Show();
-
+            CargarListaMercaderia();
         }
 
         private void confirmarOrdenDeSeleccionlistView_SelectedIndexChanged(object sender, EventArgs e)
@@ -68,8 +80,86 @@ namespace GrupoC.Tp3.CDU3
             {
                 // Obtener el item seleccionado
                 var itemSeleccionado = confirmarOrdenDeSeleccionlistView.SelectedItems[0];
-               
+
             }
         }
+
+        private void FiltraLista()
+        {
+            confirmarOrdenDeSeleccionlistView.Items.Clear();
+
+            int ordenId;
+            bool isOrdenIdValid = int.TryParse(orden_id.Text, out ordenId); // Verifica que el valor de orden_id sea numérico
+
+            string clienteId = cliente_id.Text; // Obtén el valor del cliente_id
+
+            foreach (var Orden in modelo.Ordenes)
+            {
+
+                if (isOrdenIdValid && Orden.NroOrden == ordenId && Orden.Cliente == clienteId)
+                {
+                    // Cargar a la lista si coincide
+                    ListViewItem item = new ListViewItem();
+                    item.Text = Orden.NroOrden.ToString();
+                    item.SubItems.Add(Orden.Cliente);
+                    item.SubItems.Add(Orden.Estado);
+                    item.Tag = Orden;
+                    confirmarOrdenDeSeleccionlistView.Items.Add(item);
+                }
+            }
+        }
+
+        private void buscar_Click(object sender, EventArgs e)
+        {
+            FiltraLista();
+
+        }
+
+        private void reiniciar_filtro_Click(object sender, EventArgs e)
+        {
+            cliente_id.Text = string.Empty;
+            orden_id.Text = string.Empty;
+            CargarLista();
+        }
+
+
+        private void ConfirmarButton_Click(object sender, EventArgs e)
+        {
+
+            if (confirmarOrdenDeSeleccionlistView.SelectedItems.Count == 0)
+            {
+                // Si no hay elementos seleccionados, mostrar un mensaje de error
+                MessageBox.Show("Debe seleccionar una orden para generar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Salir del método
+            }
+
+            // Mostrar el cuadro de confirmación
+            var confirmacion = MessageBox.Show(
+                $"¿Estás seguro de que quieres reservar los productos detallados?",
+                "Confirmar Orden",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            // Si el usuario selecciona 'Yes', confirmar la orden
+            if (confirmacion == DialogResult.Yes)
+            {
+                // Lógica para confirmar la orden
+                MessageBox.Show("Se han reservado los productos del inventario con exito");
+             
+
+            }
+            else
+            {
+                // Si el usuario selecciona 'No', no hacer nada
+                MessageBox.Show("La reserva ha sido cancelada.");   
+            }
+
+            confirmarOrdenDeSeleccionlistView.SelectedItems[0].Remove();
+
+
+        }
+
+
     }
 }
