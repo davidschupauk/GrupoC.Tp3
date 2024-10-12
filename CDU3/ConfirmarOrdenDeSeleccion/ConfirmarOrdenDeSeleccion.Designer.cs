@@ -69,22 +69,22 @@
             // IdOrden
             // 
             IdOrden.Text = "ID Orden";
-            IdOrden.Width = 100;
+            IdOrden.Width = 180;
             // 
             // IdCliente
             // 
             IdCliente.Text = "ID Cliente";
-            IdCliente.Width = 120;
+            IdCliente.Width = 180;
             // 
             // fecha_entrega
             // 
             fecha_entrega.Text = "Fecha Entrega";
-            fecha_entrega.Width = 120;
+            fecha_entrega.Width = 180;
             // 
             // Estado
             // 
             Estado.Text = "Estado";
-            Estado.Width = 100;
+            Estado.Width = 180;
             // 
             // confirmarOrdenSeleccionada_button
             // 
@@ -94,7 +94,7 @@
             confirmarOrdenSeleccionada_button.TabIndex = 1;
             confirmarOrdenSeleccionada_button.Text = "Confirmar Orden";
             confirmarOrdenSeleccionada_button.UseVisualStyleBackColor = true;
-            confirmarOrdenSeleccionada_button.Click += ConsultarButton_Click;
+            confirmarOrdenSeleccionada_button.Click += ConfirmarButton_Click;
             // 
             // cancelar_button
             // 
@@ -194,25 +194,25 @@
             // cod_producto
             // 
             cod_producto.Text = "Producto";
-            cod_producto.Width = 120;
+            cod_producto.Width = 180;
             // 
             // descripcion
             // 
             descripcion.DisplayIndex = 2;
             descripcion.Text = "Descripción";
-            descripcion.Width = 140;
+            descripcion.Width = 180;
             // 
             // cantidad
             // 
             cantidad.DisplayIndex = 3;
             cantidad.Text = "Cantidad";
-            cantidad.Width = 80;
+            cantidad.Width = 180;
             // 
             // ubicacion
             // 
             ubicacion.DisplayIndex = 1;
             ubicacion.Text = "Ubicacion";
-            ubicacion.Width = 100;
+            ubicacion.Width = 180;
             // 
             // consultar
             // 

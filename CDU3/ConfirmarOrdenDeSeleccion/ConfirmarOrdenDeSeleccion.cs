@@ -7,7 +7,9 @@ namespace GrupoC.Tp3.CDU3
     public partial class ConfirmarOrdenDeSeleccion : Form
     {
         private Ordenes ordenSeleccionada;
+        private Mercaderias mercaderias;
         private ConfirmarOrdenDeSeleccionModelo modelo = new();
+        private DetalleMercaderiaModel modelo2 = new();
 
         public ConfirmarOrdenDeSeleccion()
         {
@@ -44,7 +46,7 @@ namespace GrupoC.Tp3.CDU3
         {
             list_detalle_mercaderia.Items.Clear();
 
-            foreach (var mercaderia in modelo.Mercaderias)
+            foreach (var mercaderia in modelo2.Mercaderias)
             {
                 //Cargar a la lista.
                 ListViewItem item = new ListViewItem();
@@ -56,8 +58,6 @@ namespace GrupoC.Tp3.CDU3
                 list_detalle_mercaderia.Items.Add(item);
             }
         }
-
-
 
         private void ConsultarButton_Click(object sender, EventArgs e)
         {
@@ -121,5 +121,45 @@ namespace GrupoC.Tp3.CDU3
             orden_id.Text = string.Empty;
             CargarLista();
         }
+
+
+        private void ConfirmarButton_Click(object sender, EventArgs e)
+        {
+
+            if (confirmarOrdenDeSeleccionlistView.SelectedItems.Count == 0)
+            {
+                // Si no hay elementos seleccionados, mostrar un mensaje de error
+                MessageBox.Show("Debe seleccionar una orden para generar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Salir del método
+            }
+
+            // Mostrar el cuadro de confirmación
+            var confirmacion = MessageBox.Show(
+                $"¿Estás seguro de que quieres reservar los productos detallados?",
+                "Confirmar Orden",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            // Si el usuario selecciona 'Yes', confirmar la orden
+            if (confirmacion == DialogResult.Yes)
+            {
+                // Lógica para confirmar la orden
+                MessageBox.Show("Se han reservado los productos del inventario con exito");
+             
+
+            }
+            else
+            {
+                // Si el usuario selecciona 'No', no hacer nada
+                MessageBox.Show("La reserva ha sido cancelada.");   
+            }
+
+            confirmarOrdenDeSeleccionlistView.SelectedItems[0].Remove();
+
+
+        }
+
+
     }
 }
