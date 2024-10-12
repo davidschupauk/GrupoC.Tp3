@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
-namespace GrupoC.Tp3.CDU1.BuscarCliente
+namespace GrupoC.Tp3.CDU1.GenerarOrdenDePreparacion
 {
     public class Clientes
     {

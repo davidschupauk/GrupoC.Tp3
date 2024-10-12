@@ -2,14 +2,14 @@
 using System;
 using System.Linq;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace GrupoC.Tp3.CDU2
 {
     public partial class GenerarOrdenDeSeleccionForm : Form
     {
-        private int nextId = 1; // Campo para llevar el conteo del ID
         private GenerarOrdenDeSeleccionModel model = new(); // Creamos una instancia de la clase GenerarOrdenDeSeleccionModel
-        private OrdenesDeSeleccion ordenSeleccionada; // Campo para almacenar la orden seleccionada
+        private int nextId = 1; // Campo para llevar el conteo del ID
 
         public GenerarOrdenDeSeleccionForm()
         {
@@ -22,130 +22,232 @@ namespace GrupoC.Tp3.CDU2
             return nextId++;
         }
 
+        private void GenerarOrdenDeSeleccionForm_Load_1(object sender, EventArgs e)
+        {
+            // Generar un ID único para la orden de selección + fondo gris
+            IDOSTextBox.Text = GenerateID().ToString();
+            IDOSTextBox.ReadOnly = true;
+            IDOSTextBox.Enabled = false; // deshabilita el control por completo
+
+            // Cargar la lista de órdenes de selección en el ListView
+            CargarListaOrdenes();
+        }
+        private void CargarListaOrdenes()
+        {
+            // Limpiar el ListView antes de agregar nuevos elementos
+            OrdenDeSeleccionListView.Items.Clear();
+
+            // Definir el orden de prioridades
+            var prioridades = new Dictionary<string, int>
+            {
+                { "Alta", 1 },
+                { "Media", 2 },
+                { "Baja", 3 }
+            };
+
+            // Ordenar la lista de órdenes por prioridad utilizando el diccionario
+            var ordenesOrdenadas = model.ListaOrdenesSeleccion
+                .OrderBy(orden => prioridades[orden.Prioridad])
+                .ToList();
+
+            // Cargar las órdenes de selección en el ListView
+            foreach (var orden in ordenesOrdenadas)
+            {
+                // Crear un nuevo item para el ListView
+                ListViewItem item = new ListViewItem(orden.NumeroOrden.ToString()); // Primera columna: Número de la orden
+                item.SubItems.Add(orden.IDCliente.ToString()); // Segunda columna: ID del cliente
+                item.SubItems.Add(orden.Fecha.ToString("dd/MM/yyyy")); // Tercera columna: Fecha
+                item.SubItems.Add(orden.Transportista); // Cuarta columna: Transportista
+                item.SubItems.Add(orden.Prioridad); // Quinta columna: Prioridad de la orden
+
+                // Asignar el objeto OrdenesDeSeleccion completo al Tag del ListViewItem
+                item.Tag = orden;
+
+                // Agregar el item al ListView
+                OrdenDeSeleccionListView.Items.Add(item);
+            }
+
+            // Ajustar el tamaño de las columnas
+            AjustarTamañoColumnas();
+        }
+
+        // Método para ajustar automáticamente el tamaño de las columnas
+        private void AjustarTamañoColumnas()
+        {
+            foreach (ColumnHeader column in OrdenDeSeleccionListView.Columns)
+            {
+                column.Width = -2;
+            }
+        }
+
         private void CancelarButton_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void GenerarButton_Click(object sender, EventArgs e)
+        private void GenerarOrdenButton_Click(object sender, EventArgs e)
         {
-            // Verificar si se ha seleccionado una orden
-            if (ListadoOPListView.SelectedItems.Count == 0)
+            // Obtener el ID de la orden desde el TextBox
+            string idOrdenText = IDOSTextBox.Text; // TextBox
+            int numeroOrden;
+
+            // Verificar si hay al menos un ítem seleccionado en el ListView
+            if (OrdenDeSeleccionListView.SelectedItems.Count == 0)
             {
-                // Si no hay elementos seleccionados, mostrar un mensaje de error
-                MessageBox.Show("Debe seleccionar una orden para generar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return; // Salir del método
+                MessageBox.Show("Por favor, seleccione al menos un ítem para generar la orden.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Salir del método si no se selecciona ningún ítem
             }
 
-            // Mostrar el cuadro de confirmación
-            var confirmacion = MessageBox.Show(
-                $"¿Estás seguro de que quieres generar la orden?",
-                "Confirmar Orden",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question
-            );
+            if (int.TryParse(idOrdenText, out numeroOrden))
+            {
+                // Confirmar órdenes seleccionadas
+                var resultado = MessageBox.Show("¿Está seguro de que desea generar la orden?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            // Si el usuario selecciona 'Yes', confirmar la orden
-            if (confirmacion == DialogResult.Yes)
-            {
-                // Lógica para confirmar la orden
-                MessageBox.Show("La orden ha sido generada correctamente.");
-            }
-            else
-            {
-                // Si el usuario selecciona 'No', no hacer nada
-                MessageBox.Show("La confirmación ha sido cancelada.");
+                if (resultado == DialogResult.Yes)
+                {
+                    // Lista temporal para almacenar los items seleccionados
+                    List<ListViewItem> itemsAEliminar = new List<ListViewItem>();
+                    List<string> detallesProductos = new List<string>();
+
+                    // Iterar sobre los elementos seleccionados en el ListView
+                    foreach (ListViewItem item in OrdenDeSeleccionListView.SelectedItems)
+                    {
+                        itemsAEliminar.Add(item); // Agregar el item a la lista temporal
+
+                        // Obtener el IDCliente del item
+                        var ordenSeleccionada = (OrdenesDeSeleccion)item.Tag;
+
+                        // Buscar en la lista de órdenes de preparación
+                        var ordenPreparacion = model.ListaOrdenesPreparacion
+                            .FirstOrDefault(op => op.IDCliente == ordenSeleccionada.IDCliente && op.Codigo == ordenSeleccionada.NumeroOrden);
+
+                        if (ordenPreparacion != null)
+                        {
+                            detallesProductos.Add($"Producto: {ordenPreparacion.Producto}, Cantidad: {ordenPreparacion.Cantidad}, Ubicación: {ordenPreparacion.Ubicacion}");
+                        }
+                    }
+
+                    // Eliminar los items seleccionados del ListView
+                    foreach (var item in itemsAEliminar)
+                    {
+                        OrdenDeSeleccionListView.Items.Remove(item);
+                    }
+
+                    // Mostrar el mensaje de éxito con detalles de los productos
+                    string detalles = string.Join("\n", detallesProductos);
+                    MessageBox.Show($"Orden número {numeroOrden} generada con éxito!\n\nDetalles de los productos:\n{detalles}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Limpiar el formulario
+                    IDClienteTextBox.Clear(); // Limpiar el TextBox de IDCliente
+                    IDOPTextBox.Clear(); // Limpiar el TextBox de IDOperación
+                    OrdenDeSeleccionListView.Items.Clear(); // Limpiar el ListView
+
+                    // Generar el nuevo número correlativo para la próxima orden
+                    int nuevoNumeroOrden = numeroOrden + 1;
+                    IDOSTextBox.Text = nuevoNumeroOrden.ToString(); // Actualizar el TextBox de IDOrden
+
+                    // Recargar la lista original de órdenes
+                    CargarListaOrdenes();
+                }
             }
         }
 
         private void FiltrarButton_Click(object sender, EventArgs e)
         {
-            // Obtener la fecha seleccionada en el DateTimePicker
-            DateTime fechaSeleccionada = FechaDateTimePicker.Value.Date; // Solo tomamos la fecha sin la hora
+            // Obtener los IDs ingresados por el usuario
+            string idClienteInput = IDClienteTextBox.Text; // Toma el TextBox de IDCliente
+            string idOrdenInput = IDOPTextBox.Text; // Toma el TextBox de IDOrden
 
-            // Limpiar el ListView antes de agregar los elementos filtrados
-            ListadoOPListView.Items.Clear();
-
-            // Filtrar la lista de órdenes según la fecha seleccionada
-            var ordenesFiltradas = model.ListaOrdenesSeleccion
-                .Where(orden => orden.Fecha.Date == fechaSeleccionada)
-                .ToList();
-
-            // Si se encuentran órdenes con la fecha seleccionada
-            if (ordenesFiltradas.Any())
+            // Verificar si se ha ingresado al menos un ID
+            if (string.IsNullOrWhiteSpace(idClienteInput) && string.IsNullOrWhiteSpace(idOrdenInput))
             {
-                foreach (var orden in ordenesFiltradas)
-                {
-                    // Crear un nuevo ListViewItem para cada orden filtrada
-                    ListViewItem item = new ListViewItem(orden.IDCliente.ToString());
-                    item.SubItems.Add(orden.NumeroOrden.ToString());
-                    item.SubItems.Add(orden.Fecha.ToString("dd/MM/yyyy"));
-                    item.SubItems.Add(orden.Transportista);
-                    item.SubItems.Add(orden.Estado);
+                MessageBox.Show("Por favor, ingrese un ID de cliente o un ID de orden.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                    // Añadir el item a ListadoOPListView
-                    ListadoOPListView.Items.Add(item);
-                }
-                foreach (ColumnHeader column in ListadoOPListView.Columns)
-                {
-                    column.Width = -2; // Ajusta el ancho de la columna al contenido
-                }
+                // Limpiar los TextBoxes
+                IDClienteTextBox.Clear();
+                IDOPTextBox.Clear();
+
+                // Recargar la lista original de órdenes
+                CargarListaOrdenes(); // Método que recarga todas las órdenes originales
+                return; // Salir del método si no se ingresa ningún ID
             }
-            else
+
+            // Limpiar el ListView antes de agregar nuevos elementos
+            OrdenDeSeleccionListView.Items.Clear();
+
+            // Filtrar las órdenes
+            var ordenesFiltradas = model.ListaOrdenesSeleccion.AsQueryable();
+
+            // Filtrar por IDCliente si se ha ingresado
+            if (!string.IsNullOrWhiteSpace(idClienteInput))
             {
-                // Si no se encuentran órdenes con la fecha seleccionada, mostrar un mensaje
-                MessageBox.Show("No se encontraron órdenes con la fecha seleccionada.", "Filtrar Órdenes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ordenesFiltradas = ordenesFiltradas.Where(orden => orden.IDCliente.ToString() == idClienteInput);
             }
-        }
 
-        private void GenerarOrdenDeSeleccionForm_Load(object sender, EventArgs e)
-        {
-            // Generar un ID único para la orden de selección
-            IDOSTextBox.Text = GenerateID().ToString();
-
-            // Configurar el DateTimePicker
-            FechaDateTimePicker.Format = DateTimePickerFormat.Custom;
-            FechaDateTimePicker.CustomFormat = "dd/MM/yyyy"; // Formato personalizado
-
-            // Cargar la lista de órdenes de selección en el ListView
-            CargarListaOrdenes();
-        }
-
-        // Método para cargar la lista de órdenes de selección
-        private void CargarListaOrdenes()
-        {
-            // Limpiamos el ListView antes de agregar nuevos elementos
-            ListadoOPListView.Items.Clear();
-
-            // Cargar las órdenes de selección en el ListView
-            foreach (var orden in model.ListaOrdenesSeleccion)
+            // Filtrar por IDOrden si se ha ingresado
+            if (!string.IsNullOrWhiteSpace(idOrdenInput))
             {
-                ListViewItem item = new ListViewItem(orden.IDCliente.ToString()); // Primera columna: ID del cliente
-                item.SubItems.Add(orden.NumeroOrden.ToString()); // Segunda columna: Número de la orden
-                item.SubItems.Add(orden.Fecha.ToString("dd/MM/yyyy")); // Tercera columna: Fecha
-                item.SubItems.Add(orden.Transportista); // Cuarta columna: Transportista
-                item.SubItems.Add(orden.Estado); // Quinta columna: Estado de la orden
+                ordenesFiltradas = ordenesFiltradas.Where(orden => orden.NumeroOrden.ToString() == idOrdenInput);
+            }
 
-                // Asignar el objeto OrdenesDeSeleccion completo al Tag del ListViewItem (opcional)
+            // Ordenar por prioridad
+            ordenesFiltradas = ordenesFiltradas.OrderBy(orden => orden.Prioridad);
+
+            // Verificar si se encontraron órdenes
+            if (!ordenesFiltradas.Any())
+            {
+                MessageBox.Show("No se encontraron órdenes para el ID ingresado.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Limpiar los TextBoxes
+                IDClienteTextBox.Clear();
+                IDOPTextBox.Clear();
+
+                // Recargar la lista original de órdenes
+                CargarListaOrdenes(); // Método que recarga todas las órdenes originales
+                return; // Salir del método si no se encuentran órdenes
+            }
+
+            // Cargar las órdenes filtradas en el ListView
+            foreach (var orden in ordenesFiltradas)
+            {
+                ListViewItem item = new ListViewItem(orden.NumeroOrden.ToString())
+                {
+                    ImageIndex = 0
+                };
+                item.SubItems.Add(orden.IDCliente.ToString());
+                item.SubItems.Add(orden.Fecha.ToString("dd/MM/yyyy"));
+                item.SubItems.Add(orden.Transportista);
+                item.SubItems.Add(orden.Prioridad);
                 item.Tag = orden;
 
-                // Agregar el item al ListView
-                ListadoOPListView.Items.Add(item);
+                OrdenDeSeleccionListView.Items.Add(item);
             }
+
+            // Ajustar el tamaño de las columnas
+            AjustarTamañoColumnas();
         }
 
-        // Evento para manejar el clic en el ListView
-        private void ListadoOPListView_MouseClick(object sender, MouseEventArgs e)
+
+
+        private void ReiniciarFiltroButton_Click(object sender, EventArgs e)
         {
-            // Verificar si se hizo clic en un item
-            if (ListadoOPListView.SelectedItems.Count > 0)
+            // Verificar si hay un IDCliente o IDOrden ingresado
+            if (string.IsNullOrWhiteSpace(IDClienteTextBox.Text) && string.IsNullOrWhiteSpace(IDOPTextBox.Text))
             {
-                // Obtener el item seleccionado
-                ListViewItem item = ListadoOPListView.SelectedItems[0];
-
-                // Asignar la orden seleccionada al campo
-                ordenSeleccionada = (OrdenesDeSeleccion)item.Tag;
+                MessageBox.Show("No hay un ID de cliente o un ID de orden ingresado para reiniciar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return; // Salir del método si no se ha ingresado ningún ID
             }
+
+            // Limpiar los TextBox donde se ingresaron los IDs
+            IDClienteTextBox.Clear();
+            IDOPTextBox.Clear();
+
+            // Limpiar el ListView antes de volver a cargar todas las órdenes
+            OrdenDeSeleccionListView.Items.Clear();
+
+            // Cargar todas las órdenes de selección en el ListView
+            CargarListaOrdenes(); // Método que recarga todas las órdenes originales
         }
+
     }
 }

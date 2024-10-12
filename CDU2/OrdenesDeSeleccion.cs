@@ -8,20 +8,20 @@ namespace GrupoC.Tp3.CDU2
 {
     public class OrdenesDeSeleccion
     {
-        public int NumeroOrden { get; set; } // Número de la orden
+        public int NumeroOrden { get; set; } // Número de la orden de preparación
         public int IDCliente { get; set; } // Identificación del cliente
         public DateTime Fecha { get; set; } // Fecha de la orden (día, mes, año)
         public string Transportista { get; set; } // Nombre del transportista
-        public string Estado { get; set; } // Estado de la orden
+        public string Prioridad { get; set; } // Prioridad de la orden
 
         // Constructor
-        public OrdenesDeSeleccion(int numeroOrden, int idCliente, DateTime fecha, string transportista, string estado)
+        public OrdenesDeSeleccion(int numeroOrden, int idCliente, DateTime fecha, string transportista, string prioridad)
         {
             NumeroOrden = numeroOrden;
             IDCliente = idCliente;
             Fecha = fecha;
             Transportista = transportista;
-            Estado = estado;
+            Prioridad = prioridad;
         }
     }
 

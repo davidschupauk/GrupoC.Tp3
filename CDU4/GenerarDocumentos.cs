@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,14 +25,14 @@ namespace GrupoC.Tp3.CDU4
         private void GenerarDocumentos_Load(object sender, EventArgs e)
         {
             pedidosPreparadosListView.Enabled = true;
-            CargarLista();
+            CargarLista(modelo.ListaPedidos);
         }
 
-        private void CargarLista()
+        private void CargarLista(List<Pedidos> pedidos)
         {
             pedidosPreparadosListView.Items.Clear();
 
-            foreach (var Pedido in modelo.ListaPedidos)
+            foreach (var Pedido in pedidos)
             {
                 //Cargar a la lista.
                 ListViewItem item = new ListViewItem();
@@ -123,6 +124,37 @@ namespace GrupoC.Tp3.CDU4
 
                 }
             }
+        }
+
+
+        private void Filtrarbutton_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(OrdenTextBox.Text))
+            {
+                string ordenBuscada = OrdenTextBox.Text.Trim();
+                List<Pedidos> NroOrden = modelo.BuscarOrden(ordenBuscada);
+                CargarLista(NroOrden);
+            }
+
+            // Verificar si se ingresó un nombre de cliente
+            if (!string.IsNullOrWhiteSpace(ClienteTextBox.Text))
+            {
+                string clienteBuscado = ClienteTextBox.Text.Trim();
+                List<Pedidos> cliente = modelo.BuscarCliente(clienteBuscado);
+                CargarLista(cliente);
+            }
+
+            // Si ambos TextBox están vacíos, mostrar un mensaje opcional
+            if (string.IsNullOrWhiteSpace(OrdenTextBox.Text) && string.IsNullOrWhiteSpace(ClienteTextBox.Text))
+            {
+                MessageBox.Show("Por favor, ingrese al menos un criterio de búsqueda.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void Limpiarbutton_Click(object sender, EventArgs e)
+        {
+            pedidosPreparadosListView.Items.Clear();
+            CargarLista(modelo.ListaPedidos);
         }
     }
 }

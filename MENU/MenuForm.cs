@@ -1,6 +1,8 @@
 ﻿using GrupoC.Tp3.CDU1;
 using GrupoC.Tp3.CDU2;
+using GrupoC.Tp3.CDU3;
 using GrupoC.Tp3.CDU4;
+using GrupoC.Tp3.CDU5;
 using System;
 using System.Windows.Forms;
 
@@ -19,16 +21,10 @@ namespace GrupoC.Tp3.MENU
         }
 
         private void botonGenerarOrdenDePreparacion_Click(object sender, EventArgs e)
-        {            
-            BuscarClienteForm buscarClienteForm = new BuscarClienteForm();
-            if (buscarClienteForm.ShowDialog() == DialogResult.OK)
-            {
-               
-                int clienteId = buscarClienteForm.ClienteSeleccionadoId;
-                GenerarOrdenDePreparacionForm generarOrdenDePreparacionForm = new GenerarOrdenDePreparacionForm();
-                generarOrdenDePreparacionForm.Id = clienteId;
-                generarOrdenDePreparacionForm.ShowDialog();
-            }
+        {
+            GenerarOrdenDePreparacionForm generarOrdenDePreparacionForm = new GenerarOrdenDePreparacionForm();
+            generarOrdenDePreparacionForm.Show();
+            
         }
 
         private void botonGenerarOrdenSeleccion_Click(object sender, EventArgs e)
@@ -36,6 +32,13 @@ namespace GrupoC.Tp3.MENU
             GenerarOrdenDeSeleccionForm generarOrdenDeSeleccion = new GenerarOrdenDeSeleccionForm();
             generarOrdenDeSeleccion.Show();
         }
+
+        private void botonConfirmarOrdenDeSeleccion_Click(object sender, EventArgs e)
+        {
+            ConfirmarOrdenDeSeleccion confirmarOrdenDeSeleccion = new ConfirmarOrdenDeSeleccion();
+            confirmarOrdenDeSeleccion.Show();
+        }
+
 
         private void botonGenerarDocumentos_Click(object sender, EventArgs e)
         {
@@ -47,6 +50,19 @@ namespace GrupoC.Tp3.MENU
         {
             MessageBox.Show("¡Gracias por utilizar el módulo de preparación de órdenes!");
             Application.Exit();
+        }
+
+
+        private void ConfirmarOrdenDeSeleccion_Click(object sender, EventArgs e)
+        {
+            ConfirmarOrdenDeSeleccion confirmarOrdendeSeleccion = new ConfirmarOrdenDeSeleccion();
+            confirmarOrdendeSeleccion.Show();
+        }
+
+        private void consultarOrdenButton_Click(object sender, EventArgs e)
+        {
+            ConsultarOrden consultarOrden = new ConsultarOrden();
+            consultarOrden.Show();
         }
     }
 }

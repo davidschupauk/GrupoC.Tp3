@@ -1,8 +1,8 @@
-﻿using GrupoC.Tp3.CDU1.BuscarCliente;
-using GrupoC.Tp3.CDU1.GenerarOrdenDePreparacion;
+﻿using GrupoC.Tp3.CDU1.GenerarOrdenDePreparacion;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace GrupoC.Tp3.CDU1
@@ -12,6 +12,8 @@ namespace GrupoC.Tp3.CDU1
         private GenerarOrdenDePreparacionModel model = new();
         private List<Producto> productosSeleccionados = new();
         public int Id { get; set; }
+
+        public int ClienteSeleccionadoId { get; private set; } // Propiedad para almacenar el ID del cliente seleccionado
 
         private int nextId = 1;
 
@@ -41,15 +43,115 @@ namespace GrupoC.Tp3.CDU1
             numericUpDown1.Maximum = 10000;
             numericUpDown1.Increment = 1;
             IDTextBox.Text = GenerateID().ToString();
-            IDClienteTextBox.Text = Id.ToString();
 
             CargarListaProductos(Id);
+
+            ClientesListView.Enabled = true;
+            CargarLista(); // Llama al procedimiento
+        }
+
+        private void CargarLista()
+        {
+            foreach (var cliente in model.ListaClientes) // Cargar a la lista.
+            {
+                ListViewItem item = new ListViewItem();
+                item.Text = cliente.Id.ToString();
+                item.SubItems.Add(cliente.Nombre);
+                item.SubItems.Add(cliente.CUIT);
+                item.SubItems.Add(cliente.Direccion);
+                item.SubItems.Add(cliente.Telefono);
+                item.SubItems.Add(cliente.Email);
+                item.Tag = cliente; // Guardar el objeto cliente en el Tag para fácil acceso
+                ClientesListView.Items.Add(item);
+            }
+            foreach (ColumnHeader column in ClientesListView.Columns)
+            {
+                column.Width = -2; // Ajusta el ancho de la columna al contenido
+            }
+        }
+
+        private void SeleccionarButton_Click(object sender, EventArgs e)
+        {
+            if (ClientesListView.SelectedItems.Count > 0)
+            {
+                var selectedItem = ClientesListView.SelectedItems[0];
+                var cliente = (Clientes)selectedItem.Tag;
+
+                ClienteSeleccionadoId = cliente.Id;
+
+                this.DialogResult = DialogResult.OK;
+                ProductosClienteListView.Items.Clear();
+                ListViewItem selectedItem2 = ClientesListView.SelectedItems[0];
+                var clienteSeleccionado = model.ListaProductos.Where(cliente => cliente.IDCliente.ToString() == selectedItem.Text).ToList();
+
+                foreach (var cliente2 in clienteSeleccionado)
+                {
+                    ListViewItem item = new ListViewItem();
+                    item.Text = cliente2.Codigo.ToString();
+                    item.SubItems.Add(cliente2.Descripcion);
+                    item.SubItems.Add(cliente2.Posicion);
+                    item.SubItems.Add(cliente2.Cantidad.ToString());
+                    item.Tag = cliente2;
+
+                    ProductosClienteListView.Items.Add(item);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione un cliente de la lista.");
+            }
+        }
+
+        private void BuscarButton_Click(object sender, EventArgs e) // Botón Buscar CUIT
+        {
+            if (!string.IsNullOrEmpty(CuitTextBox.Text)) // Validaciones
+            {
+                string cuitBuscado = CuitTextBox.Text.Trim();
+
+                if (model.IsValidCuit(cuitBuscado)) // Función IsValidCuit para validar el CUIT
+                {
+                    var cliente = model.BuscarClientePorCuit(cuitBuscado); // Llama al método de búsqueda
+
+                    if (cliente != null)
+                    {
+                        ClientesListView.Items.Clear();
+
+                        AgregarClienteALaLista(cliente);
+                    }
+                    else
+                    {
+                        MessageBox.Show("CUIT no encontrado.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Por favor, ingrese un número de CUIT válido");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, ingrese un número de CUIT válido");
+            }
+        }
+
+        private void AgregarClienteALaLista(Clientes cliente)
+        {
+            ListViewItem item = new ListViewItem();
+            item.Text = cliente.Id.ToString();
+            item.SubItems.Add(cliente.Nombre);
+            item.SubItems.Add(cliente.CUIT);
+            item.SubItems.Add(cliente.Direccion);
+            item.SubItems.Add(cliente.Telefono);
+            item.SubItems.Add(cliente.Email);
+            item.Tag = cliente;
+            ClientesListView.Items.Add(item);
         }
 
         private int GenerateID()
         {
             return nextId++;
         }
+
 
         private void CargarListaProductos(int idCliente)
         {
@@ -71,7 +173,7 @@ namespace GrupoC.Tp3.CDU1
             // Ajustar automáticamente el ancho de las columnas
             foreach (ColumnHeader column in ProductosClienteListView.Columns)
             {
-                column.Width = -1; // Ajusta el ancho de la columna al contenido y al encabezado
+                column.Width = -2; // Ajusta el ancho de la columna al contenido y al encabezado
             }
         }
 
@@ -105,7 +207,7 @@ namespace GrupoC.Tp3.CDU1
 
                     foreach (ColumnHeader column in ProductosSeleccionadosListView.Columns)
                     {
-                        column.Width = -1;
+                        column.Width = -2;
                     }
                 }
                 else
@@ -170,6 +272,25 @@ namespace GrupoC.Tp3.CDU1
         private void CancelarButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void LimpiarButton_Click(object sender, EventArgs e)
+        {
+            // Verificar si hay un IDCliente o IDOrden ingresado
+            if (string.IsNullOrWhiteSpace(CuitTextBox.Text))
+            {
+                MessageBox.Show("No hay un ID de cliente o un ID de orden ingresado para reiniciar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return; // Salir del método si no se ha ingresado ningún ID
+            }
+
+            // Limpiar los TextBox donde se ingresaron los IDs
+            CuitTextBox.Clear();
+
+            // Limpiar el ListView antes de volver a cargar todas las órdenes
+            ClientesListView.Items.Clear();
+
+            // Cargar todas las órdenes de selección en el ListView
+            CargarLista(); // Método que recarga todas las órdenes originales
         }
     }
 }
