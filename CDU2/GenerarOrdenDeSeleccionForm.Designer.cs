@@ -29,151 +29,176 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            FechaDateTimePicker = new DateTimePicker();
-            FiltrarButton = new Button();
-            label2 = new Label();
-            ListadoOPListView = new ListView();
-            IDHeader1 = new ColumnHeader();
-            ClienteHeader2 = new ColumnHeader();
-            FechaHeader3 = new ColumnHeader();
-            TransportistaHeader4 = new ColumnHeader();
-            EstadoHeader5 = new ColumnHeader();
-            GenerarButton = new Button();
-            CancelarButton = new Button();
-            label3 = new Label();
             IDOSTextBox = new TextBox();
+            groupBox1 = new GroupBox();
+            ReiniciarFiltroButton = new Button();
+            FiltrarButton = new Button();
+            IDOPTextBox = new TextBox();
+            IDClienteTextBox = new TextBox();
+            label3 = new Label();
+            label2 = new Label();
+            OrdenDeSeleccionListView = new ListView();
+            columnHeader1 = new ColumnHeader();
+            columnHeader2 = new ColumnHeader();
+            columnHeader3 = new ColumnHeader();
+            columnHeader4 = new ColumnHeader();
+            columnHeader5 = new ColumnHeader();
+            GenerarOrdenButton = new Button();
+            CancelarButton = new Button();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(28, 20);
+            label1.Location = new Point(449, 22);
             label1.Name = "label1";
-            label1.Size = new Size(41, 15);
+            label1.Size = new Size(182, 20);
             label1.TabIndex = 0;
-            label1.Text = "Fecha ";
+            label1.Text = "ORDEN DE SELECCIÓN N°";
             // 
-            // FechaDateTimePicker
+            // IDOSTextBox
             // 
-            FechaDateTimePicker.Location = new Point(28, 46);
-            FechaDateTimePicker.Margin = new Padding(3, 2, 3, 2);
-            FechaDateTimePicker.Name = "FechaDateTimePicker";
-            FechaDateTimePicker.Size = new Size(219, 23);
-            FechaDateTimePicker.TabIndex = 1;
+            IDOSTextBox.Location = new Point(637, 19);
+            IDOSTextBox.Name = "IDOSTextBox";
+            IDOSTextBox.Size = new Size(125, 27);
+            IDOSTextBox.TabIndex = 1;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(ReiniciarFiltroButton);
+            groupBox1.Controls.Add(FiltrarButton);
+            groupBox1.Controls.Add(IDOPTextBox);
+            groupBox1.Controls.Add(IDClienteTextBox);
+            groupBox1.Controls.Add(label3);
+            groupBox1.Controls.Add(label2);
+            groupBox1.Location = new Point(33, 62);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(729, 121);
+            groupBox1.TabIndex = 4;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Filtrar Por:";
+            // 
+            // ReiniciarFiltroButton
+            // 
+            ReiniciarFiltroButton.Location = new Point(461, 62);
+            ReiniciarFiltroButton.Name = "ReiniciarFiltroButton";
+            ReiniciarFiltroButton.Size = new Size(123, 29);
+            ReiniciarFiltroButton.TabIndex = 7;
+            ReiniciarFiltroButton.Text = "Reiniciar Filtro";
+            ReiniciarFiltroButton.UseVisualStyleBackColor = true;
+            ReiniciarFiltroButton.Click += ReiniciarFiltroButton_Click;
             // 
             // FiltrarButton
             // 
-            FiltrarButton.Location = new Point(265, 45);
-            FiltrarButton.Margin = new Padding(3, 2, 3, 2);
+            FiltrarButton.Location = new Point(461, 18);
             FiltrarButton.Name = "FiltrarButton";
-            FiltrarButton.Size = new Size(82, 22);
-            FiltrarButton.TabIndex = 2;
+            FiltrarButton.Size = new Size(123, 29);
+            FiltrarButton.TabIndex = 6;
             FiltrarButton.Text = "Filtrar";
             FiltrarButton.UseVisualStyleBackColor = true;
             FiltrarButton.Click += FiltrarButton_Click;
             // 
-            // label2
+            // IDOPTextBox
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(29, 100);
-            label2.Name = "label2";
-            label2.Size = new Size(190, 15);
-            label2.TabIndex = 3;
-            label2.Text = "Listado de Ordenes de Preparacion";
+            IDOPTextBox.Location = new Point(273, 64);
+            IDOPTextBox.Name = "IDOPTextBox";
+            IDOPTextBox.Size = new Size(125, 27);
+            IDOPTextBox.TabIndex = 5;
             // 
-            // ListadoOPListView
+            // IDClienteTextBox
             // 
-            ListadoOPListView.Columns.AddRange(new ColumnHeader[] { IDHeader1, ClienteHeader2, FechaHeader3, TransportistaHeader4, EstadoHeader5 });
-            ListadoOPListView.FullRowSelect = true;
-            ListadoOPListView.Location = new Point(29, 128);
-            ListadoOPListView.Margin = new Padding(3, 2, 3, 2);
-            ListadoOPListView.Name = "ListadoOPListView";
-            ListadoOPListView.Size = new Size(629, 104);
-            ListadoOPListView.TabIndex = 4;
-            ListadoOPListView.UseCompatibleStateImageBehavior = false;
-            ListadoOPListView.View = View.Details;
-            ListadoOPListView.MouseClick += ListadoOPListView_MouseClick;
-            // 
-            // IDHeader1
-            // 
-            IDHeader1.Text = "ID Cliente";
-            // 
-            // ClienteHeader2
-            // 
-            ClienteHeader2.Text = "Nombre del Cliente";
-            // 
-            // FechaHeader3
-            // 
-            FechaHeader3.Text = "Fecha";
-            // 
-            // TransportistaHeader4
-            // 
-            TransportistaHeader4.Text = "Transportista";
-            // 
-            // EstadoHeader5
-            // 
-            EstadoHeader5.Text = "Estado";
-            // 
-            // GenerarButton
-            // 
-            GenerarButton.Location = new Point(201, 256);
-            GenerarButton.Margin = new Padding(3, 2, 3, 2);
-            GenerarButton.Name = "GenerarButton";
-            GenerarButton.Size = new Size(82, 22);
-            GenerarButton.TabIndex = 5;
-            GenerarButton.Text = "Generar";
-            GenerarButton.UseVisualStyleBackColor = true;
-            GenerarButton.Click += GenerarButton_Click;
-            // 
-            // CancelarButton
-            // 
-            CancelarButton.Location = new Point(453, 256);
-            CancelarButton.Margin = new Padding(3, 2, 3, 2);
-            CancelarButton.Name = "CancelarButton";
-            CancelarButton.Size = new Size(82, 22);
-            CancelarButton.TabIndex = 6;
-            CancelarButton.Text = "Cancelar";
-            CancelarButton.UseVisualStyleBackColor = true;
-            CancelarButton.Click += CancelarButton_Click;
+            IDClienteTextBox.Location = new Point(273, 26);
+            IDClienteTextBox.Name = "IDClienteTextBox";
+            IDClienteTextBox.Size = new Size(125, 27);
+            IDClienteTextBox.TabIndex = 2;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(378, 20);
+            label3.Location = new Point(94, 64);
             label3.Name = "label3";
-            label3.Size = new Size(141, 15);
-            label3.TabIndex = 7;
-            label3.Text = "ID ORDEN DE SELECCION";
+            label3.Size = new Size(173, 20);
+            label3.TabIndex = 1;
+            label3.Text = "ID Orden de Preparación";
             // 
-            // IDOSTextBox
+            // label2
             // 
-            IDOSTextBox.Enabled = false;
-            IDOSTextBox.Location = new Point(548, 18);
-            IDOSTextBox.Margin = new Padding(3, 2, 3, 2);
-            IDOSTextBox.Name = "IDOSTextBox";
-            IDOSTextBox.ReadOnly = true;
-            IDOSTextBox.Size = new Size(110, 23);
-            IDOSTextBox.TabIndex = 9;
+            label2.AutoSize = true;
+            label2.Location = new Point(94, 26);
+            label2.Name = "label2";
+            label2.Size = new Size(74, 20);
+            label2.TabIndex = 0;
+            label2.Text = "ID Cliente";
+            // 
+            // OrdenDeSeleccionListView
+            // 
+            OrdenDeSeleccionListView.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5 });
+            OrdenDeSeleccionListView.FullRowSelect = true;
+            OrdenDeSeleccionListView.Location = new Point(33, 204);
+            OrdenDeSeleccionListView.Name = "OrdenDeSeleccionListView";
+            OrdenDeSeleccionListView.Size = new Size(729, 197);
+            OrdenDeSeleccionListView.TabIndex = 5;
+            OrdenDeSeleccionListView.UseCompatibleStateImageBehavior = false;
+            OrdenDeSeleccionListView.View = View.Details;
+            // 
+            // columnHeader1
+            // 
+            columnHeader1.Text = "N° Orden de Preparación";
+            // 
+            // columnHeader2
+            // 
+            columnHeader2.Text = "ID Cliente";
+            // 
+            // columnHeader3
+            // 
+            columnHeader3.Text = "Fecha de entrega";
+            // 
+            // columnHeader4
+            // 
+            columnHeader4.Text = "Transportista";
+            // 
+            // columnHeader5
+            // 
+            columnHeader5.Text = "Prioridad";
+            // 
+            // GenerarOrdenButton
+            // 
+            GenerarOrdenButton.Location = new Point(178, 444);
+            GenerarOrdenButton.Name = "GenerarOrdenButton";
+            GenerarOrdenButton.Size = new Size(123, 29);
+            GenerarOrdenButton.TabIndex = 6;
+            GenerarOrdenButton.Text = "Generar Orden";
+            GenerarOrdenButton.UseVisualStyleBackColor = true;
+            GenerarOrdenButton.Click += GenerarOrdenButton_Click;
+            // 
+            // CancelarButton
+            // 
+            CancelarButton.Location = new Point(494, 444);
+            CancelarButton.Name = "CancelarButton";
+            CancelarButton.Size = new Size(108, 29);
+            CancelarButton.TabIndex = 7;
+            CancelarButton.Text = "Cancelar";
+            CancelarButton.UseVisualStyleBackColor = true;
+            CancelarButton.Click += CancelarButton_Click;
             // 
             // GenerarOrdenDeSeleccionForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(700, 338);
-            Controls.Add(IDOSTextBox);
-            Controls.Add(label3);
+            ClientSize = new Size(800, 500);
             Controls.Add(CancelarButton);
-            Controls.Add(GenerarButton);
-            Controls.Add(ListadoOPListView);
-            Controls.Add(label2);
-            Controls.Add(FiltrarButton);
-            Controls.Add(FechaDateTimePicker);
+            Controls.Add(GenerarOrdenButton);
+            Controls.Add(OrdenDeSeleccionListView);
+            Controls.Add(IDOSTextBox);
             Controls.Add(label1);
+            Controls.Add(groupBox1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "GenerarOrdenDeSeleccionForm";
             Text = "Generar Orden de Selección";
-            Load += GenerarOrdenDeSeleccionForm_Load;
+            Load += GenerarOrdenDeSeleccionForm_Load_1;
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -181,18 +206,21 @@
         #endregion
 
         private Label label1;
-        private DateTimePicker FechaDateTimePicker;
-        private Button FiltrarButton;
-        private Label label2;
-        private ListView ListadoOPListView;
-        private Button GenerarButton;
-        private Button CancelarButton;
-        private ColumnHeader IDHeader1;
-        private ColumnHeader ClienteHeader2;
-        private ColumnHeader FechaHeader3;
-        private ColumnHeader TransportistaHeader4;
-        private ColumnHeader EstadoHeader5;
-        private Label label3;
         private TextBox IDOSTextBox;
+        private GroupBox groupBox1;
+        private Label label3;
+        private Label label2;
+        private Button ReiniciarFiltroButton;
+        private Button FiltrarButton;
+        private TextBox IDOPTextBox;
+        private TextBox IDClienteTextBox;
+        private ListView OrdenDeSeleccionListView;
+        private Button GenerarOrdenButton;
+        private Button CancelarButton;
+        private ColumnHeader columnHeader1;
+        private ColumnHeader columnHeader2;
+        private ColumnHeader columnHeader3;
+        private ColumnHeader columnHeader4;
+        private ColumnHeader columnHeader5;
     }
 }
