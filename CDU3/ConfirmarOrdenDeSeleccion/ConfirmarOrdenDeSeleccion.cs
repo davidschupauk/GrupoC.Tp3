@@ -1,6 +1,6 @@
 ﻿using GrupoC.Tp3.CDU1;
 using GrupoC.Tp3.CDU2;
-using GrupoC.Tp3.CDU3.Mercaderia;
+using GrupoC.Tp3.CDU3;
 
 namespace GrupoC.Tp3.CDU3
 {
@@ -12,11 +12,6 @@ namespace GrupoC.Tp3.CDU3
         public ConfirmarOrdenDeSeleccion()
         {
             InitializeComponent();
-        }
-        private void confirmarOrdenDeSeleccionlistView_MouseClick(object sender, MouseEventArgs e)
-        {
-
-
         }
         private void CancelarButton_Click(object sender, EventArgs e)
         {
@@ -44,6 +39,26 @@ namespace GrupoC.Tp3.CDU3
                 confirmarOrdenDeSeleccionlistView.Items.Add(item);
             }
         }
+
+        private void CargarListaMercaderia()
+        {
+            list_detalle_mercaderia.Items.Clear();
+
+            foreach (var mercaderia in modelo.Mercaderias)
+            {
+                //Cargar a la lista.
+                ListViewItem item = new ListViewItem();
+                item.Text = mercaderia.CodProducto.ToString();
+                item.SubItems.Add(mercaderia.Ubicacion);
+                item.SubItems.Add(mercaderia.Descripcion);
+                item.SubItems.Add(mercaderia.Cantidad.ToString());
+                item.Tag = mercaderia;
+                list_detalle_mercaderia.Items.Add(item);
+            }
+        }
+
+
+
         private void ConsultarButton_Click(object sender, EventArgs e)
         {
             // Verificar si se ha seleccionado una orden
@@ -54,11 +69,7 @@ namespace GrupoC.Tp3.CDU3
                 return; // Salir del método
             }
 
-            DetalleMercaderia detallemercaderiaForm = new DetalleMercaderia();
-
-            // Mostrar el formulario2
-            detallemercaderiaForm.Show();
-
+            CargarListaMercaderia();
         }
 
         private void confirmarOrdenDeSeleccionlistView_SelectedIndexChanged(object sender, EventArgs e)

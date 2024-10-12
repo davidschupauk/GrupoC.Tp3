@@ -43,6 +43,13 @@
             cliente_id = new TextBox();
             openFileDialog1 = new OpenFileDialog();
             reiniciar_filtro = new Button();
+            label1 = new Label();
+            list_detalle_mercaderia = new ListView();
+            cod_producto = new ColumnHeader();
+            descripcion = new ColumnHeader();
+            cantidad = new ColumnHeader();
+            ubicacion = new ColumnHeader();
+            consultar = new Button();
             SuspendLayout();
             // 
             // confirmarOrdenDeSeleccionlistView
@@ -50,10 +57,10 @@
             confirmarOrdenDeSeleccionlistView.BackColor = SystemColors.ScrollBar;
             confirmarOrdenDeSeleccionlistView.Columns.AddRange(new ColumnHeader[] { IdOrden, IdCliente, fecha_entrega, Estado });
             confirmarOrdenDeSeleccionlistView.FullRowSelect = true;
-            confirmarOrdenDeSeleccionlistView.Location = new Point(55, 201);
+            confirmarOrdenDeSeleccionlistView.Location = new Point(55, 167);
             confirmarOrdenDeSeleccionlistView.Margin = new Padding(3, 4, 3, 4);
             confirmarOrdenDeSeleccionlistView.Name = "confirmarOrdenDeSeleccionlistView";
-            confirmarOrdenDeSeleccionlistView.Size = new Size(549, 170);
+            confirmarOrdenDeSeleccionlistView.Size = new Size(812, 170);
             confirmarOrdenDeSeleccionlistView.TabIndex = 0;
             confirmarOrdenDeSeleccionlistView.UseCompatibleStateImageBehavior = false;
             confirmarOrdenDeSeleccionlistView.View = View.Details;
@@ -81,7 +88,7 @@
             // 
             // confirmarOrdenSeleccionada_button
             // 
-            confirmarOrdenSeleccionada_button.Location = new Point(228, 393);
+            confirmarOrdenSeleccionada_button.Location = new Point(491, 605);
             confirmarOrdenSeleccionada_button.Name = "confirmarOrdenSeleccionada_button";
             confirmarOrdenSeleccionada_button.Size = new Size(185, 40);
             confirmarOrdenSeleccionada_button.TabIndex = 1;
@@ -91,7 +98,7 @@
             // 
             // cancelar_button
             // 
-            cancelar_button.Location = new Point(419, 393);
+            cancelar_button.Location = new Point(682, 605);
             cancelar_button.Name = "cancelar_button";
             cancelar_button.Size = new Size(185, 40);
             cancelar_button.TabIndex = 2;
@@ -110,9 +117,9 @@
             // 
             // buscar
             // 
-            buscar.Location = new Point(114, 152);
+            buscar.Location = new Point(387, 64);
             buscar.Name = "buscar";
-            buscar.Size = new Size(90, 29);
+            buscar.Size = new Size(114, 29);
             buscar.TabIndex = 4;
             buscar.Text = "Buscar";
             buscar.UseVisualStyleBackColor = true;
@@ -156,7 +163,7 @@
             // 
             // reiniciar_filtro
             // 
-            reiniciar_filtro.Location = new Point(210, 152);
+            reiniciar_filtro.Location = new Point(387, 103);
             reiniciar_filtro.Name = "reiniciar_filtro";
             reiniciar_filtro.Size = new Size(114, 29);
             reiniciar_filtro.TabIndex = 10;
@@ -164,11 +171,67 @@
             reiniciar_filtro.UseVisualStyleBackColor = true;
             reiniciar_filtro.Click += reiniciar_filtro_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(55, 393);
+            label1.Name = "label1";
+            label1.Size = new Size(157, 20);
+            label1.TabIndex = 11;
+            label1.Text = "Detalle de Mercaderia";
+            // 
+            // list_detalle_mercaderia
+            // 
+            list_detalle_mercaderia.BackColor = SystemColors.ScrollBar;
+            list_detalle_mercaderia.Columns.AddRange(new ColumnHeader[] { cod_producto, descripcion, cantidad, ubicacion });
+            list_detalle_mercaderia.Location = new Point(55, 428);
+            list_detalle_mercaderia.Name = "list_detalle_mercaderia";
+            list_detalle_mercaderia.Size = new Size(812, 154);
+            list_detalle_mercaderia.TabIndex = 12;
+            list_detalle_mercaderia.UseCompatibleStateImageBehavior = false;
+            list_detalle_mercaderia.View = View.Details;
+            // 
+            // cod_producto
+            // 
+            cod_producto.Text = "Producto";
+            cod_producto.Width = 120;
+            // 
+            // descripcion
+            // 
+            descripcion.DisplayIndex = 2;
+            descripcion.Text = "Descripción";
+            descripcion.Width = 140;
+            // 
+            // cantidad
+            // 
+            cantidad.DisplayIndex = 3;
+            cantidad.Text = "Cantidad";
+            cantidad.Width = 80;
+            // 
+            // ubicacion
+            // 
+            ubicacion.DisplayIndex = 1;
+            ubicacion.Text = "Ubicacion";
+            ubicacion.Width = 100;
+            // 
+            // consultar
+            // 
+            consultar.Location = new Point(682, 355);
+            consultar.Name = "consultar";
+            consultar.Size = new Size(185, 40);
+            consultar.TabIndex = 13;
+            consultar.Text = "Consultar";
+            consultar.UseVisualStyleBackColor = true;
+            consultar.Click += ConsultarButton_Click;
+            // 
             // ConfirmarOrdenDeSeleccion
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(731, 531);
+            ClientSize = new Size(909, 862);
+            Controls.Add(consultar);
+            Controls.Add(list_detalle_mercaderia);
+            Controls.Add(label1);
             Controls.Add(reiniciar_filtro);
             Controls.Add(cliente_id);
             Controls.Add(orden_id);
@@ -204,5 +267,12 @@
         private TextBox cliente_id;
         private OpenFileDialog openFileDialog1;
         private Button reiniciar_filtro;
+        private Label label1;
+        private ListView list_detalle_mercaderia;
+        private ColumnHeader cod_producto;
+        private ColumnHeader descripcion;
+        private ColumnHeader cantidad;
+        private ColumnHeader ubicacion;
+        private Button consultar;
     }
 }
