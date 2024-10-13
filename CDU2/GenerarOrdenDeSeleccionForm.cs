@@ -306,6 +306,7 @@ namespace GrupoC.Tp3.CDU2
 
             // Ajustar automáticamente las columnas del ListView de destino
             OrdenDeSeleccion2ListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            OrdenDeSeleccion2ListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize); // Ajustar por el tamaño del encabezado también
         }
 
 
@@ -343,6 +344,7 @@ namespace GrupoC.Tp3.CDU2
 
             // Ajustar automáticamente las columnas del ListView de destino
             OrdenDeSeleccion2ListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            OrdenDeSeleccion2ListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize); // Ajustar por el tamaño del encabezado también
         }
 
         private void QuitarTodasButton_Click(object sender, EventArgs e)
