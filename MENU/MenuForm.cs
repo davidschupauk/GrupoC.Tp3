@@ -3,6 +3,7 @@ using GrupoC.Tp3.CDU2;
 using GrupoC.Tp3.CDU3;
 using GrupoC.Tp3.CDU4;
 using GrupoC.Tp3.CDU5;
+using GrupoC.Tp3.CDU6;
 using System;
 using System.Windows.Forms;
 
@@ -24,7 +25,7 @@ namespace GrupoC.Tp3.MENU
         {
             GenerarOrdenDePreparacionForm generarOrdenDePreparacionForm = new GenerarOrdenDePreparacionForm();
             generarOrdenDePreparacionForm.Show();
-            
+
         }
 
         private void botonGenerarOrdenSeleccion_Click(object sender, EventArgs e)
@@ -63,6 +64,12 @@ namespace GrupoC.Tp3.MENU
         {
             ConsultarOrden consultarOrden = new ConsultarOrden();
             consultarOrden.Show();
+        }
+
+        private void EmpaquetarOrden_Click(object sender, EventArgs e)
+        {
+            Empaquetado confirmarEmpaquetado = new Empaquetado();
+            confirmarEmpaquetado.Show();
         }
     }
 }
