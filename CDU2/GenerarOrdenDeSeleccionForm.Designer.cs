@@ -65,17 +65,18 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(831, 17);
+            label1.Location = new Point(727, 13);
             label1.Name = "label1";
-            label1.Size = new Size(182, 20);
+            label1.Size = new Size(144, 15);
             label1.TabIndex = 0;
             label1.Text = "ORDEN DE SELECCIÓN N°";
             // 
             // IDOSTextBox
             // 
-            IDOSTextBox.Location = new Point(1018, 15);
+            IDOSTextBox.Location = new Point(891, 11);
+            IDOSTextBox.Margin = new Padding(3, 2, 3, 2);
             IDOSTextBox.Name = "IDOSTextBox";
-            IDOSTextBox.Size = new Size(125, 27);
+            IDOSTextBox.Size = new Size(110, 23);
             IDOSTextBox.TabIndex = 1;
             // 
             // groupBox1
@@ -90,9 +91,11 @@
             groupBox1.Controls.Add(IDClienteTextBox);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(label2);
-            groupBox1.Location = new Point(33, 61);
+            groupBox1.Location = new Point(29, 46);
+            groupBox1.Margin = new Padding(3, 2, 3, 2);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(1111, 121);
+            groupBox1.Padding = new Padding(3, 2, 3, 2);
+            groupBox1.Size = new Size(972, 91);
             groupBox1.TabIndex = 4;
             groupBox1.TabStop = false;
             groupBox1.Text = "Filtrar Por:";
@@ -101,85 +104,93 @@
             // 
             PrioridadComboBox.FormattingEnabled = true;
             PrioridadComboBox.Items.AddRange(new object[] { "Alta", "Media", "Baja" });
-            PrioridadComboBox.Location = new Point(569, 64);
+            PrioridadComboBox.Location = new Point(498, 48);
+            PrioridadComboBox.Margin = new Padding(3, 2, 3, 2);
             PrioridadComboBox.Name = "PrioridadComboBox";
-            PrioridadComboBox.Size = new Size(114, 28);
-            PrioridadComboBox.TabIndex = 13;
+            PrioridadComboBox.Size = new Size(100, 23);
+            PrioridadComboBox.TabIndex = 4;
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Location = new Point(569, 22);
+            dateTimePicker1.Checked = false;
+            dateTimePicker1.Location = new Point(498, 16);
+            dateTimePicker1.Margin = new Padding(3, 2, 3, 2);
             dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(114, 27);
-            dateTimePicker1.TabIndex = 12;
+            dateTimePicker1.Size = new Size(100, 23);
+            dateTimePicker1.TabIndex = 3;
+            dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(431, 64);
+            label5.Location = new Point(377, 48);
             label5.Name = "label5";
-            label5.Size = new Size(70, 20);
+            label5.Size = new Size(55, 15);
             label5.TabIndex = 11;
             label5.Text = "Prioridad";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(431, 27);
+            label4.Location = new Point(377, 20);
             label4.Name = "label4";
-            label4.Size = new Size(123, 20);
+            label4.Size = new Size(97, 15);
             label4.TabIndex = 10;
             label4.Text = "Fecha de Entrega";
             // 
             // ReiniciarFiltroButton
             // 
-            ReiniciarFiltroButton.Location = new Point(939, 60);
+            ReiniciarFiltroButton.Location = new Point(822, 45);
+            ReiniciarFiltroButton.Margin = new Padding(3, 2, 3, 2);
             ReiniciarFiltroButton.Name = "ReiniciarFiltroButton";
-            ReiniciarFiltroButton.Size = new Size(123, 29);
-            ReiniciarFiltroButton.TabIndex = 7;
+            ReiniciarFiltroButton.Size = new Size(108, 22);
+            ReiniciarFiltroButton.TabIndex = 6;
             ReiniciarFiltroButton.Text = "Reiniciar Filtro";
             ReiniciarFiltroButton.UseVisualStyleBackColor = true;
             ReiniciarFiltroButton.Click += ReiniciarFiltroButton_Click;
             // 
             // FiltrarButton
             // 
-            FiltrarButton.Location = new Point(939, 17);
+            FiltrarButton.Location = new Point(822, 13);
+            FiltrarButton.Margin = new Padding(3, 2, 3, 2);
             FiltrarButton.Name = "FiltrarButton";
-            FiltrarButton.Size = new Size(123, 29);
-            FiltrarButton.TabIndex = 6;
+            FiltrarButton.Size = new Size(108, 22);
+            FiltrarButton.TabIndex = 5;
             FiltrarButton.Text = "Filtrar";
             FiltrarButton.UseVisualStyleBackColor = true;
             FiltrarButton.Click += FiltrarButton_Click;
             // 
             // IDOPTextBox
             // 
-            IDOPTextBox.Location = new Point(273, 64);
+            IDOPTextBox.Location = new Point(239, 48);
+            IDOPTextBox.Margin = new Padding(3, 2, 3, 2);
             IDOPTextBox.Name = "IDOPTextBox";
-            IDOPTextBox.Size = new Size(125, 27);
-            IDOPTextBox.TabIndex = 5;
+            IDOPTextBox.Size = new Size(110, 23);
+            IDOPTextBox.TabIndex = 2;
             // 
             // IDClienteTextBox
             // 
-            IDClienteTextBox.Location = new Point(273, 27);
+            IDClienteTextBox.Location = new Point(239, 20);
+            IDClienteTextBox.Margin = new Padding(3, 2, 3, 2);
             IDClienteTextBox.Name = "IDClienteTextBox";
-            IDClienteTextBox.Size = new Size(125, 27);
-            IDClienteTextBox.TabIndex = 2;
+            IDClienteTextBox.Size = new Size(110, 23);
+            IDClienteTextBox.TabIndex = 1;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(94, 64);
+            label3.Location = new Point(82, 48);
             label3.Name = "label3";
-            label3.Size = new Size(173, 20);
+            label3.Size = new Size(136, 15);
             label3.TabIndex = 1;
             label3.Text = "ID Orden de Preparación";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(94, 27);
+            label2.Location = new Point(82, 20);
             label2.Name = "label2";
-            label2.Size = new Size(74, 20);
+            label2.Size = new Size(58, 15);
             label2.TabIndex = 0;
             label2.Text = "ID Cliente";
             // 
@@ -187,10 +198,11 @@
             // 
             OrdenDeSeleccionListView.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5 });
             OrdenDeSeleccionListView.FullRowSelect = true;
-            OrdenDeSeleccionListView.Location = new Point(33, 204);
+            OrdenDeSeleccionListView.Location = new Point(29, 153);
+            OrdenDeSeleccionListView.Margin = new Padding(3, 2, 3, 2);
             OrdenDeSeleccionListView.Name = "OrdenDeSeleccionListView";
-            OrdenDeSeleccionListView.Size = new Size(1110, 197);
-            OrdenDeSeleccionListView.TabIndex = 5;
+            OrdenDeSeleccionListView.Size = new Size(972, 149);
+            OrdenDeSeleccionListView.TabIndex = 7;
             OrdenDeSeleccionListView.UseCompatibleStateImageBehavior = false;
             OrdenDeSeleccionListView.View = View.Details;
             // 
@@ -216,64 +228,62 @@
             // 
             // GenerarOrdenButton
             // 
-            GenerarOrdenButton.Location = new Point(906, 753);
+            GenerarOrdenButton.Location = new Point(793, 565);
+            GenerarOrdenButton.Margin = new Padding(3, 2, 3, 2);
             GenerarOrdenButton.Name = "GenerarOrdenButton";
-            GenerarOrdenButton.Size = new Size(123, 29);
-            GenerarOrdenButton.TabIndex = 6;
+            GenerarOrdenButton.Size = new Size(108, 22);
+            GenerarOrdenButton.TabIndex = 13;
             GenerarOrdenButton.Text = "Generar Orden";
             GenerarOrdenButton.UseVisualStyleBackColor = true;
             GenerarOrdenButton.Click += GenerarOrdenButton_Click;
             // 
             // CancelarButton
             // 
-            CancelarButton.Location = new Point(1037, 753);
+            CancelarButton.Location = new Point(907, 565);
+            CancelarButton.Margin = new Padding(3, 2, 3, 2);
             CancelarButton.Name = "CancelarButton";
-            CancelarButton.Size = new Size(107, 29);
-            CancelarButton.TabIndex = 7;
+            CancelarButton.Size = new Size(94, 22);
+            CancelarButton.TabIndex = 14;
             CancelarButton.Text = "Cancelar";
             CancelarButton.UseVisualStyleBackColor = true;
             CancelarButton.Click += CancelarButton_Click;
             // 
             // AgregarTodasButton
             // 
-            AgregarTodasButton.Location = new Point(730, 409);
-            AgregarTodasButton.Margin = new Padding(3, 4, 3, 4);
+            AgregarTodasButton.Location = new Point(639, 307);
             AgregarTodasButton.Name = "AgregarTodasButton";
-            AgregarTodasButton.Size = new Size(213, 31);
-            AgregarTodasButton.TabIndex = 9;
+            AgregarTodasButton.Size = new Size(186, 23);
+            AgregarTodasButton.TabIndex = 8;
             AgregarTodasButton.Text = "Agregar todas las listadas";
             AgregarTodasButton.UseVisualStyleBackColor = true;
             AgregarTodasButton.Click += AgregarTodasButton_Click;
             // 
             // AgregarSeleccionadasButton
             // 
-            AgregarSeleccionadasButton.Location = new Point(950, 409);
-            AgregarSeleccionadasButton.Margin = new Padding(3, 4, 3, 4);
+            AgregarSeleccionadasButton.Location = new Point(831, 307);
             AgregarSeleccionadasButton.Name = "AgregarSeleccionadasButton";
-            AgregarSeleccionadasButton.Size = new Size(194, 31);
-            AgregarSeleccionadasButton.TabIndex = 10;
+            AgregarSeleccionadasButton.Size = new Size(170, 23);
+            AgregarSeleccionadasButton.TabIndex = 9;
             AgregarSeleccionadasButton.Text = "Agregar las seleccionadas";
             AgregarSeleccionadasButton.UseVisualStyleBackColor = true;
             AgregarSeleccionadasButton.Click += AgregarSeleccionadasButton_Click;
             // 
             // QuitarSeleccionadasButton
             // 
-            QuitarSeleccionadasButton.Location = new Point(950, 671);
-            QuitarSeleccionadasButton.Margin = new Padding(3, 4, 3, 4);
+            QuitarSeleccionadasButton.Location = new Point(831, 503);
             QuitarSeleccionadasButton.Name = "QuitarSeleccionadasButton";
-            QuitarSeleccionadasButton.Size = new Size(194, 31);
-            QuitarSeleccionadasButton.TabIndex = 11;
+            QuitarSeleccionadasButton.Size = new Size(170, 23);
+            QuitarSeleccionadasButton.TabIndex = 12;
             QuitarSeleccionadasButton.Text = "Quitar las seleccionadas";
             QuitarSeleccionadasButton.UseVisualStyleBackColor = true;
             QuitarSeleccionadasButton.Click += QuitarSeleccionadasButton_Click;
             // 
             // QuitarTodasButton
             // 
-            QuitarTodasButton.Location = new Point(730, 671);
-            QuitarTodasButton.Margin = new Padding(3, 4, 3, 4);
+            QuitarTodasButton.Location = new Point(639, 503);
             QuitarTodasButton.Name = "QuitarTodasButton";
-            QuitarTodasButton.Size = new Size(213, 31);
-            QuitarTodasButton.TabIndex = 12;
+            QuitarTodasButton.Size = new Size(186, 23);
+            QuitarTodasButton.TabIndex = 11;
             QuitarTodasButton.Text = "Quitar todas las listadas";
             QuitarTodasButton.UseVisualStyleBackColor = true;
             QuitarTodasButton.Click += QuitarTodasButton_Click;
@@ -282,10 +292,11 @@
             // 
             OrdenDeSeleccion2ListView.Columns.AddRange(new ColumnHeader[] { columnHeader6, columnHeader7, columnHeader8, columnHeader9, columnHeader10 });
             OrdenDeSeleccion2ListView.FullRowSelect = true;
-            OrdenDeSeleccion2ListView.Location = new Point(34, 447);
+            OrdenDeSeleccion2ListView.Location = new Point(30, 335);
+            OrdenDeSeleccion2ListView.Margin = new Padding(3, 2, 3, 2);
             OrdenDeSeleccion2ListView.Name = "OrdenDeSeleccion2ListView";
-            OrdenDeSeleccion2ListView.Size = new Size(1110, 197);
-            OrdenDeSeleccion2ListView.TabIndex = 13;
+            OrdenDeSeleccion2ListView.Size = new Size(972, 149);
+            OrdenDeSeleccion2ListView.TabIndex = 10;
             OrdenDeSeleccion2ListView.UseCompatibleStateImageBehavior = false;
             OrdenDeSeleccion2ListView.View = View.Details;
             // 
@@ -311,9 +322,9 @@
             // 
             // GenerarOrdenDeSeleccionForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1176, 797);
+            ClientSize = new Size(1029, 598);
             Controls.Add(OrdenDeSeleccion2ListView);
             Controls.Add(QuitarTodasButton);
             Controls.Add(QuitarSeleccionadasButton);
@@ -326,6 +337,7 @@
             Controls.Add(label1);
             Controls.Add(groupBox1);
             FormBorderStyle = FormBorderStyle.FixedDialog;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "GenerarOrdenDeSeleccionForm";
             Text = "Generar Orden de Selección";
             Load += GenerarOrdenDeSeleccionForm_Load_1;
