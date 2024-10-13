@@ -1,6 +1,6 @@
 ﻿namespace GrupoC.Tp3.DespacharOrden
 {
-    partial class DespacharOrden
+    partial class Despachar
     {
         /// <summary>
         /// Required designer variable.
@@ -28,19 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ListViewItem listViewItem1 = new ListViewItem(new string[] { "101", "Axioma", "Juan Pablo" }, -1);
-            ListViewItem listViewItem2 = new ListViewItem(new string[] { "Juan", "Cuneo", "999999", "623" }, -1);
-            ListViewItem listViewItem3 = new ListViewItem(new string[] { "100", "Qontigo", "Tomas" }, -1);
             OrdenesPorDespacharlistView = new ListView();
             NroOrden = new ColumnHeader();
             Cliente = new ColumnHeader();
             Transportista = new ColumnHeader();
+            codtransportista = new ColumnHeader();
             label1 = new Label();
-            listView1 = new ListView();
-            Nombre = new ColumnHeader();
-            Apellido = new ColumnHeader();
-            DNI = new ColumnHeader();
-            CodigoTransportista = new ColumnHeader();
+            datosTrasportistas = new ListView();
+            transportistaCod = new ColumnHeader();
+            dni_id = new ColumnHeader();
+            nombre_transportista = new ColumnHeader();
+            apellidoTrasnportista = new ColumnHeader();
             label2 = new Label();
             SeleccionarOrdenbutton = new Button();
             ConfirmarTransportistabutton = new Button();
@@ -48,18 +46,20 @@
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
             columnHeader3 = new ColumnHeader();
+            columnHeader4 = new ColumnHeader();
             ConfirmarDespachobutton = new Button();
             label3 = new Label();
             SuspendLayout();
             // 
             // OrdenesPorDespacharlistView
             // 
-            OrdenesPorDespacharlistView.Columns.AddRange(new ColumnHeader[] { NroOrden, Cliente, Transportista });
-            OrdenesPorDespacharlistView.Items.AddRange(new ListViewItem[] { listViewItem1 });
+            OrdenesPorDespacharlistView.BackColor = SystemColors.ScrollBar;
+            OrdenesPorDespacharlistView.Columns.AddRange(new ColumnHeader[] { NroOrden, Cliente, Transportista, codtransportista });
+            OrdenesPorDespacharlistView.FullRowSelect = true;
             OrdenesPorDespacharlistView.Location = new Point(14, 39);
             OrdenesPorDespacharlistView.Margin = new Padding(3, 4, 3, 4);
             OrdenesPorDespacharlistView.Name = "OrdenesPorDespacharlistView";
-            OrdenesPorDespacharlistView.Size = new Size(362, 397);
+            OrdenesPorDespacharlistView.Size = new Size(431, 397);
             OrdenesPorDespacharlistView.TabIndex = 0;
             OrdenesPorDespacharlistView.UseCompatibleStateImageBehavior = false;
             OrdenesPorDespacharlistView.View = View.Details;
@@ -79,6 +79,11 @@
             Transportista.Text = "Transportista";
             Transportista.Width = 100;
             // 
+            // codtransportista
+            // 
+            codtransportista.Text = "Cod. Transportista";
+            codtransportista.Width = 180;
+            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -88,76 +93,79 @@
             label1.TabIndex = 1;
             label1.Text = "Ordenes por despachar";
             // 
-            // listView1
+            // datosTrasportistas
             // 
-            listView1.Columns.AddRange(new ColumnHeader[] { Nombre, Apellido, DNI, CodigoTransportista });
-            listView1.Items.AddRange(new ListViewItem[] { listViewItem2 });
-            listView1.Location = new Point(423, 39);
-            listView1.Margin = new Padding(3, 4, 3, 4);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(673, 397);
-            listView1.TabIndex = 2;
-            listView1.UseCompatibleStateImageBehavior = false;
-            listView1.View = View.Details;
+            datosTrasportistas.BackColor = SystemColors.ScrollBar;
+            datosTrasportistas.Columns.AddRange(new ColumnHeader[] { transportistaCod, dni_id, nombre_transportista, apellidoTrasnportista });
+            datosTrasportistas.FullRowSelect = true;
+            datosTrasportistas.Location = new Point(514, 39);
+            datosTrasportistas.Margin = new Padding(3, 4, 3, 4);
+            datosTrasportistas.Name = "datosTrasportistas";
+            datosTrasportistas.Size = new Size(673, 397);
+            datosTrasportistas.TabIndex = 2;
+            datosTrasportistas.UseCompatibleStateImageBehavior = false;
+            datosTrasportistas.View = View.Details;
             // 
-            // Nombre
+            // transportistaCod
             // 
-            Nombre.Text = "Nombre";
-            Nombre.Width = 100;
+            transportistaCod.Text = "Cod. Transportista";
+            transportistaCod.Width = 180;
             // 
-            // Apellido
+            // dni_id
             // 
-            Apellido.Text = "Apellido";
-            Apellido.Width = 100;
+            dni_id.Text = "DNI";
+            dni_id.Width = 180;
             // 
-            // DNI
+            // nombre_transportista
             // 
-            DNI.Text = "DNI";
-            DNI.Width = 100;
+            nombre_transportista.Text = "Nombre";
+            nombre_transportista.Width = 180;
             // 
-            // CodigoTransportista
+            // apellidoTrasnportista
             // 
-            CodigoTransportista.Text = "Codigo Transportista";
-            CodigoTransportista.Width = 130;
+            apellidoTrasnportista.Text = "Apellido";
+            apellidoTrasnportista.Width = 180;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(423, 15);
+            label2.Location = new Point(514, 15);
             label2.Name = "label2";
             label2.Size = new Size(135, 20);
             label2.TabIndex = 3;
             label2.Text = "Datos transportista";
-            label2.Click += label2_Click;
             // 
             // SeleccionarOrdenbutton
             // 
-            SeleccionarOrdenbutton.Location = new Point(290, 445);
+            SeleccionarOrdenbutton.Location = new Point(294, 444);
             SeleccionarOrdenbutton.Margin = new Padding(3, 4, 3, 4);
             SeleccionarOrdenbutton.Name = "SeleccionarOrdenbutton";
-            SeleccionarOrdenbutton.Size = new Size(86, 31);
+            SeleccionarOrdenbutton.Size = new Size(151, 32);
             SeleccionarOrdenbutton.TabIndex = 4;
             SeleccionarOrdenbutton.Text = "Seleccionar";
             SeleccionarOrdenbutton.UseVisualStyleBackColor = true;
+            SeleccionarOrdenbutton.Click += SeleccionarOrdenbutton_Click;
             // 
             // ConfirmarTransportistabutton
             // 
-            ConfirmarTransportistabutton.Location = new Point(928, 445);
+            ConfirmarTransportistabutton.Location = new Point(1014, 445);
             ConfirmarTransportistabutton.Margin = new Padding(3, 4, 3, 4);
             ConfirmarTransportistabutton.Name = "ConfirmarTransportistabutton";
-            ConfirmarTransportistabutton.Size = new Size(168, 31);
+            ConfirmarTransportistabutton.Size = new Size(173, 31);
             ConfirmarTransportistabutton.TabIndex = 5;
             ConfirmarTransportistabutton.Text = "Confirmar transportista";
             ConfirmarTransportistabutton.UseVisualStyleBackColor = true;
+            ConfirmarTransportistabutton.Click += ConfirmarTransportistabutton_Click;
             // 
             // OrdenesDespachoAprobadolistView
             // 
-            OrdenesDespachoAprobadolistView.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3 });
-            OrdenesDespachoAprobadolistView.Items.AddRange(new ListViewItem[] { listViewItem3 });
+            OrdenesDespachoAprobadolistView.Activation = ItemActivation.OneClick;
+            OrdenesDespachoAprobadolistView.BackColor = SystemColors.ScrollBar;
+            OrdenesDespachoAprobadolistView.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4 });
             OrdenesDespachoAprobadolistView.Location = new Point(14, 499);
             OrdenesDespachoAprobadolistView.Margin = new Padding(3, 4, 3, 4);
             OrdenesDespachoAprobadolistView.Name = "OrdenesDespachoAprobadolistView";
-            OrdenesDespachoAprobadolistView.Size = new Size(362, 185);
+            OrdenesDespachoAprobadolistView.Size = new Size(431, 185);
             OrdenesDespachoAprobadolistView.TabIndex = 6;
             OrdenesDespachoAprobadolistView.UseCompatibleStateImageBehavior = false;
             OrdenesDespachoAprobadolistView.View = View.Details;
@@ -177,15 +185,21 @@
             columnHeader3.Text = "Transportista";
             columnHeader3.Width = 100;
             // 
+            // columnHeader4
+            // 
+            columnHeader4.Text = "Cod. Transportista";
+            columnHeader4.Width = 150;
+            // 
             // ConfirmarDespachobutton
             // 
-            ConfirmarDespachobutton.Location = new Point(225, 693);
+            ConfirmarDespachobutton.Location = new Point(294, 692);
             ConfirmarDespachobutton.Margin = new Padding(3, 4, 3, 4);
             ConfirmarDespachobutton.Name = "ConfirmarDespachobutton";
             ConfirmarDespachobutton.Size = new Size(151, 31);
             ConfirmarDespachobutton.TabIndex = 7;
             ConfirmarDespachobutton.Text = "Confirmar despacho";
             ConfirmarDespachobutton.UseVisualStyleBackColor = true;
+            ConfirmarDespachobutton.Click += ConfirmarDespachobutton_Click;
             // 
             // label3
             // 
@@ -196,22 +210,22 @@
             label3.TabIndex = 8;
             label3.Text = "Ordenes con transportista confirmado";
             // 
-            // DespacharOrden
+            // Despachar
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1110, 747);
+            ClientSize = new Size(1210, 760);
             Controls.Add(label3);
             Controls.Add(ConfirmarDespachobutton);
             Controls.Add(OrdenesDespachoAprobadolistView);
             Controls.Add(ConfirmarTransportistabutton);
             Controls.Add(SeleccionarOrdenbutton);
             Controls.Add(label2);
-            Controls.Add(listView1);
+            Controls.Add(datosTrasportistas);
             Controls.Add(label1);
             Controls.Add(OrdenesPorDespacharlistView);
             Margin = new Padding(3, 4, 3, 4);
-            Name = "DespacharOrden";
+            Name = "Despachar";
             Text = "DespacharOrden";
             Load += DespacharOrden_Load;
             ResumeLayout(false);
@@ -225,19 +239,21 @@
         private ColumnHeader Cliente;
         private ColumnHeader Transportista;
         private Label label1;
-        private ListView listView1;
+        private ListView datosTrasportistas;
         private Label label2;
         private Button SeleccionarOrdenbutton;
         private Button ConfirmarTransportistabutton;
-        private ColumnHeader Nombre;
-        private ColumnHeader Apellido;
-        private ColumnHeader DNI;
-        private ColumnHeader CodigoTransportista;
         private ListView OrdenesDespachoAprobadolistView;
         private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;
         private ColumnHeader columnHeader3;
         private Button ConfirmarDespachobutton;
         private Label label3;
+        private ColumnHeader codtransportista;
+        private ColumnHeader transportistaCod;
+        private ColumnHeader dni_id;
+        private ColumnHeader nombre_transportista;
+        private ColumnHeader apellidoTrasnportista;
+        private ColumnHeader columnHeader4;
     }
 }

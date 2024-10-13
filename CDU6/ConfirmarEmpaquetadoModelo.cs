@@ -9,12 +9,12 @@ namespace GrupoC.Tp3.CDU6
 {
     internal class ConfirmarEmpaquetadoModelo
     {
-        public List<Paquetes> Paquetes { get; private set; } =
+        public List<Despachos> Paquetes { get; private set; } =
     [
-        new Paquetes { CodProducto = 22, Descripcion = "Zapatillas", Cantidad = 300 },
-        new Paquetes { CodProducto = 25, Descripcion = "Remeras", Cantidad = 300 },
-        new Paquetes { CodProducto = 29, Descripcion = "Pantalones", Cantidad = 200 },
-        new Paquetes { CodProducto = 30, Descripcion = "Camisas", Cantidad = 300 }, 
+        new Despachos { CodProducto = 22, Descripcion = "Zapatillas", Cantidad = 300 },
+        new Despachos { CodProducto = 25, Descripcion = "Remeras", Cantidad = 300 },
+        new Despachos { CodProducto = 29, Descripcion = "Pantalones", Cantidad = 200 },
+        new Despachos { CodProducto = 30, Descripcion = "Camisas", Cantidad = 300 }, 
         
     ];
     }

@@ -76,7 +76,7 @@ namespace GrupoC.Tp3.MENU
 
         private void despacharOrden_Click(object sender, EventArgs e)
         {
-            DespacharOrden despacharOrden = new DespacharOrden();
+            Despachar despacharOrden = new Despachar();
             despacharOrden.Show();
         }
     }

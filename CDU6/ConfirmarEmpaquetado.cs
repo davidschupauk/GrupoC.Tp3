@@ -18,7 +18,7 @@ namespace GrupoC.Tp3.CDU6
     public partial class Empaquetado : Form
     {
         private Ordenes ordenSeleccionada;
-        private Paquetes paqueteSeleccionada;
+        private Despachos paqueteSeleccionada;
         private ConfirmarEmpaquetadoModelo modelo = new();
         private ConfirmarOrdenDeSeleccionModelo modelo2 = new();
 

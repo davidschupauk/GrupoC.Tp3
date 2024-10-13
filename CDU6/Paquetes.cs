@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GrupoC.Tp3.CDU6
 {
-    public class Paquetes
+    public class Despachos
     {
         public int CodProducto { get; set; }
         public string Descripcion { get; set; }
