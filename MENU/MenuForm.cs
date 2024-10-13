@@ -68,7 +68,7 @@ namespace GrupoC.Tp3.MENU
 
         private void EmpaquetarOrden_Click(object sender, EventArgs e)
         {
-            ConfirmarEmpaquetado confirmarEmpaquetado = new ConfirmarEmpaquetado();
+            Empaquetado confirmarEmpaquetado = new Empaquetado();
             confirmarEmpaquetado.Show();
         }
     }

@@ -11,10 +11,10 @@ namespace GrupoC.Tp3.CDU6
     {
         public List<Paquetes> Paquetes { get; private set; } =
     [
-        new Paquetes { CodProducto = 22, Descripcion = "Zapatillas", Cantidad = 300, Estado = "Pendiente de Empaquetar" },
+        new Paquetes { CodProducto = 22, Descripcion = "Zapatillas", Cantidad = 300 },
         new Paquetes { CodProducto = 25, Descripcion = "Remeras", Cantidad = 300 },
         new Paquetes { CodProducto = 29, Descripcion = "Pantalones", Cantidad = 200 },
-        new Paquetes { CodProducto = 30, Descripcion = "Camisas", Cantidad = 300 },
+        new Paquetes { CodProducto = 30, Descripcion = "Camisas", Cantidad = 300 }, 
         
     ];
     }

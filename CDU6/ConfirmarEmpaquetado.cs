@@ -33,6 +33,8 @@ namespace GrupoC.Tp3.CDU6
 
         private void Empaquetado_Load(object sender, EventArgs e)
         {
+            confirmar_empaquetado.Enabled = false;
+            
             CargarLista();
         }
 
@@ -83,6 +85,7 @@ namespace GrupoC.Tp3.CDU6
             }
 
             CargarDetalleLista();
+            confirmar_empaquetado.Enabled = true;
         }
 
 

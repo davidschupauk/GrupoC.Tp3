@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            confirmarEmpaquetados = new ListView();
-            id_orden = new ColumnHeader();
-            Cliente = new ColumnHeader();
             orden_empaquetado = new Label();
             label_idOrden = new Label();
             idOrden_textBox = new TextBox();
@@ -44,27 +41,10 @@
             descripcion = new ColumnHeader();
             label1 = new Label();
             mostrar_detalle = new Button();
+            confirmarEmpaquetados = new ListView();
+            IdOrden = new ColumnHeader();
+            IdCliente = new ColumnHeader();
             SuspendLayout();
-            // 
-            // confirmarEmpaquetados
-            // 
-            confirmarEmpaquetados.Columns.AddRange(new ColumnHeader[] { id_orden, Cliente });
-            confirmarEmpaquetados.Location = new Point(32, 147);
-            confirmarEmpaquetados.Name = "confirmarEmpaquetados";
-            confirmarEmpaquetados.Size = new Size(358, 423);
-            confirmarEmpaquetados.TabIndex = 0;
-            confirmarEmpaquetados.UseCompatibleStateImageBehavior = false;
-            confirmarEmpaquetados.View = View.Details;
-            // 
-            // id_orden
-            // 
-            id_orden.Text = "ID Orden";
-            id_orden.Width = 150;
-            // 
-            // Cliente
-            // 
-            Cliente.Text = "Cliente";
-            Cliente.Width = 180;
             // 
             // orden_empaquetado
             // 
@@ -134,6 +114,7 @@
             // 
             // detalle_productos
             // 
+            detalle_productos.BackColor = SystemColors.ScrollBar;
             detalle_productos.Columns.AddRange(new ColumnHeader[] { id_producto, cantidad, descripcion });
             detalle_productos.Location = new Point(448, 147);
             detalle_productos.Name = "detalle_productos";
@@ -178,11 +159,35 @@
             mostrar_detalle.UseVisualStyleBackColor = true;
             mostrar_detalle.Click += MostrarDetalleButton_Click;
             // 
+            // confirmarEmpaquetados
+            // 
+            confirmarEmpaquetados.BackColor = SystemColors.ScrollBar;
+            confirmarEmpaquetados.Columns.AddRange(new ColumnHeader[] { IdOrden, IdCliente });
+            confirmarEmpaquetados.FullRowSelect = true;
+            confirmarEmpaquetados.Location = new Point(32, 148);
+            confirmarEmpaquetados.Margin = new Padding(3, 4, 3, 4);
+            confirmarEmpaquetados.Name = "confirmarEmpaquetados";
+            confirmarEmpaquetados.Size = new Size(382, 422);
+            confirmarEmpaquetados.TabIndex = 12;
+            confirmarEmpaquetados.UseCompatibleStateImageBehavior = false;
+            confirmarEmpaquetados.View = View.Details;
+            // 
+            // IdOrden
+            // 
+            IdOrden.Text = "ID Orden";
+            IdOrden.Width = 200;
+            // 
+            // IdCliente
+            // 
+            IdCliente.Text = "ID Cliente";
+            IdCliente.Width = 200;
+            // 
             // Empaquetado
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(935, 665);
+            Controls.Add(confirmarEmpaquetados);
             Controls.Add(mostrar_detalle);
             Controls.Add(label1);
             Controls.Add(detalle_productos);
@@ -193,7 +198,6 @@
             Controls.Add(idOrden_textBox);
             Controls.Add(label_idOrden);
             Controls.Add(orden_empaquetado);
-            Controls.Add(confirmarEmpaquetados);
             Name = "Empaquetado";
             Text = "Empaquetado";
             Load += Empaquetado_Load;
@@ -202,15 +206,11 @@
         }
 
         #endregion
-
-        private ListView confirmarEmpaquetados;
         private Label orden_empaquetado;
         private Label label_idOrden;
         private TextBox idOrden_textBox;
         private Button buscar_buttton;
         private Button reiniciar_filtro_button;
-        private ColumnHeader id_orden;
-        private ColumnHeader Cliente;
         private Button confirmar_empaquetado;
         private Button cancelar;
         private ListView detalle_productos;
@@ -219,5 +219,8 @@
         private Label label1;
         private Button mostrar_detalle;
         private ColumnHeader descripcion;
+        private ListView confirmarEmpaquetados;
+        private ColumnHeader IdOrden;
+        private ColumnHeader IdCliente;
     }
 }

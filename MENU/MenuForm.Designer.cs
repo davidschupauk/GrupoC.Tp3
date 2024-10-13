@@ -105,7 +105,7 @@
             EmpaquetarOrden.Name = "EmpaquetarOrden";
             EmpaquetarOrden.Size = new Size(701, 73);
             EmpaquetarOrden.TabIndex = 7;
-            EmpaquetarOrden.Text = "EmpaquetarOrden";
+            EmpaquetarOrden.Text = "Empaquetar Orden";
             EmpaquetarOrden.UseVisualStyleBackColor = true;
             EmpaquetarOrden.Click += EmpaquetarOrden_Click;
             // 
