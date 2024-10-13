@@ -4,6 +4,8 @@ using GrupoC.Tp3.CDU3;
 using GrupoC.Tp3.CDU4;
 using GrupoC.Tp3.CDU5;
 using GrupoC.Tp3.CDU6;
+using GrupoC.Tp3.DespacharOrden;
+
 using System;
 using System.Windows.Forms;
 
@@ -70,6 +72,12 @@ namespace GrupoC.Tp3.MENU
         {
             Empaquetado confirmarEmpaquetado = new Empaquetado();
             confirmarEmpaquetado.Show();
+        }
+
+        private void despacharOrden_Click(object sender, EventArgs e)
+        {
+            DespacharOrden despacharOrden = new DespacharOrden();
+            despacharOrden.Show();
         }
     }
 }

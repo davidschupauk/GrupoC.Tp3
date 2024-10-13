@@ -21,5 +21,10 @@ namespace GrupoC.Tp3.DespacharOrden
         {
 
         }
+
+        private void DespacharOrden_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

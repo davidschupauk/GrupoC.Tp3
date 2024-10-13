@@ -25,6 +25,7 @@
             ConfirmarOrdenDeSeleccion = new Button();
             consultarOrdenButton = new Button();
             EmpaquetarOrden = new Button();
+            despacharOrden = new Button();
             SuspendLayout();
             // 
             // botonGenerarOrdenDePreparacion
@@ -49,7 +50,7 @@
             // 
             // botonGenerarDocumentos
             // 
-            botonGenerarDocumentos.Location = new Point(50, 435);
+            botonGenerarDocumentos.Location = new Point(50, 532);
             botonGenerarDocumentos.Name = "botonGenerarDocumentos";
             botonGenerarDocumentos.Size = new Size(701, 75);
             botonGenerarDocumentos.TabIndex = 2;
@@ -68,7 +69,7 @@
             // 
             // botonSalir
             // 
-            botonSalir.Location = new Point(601, 630);
+            botonSalir.Location = new Point(601, 715);
             botonSalir.Name = "botonSalir";
             botonSalir.Size = new Size(150, 60);
             botonSalir.TabIndex = 4;
@@ -89,7 +90,7 @@
             // 
             // consultarOrdenButton
             // 
-            consultarOrdenButton.Location = new Point(50, 527);
+            consultarOrdenButton.Location = new Point(50, 626);
             consultarOrdenButton.Margin = new Padding(3, 4, 3, 4);
             consultarOrdenButton.Name = "consultarOrdenButton";
             consultarOrdenButton.Size = new Size(701, 66);
@@ -109,11 +110,23 @@
             EmpaquetarOrden.UseVisualStyleBackColor = true;
             EmpaquetarOrden.Click += EmpaquetarOrden_Click;
             // 
+            // despacharOrden
+            // 
+            despacharOrden.Location = new Point(50, 439);
+            despacharOrden.Margin = new Padding(3, 4, 3, 4);
+            despacharOrden.Name = "despacharOrden";
+            despacharOrden.Size = new Size(701, 73);
+            despacharOrden.TabIndex = 8;
+            despacharOrden.Text = "Despachar Orden";
+            despacharOrden.UseVisualStyleBackColor = true;
+            despacharOrden.Click += despacharOrden_Click;
+            // 
             // MenuForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(790, 698);
+            ClientSize = new Size(819, 811);
+            Controls.Add(despacharOrden);
             Controls.Add(EmpaquetarOrden);
             Controls.Add(consultarOrdenButton);
             Controls.Add(ConfirmarOrdenDeSeleccion);
@@ -139,5 +152,6 @@
         private Button ConfirmarOrdenDeSeleccion;
         private Button consultarOrdenButton;
         private Button EmpaquetarOrden;
+        private Button despacharOrden;
     }
 }
