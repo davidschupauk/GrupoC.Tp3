@@ -29,6 +29,10 @@ namespace GrupoC.Tp3.CDU2
             IDOSTextBox.ReadOnly = true;
             IDOSTextBox.Enabled = false; // deshabilita el control por completo
 
+            // Configurar DateTimePicker
+            dateTimePicker1.Format = DateTimePickerFormat.Short;
+            dateTimePicker1.MinDate = DateTime.Today; // Solo permite seleccionar desde hoy
+
             // Cargar la lista de órdenes de selección en el ListView
             CargarListaOrdenes();
         }
@@ -71,7 +75,7 @@ namespace GrupoC.Tp3.CDU2
             AjustarTamañoColumnas();
         }
 
-        // Método para ajustar automáticamente el tamaño de las columnas
+        // Método para ajustar automáticamente el tamaño de las columnas OrdenDeSeleccionListView
         private void AjustarTamañoColumnas()
         {
             foreach (ColumnHeader column in OrdenDeSeleccionListView.Columns)
@@ -91,29 +95,26 @@ namespace GrupoC.Tp3.CDU2
             string idOrdenText = IDOSTextBox.Text; // TextBox
             int numeroOrden;
 
-            // Verificar si hay al menos un ítem seleccionado en el ListView
-            if (OrdenDeSeleccionListView.SelectedItems.Count == 0)
+            // Verificar si hay ítems en el ListView de órdenes seleccionadas
+            if (OrdenDeSeleccion2ListView.Items.Count == 0)
             {
-                MessageBox.Show("Por favor, seleccione al menos un ítem para generar la orden.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return; // Salir del método si no se selecciona ningún ítem
+                MessageBox.Show("No hay ítems en la lista de órdenes para generar la orden.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Salir del método si no hay ítems
             }
 
             if (int.TryParse(idOrdenText, out numeroOrden))
             {
-                // Confirmar órdenes seleccionadas
+                // Confirmar generación de la orden
                 var resultado = MessageBox.Show("¿Está seguro de que desea generar la orden?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (resultado == DialogResult.Yes)
                 {
-                    // Lista temporal para almacenar los items seleccionados
-                    List<ListViewItem> itemsAEliminar = new List<ListViewItem>();
+                    // Lista temporal para almacenar los items a eliminar
                     List<string> detallesProductos = new List<string>();
 
-                    // Iterar sobre los elementos seleccionados en el ListView
-                    foreach (ListViewItem item in OrdenDeSeleccionListView.SelectedItems)
+                    // Iterar sobre los elementos en el ListView de órdenes seleccionadas
+                    foreach (ListViewItem item in OrdenDeSeleccion2ListView.Items)
                     {
-                        itemsAEliminar.Add(item); // Agregar el item a la lista temporal
-
                         // Obtener el IDCliente del item
                         var ordenSeleccionada = (OrdenesDeSeleccion)item.Tag;
 
@@ -127,10 +128,18 @@ namespace GrupoC.Tp3.CDU2
                         }
                     }
 
-                    // Eliminar los items seleccionados del ListView
-                    foreach (var item in itemsAEliminar)
+                    // Eliminar los items confirmados de OrdenDeSeleccionListView
+                    foreach (ListViewItem item in OrdenDeSeleccion2ListView.Items)
                     {
-                        OrdenDeSeleccionListView.Items.Remove(item);
+                        var ordenSeleccionada = (OrdenesDeSeleccion)item.Tag;
+                        var itemToRemove = OrdenDeSeleccionListView.Items
+                            .Cast<ListViewItem>()
+                            .FirstOrDefault(i => ((OrdenesDeSeleccion)i.Tag).IDCliente == ordenSeleccionada.IDCliente && ((OrdenesDeSeleccion)i.Tag).NumeroOrden == ordenSeleccionada.NumeroOrden);
+
+                        if (itemToRemove != null)
+                        {
+                            OrdenDeSeleccionListView.Items.Remove(itemToRemove);
+                        }
                     }
 
                     // Mostrar el mensaje de éxito con detalles de los productos
@@ -140,7 +149,7 @@ namespace GrupoC.Tp3.CDU2
                     // Limpiar el formulario
                     IDClienteTextBox.Clear(); // Limpiar el TextBox de IDCliente
                     IDOPTextBox.Clear(); // Limpiar el TextBox de IDOperación
-                    OrdenDeSeleccionListView.Items.Clear(); // Limpiar el ListView
+                    OrdenDeSeleccion2ListView.Items.Clear(); // Limpiar el ListView de órdenes generadas
 
                     // Generar el nuevo número correlativo para la próxima orden
                     int nuevoNumeroOrden = numeroOrden + 1;
@@ -148,6 +157,7 @@ namespace GrupoC.Tp3.CDU2
 
                     // Recargar la lista original de órdenes
                     CargarListaOrdenes();
+
                 }
             }
         }
@@ -157,19 +167,23 @@ namespace GrupoC.Tp3.CDU2
             // Obtener los IDs ingresados por el usuario
             string idClienteInput = IDClienteTextBox.Text; // Toma el TextBox de IDCliente
             string idOrdenInput = IDOPTextBox.Text; // Toma el TextBox de IDOrden
+            DateTime? fechaSeleccionada = dateTimePicker1.Checked ? (DateTime?)dateTimePicker1.Value : null; // Toma la fecha si está seleccionada
+            string prioridadInput = PrioridadComboBox.SelectedItem?.ToString(); // Toma la prioridad seleccionada en el ComboBox
 
-            // Verificar si se ha ingresado al menos un ID
-            if (string.IsNullOrWhiteSpace(idClienteInput) && string.IsNullOrWhiteSpace(idOrdenInput))
+            // Verificar si se ha ingresado al menos un ID, se ha seleccionado una fecha o una prioridad
+            if (string.IsNullOrWhiteSpace(idClienteInput) && string.IsNullOrWhiteSpace(idOrdenInput) && !fechaSeleccionada.HasValue && string.IsNullOrWhiteSpace(prioridadInput))
             {
-                MessageBox.Show("Por favor, ingrese un ID de cliente o un ID de orden.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor, ingrese un ID de cliente, un ID de orden, seleccione una fecha o una prioridad.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                // Limpiar los TextBoxes
+                // Limpiar los TextBoxes y el DateTimePicker
                 IDClienteTextBox.Clear();
                 IDOPTextBox.Clear();
+                dateTimePicker1.ResetText(); // Esto hará que se muestre vacío
+                PrioridadComboBox.SelectedIndex = -1; // Reiniciar el ComboBox
 
                 // Recargar la lista original de órdenes
                 CargarListaOrdenes(); // Método que recarga todas las órdenes originales
-                return; // Salir del método si no se ingresa ningún ID
+                return; // Salir del método si no se ingresa nada
             }
 
             // Limpiar el ListView antes de agregar nuevos elementos
@@ -190,17 +204,28 @@ namespace GrupoC.Tp3.CDU2
                 ordenesFiltradas = ordenesFiltradas.Where(orden => orden.NumeroOrden.ToString() == idOrdenInput);
             }
 
-            // Ordenar por prioridad
-            ordenesFiltradas = ordenesFiltradas.OrderBy(orden => orden.Prioridad);
+            // Filtrar por fecha si se ha seleccionado
+            if (fechaSeleccionada.HasValue)
+            {
+                ordenesFiltradas = ordenesFiltradas.Where(orden => orden.Fecha.Date == fechaSeleccionada.Value.Date);
+            }
+
+            // Filtrar por prioridad si se ha seleccionado
+            if (!string.IsNullOrWhiteSpace(prioridadInput))
+            {
+                ordenesFiltradas = ordenesFiltradas.Where(orden => orden.Prioridad.ToString() == prioridadInput);
+            }
 
             // Verificar si se encontraron órdenes
             if (!ordenesFiltradas.Any())
             {
-                MessageBox.Show("No se encontraron órdenes para el ID ingresado.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("No se encontraron órdenes para los criterios ingresados.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Limpiar los TextBoxes
+                // Limpiar los TextBoxes y el DateTimePicker
                 IDClienteTextBox.Clear();
                 IDOPTextBox.Clear();
+                dateTimePicker1.ResetText(); // Esto hará que se muestre vacío
+                PrioridadComboBox.SelectedIndex = -1; // Reiniciar el ComboBox
 
                 // Recargar la lista original de órdenes
                 CargarListaOrdenes(); // Método que recarga todas las órdenes originales
@@ -227,20 +252,26 @@ namespace GrupoC.Tp3.CDU2
             AjustarTamañoColumnas();
         }
 
-
-
         private void ReiniciarFiltroButton_Click(object sender, EventArgs e)
         {
-            // Verificar si hay un IDCliente o IDOrden ingresado
-            if (string.IsNullOrWhiteSpace(IDClienteTextBox.Text) && string.IsNullOrWhiteSpace(IDOPTextBox.Text))
+            // Verificar si hay un IDCliente, IDOrden o fecha seleccionada
+            if (string.IsNullOrWhiteSpace(IDClienteTextBox.Text) && string.IsNullOrWhiteSpace(IDOPTextBox.Text)
+                && string.IsNullOrWhiteSpace(PrioridadComboBox.SelectedItem?.ToString())
+                && !dateTimePicker1.Checked)
             {
-                MessageBox.Show("No hay un ID de cliente o un ID de orden ingresado para reiniciar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return; // Salir del método si no se ha ingresado ningún ID
+                MessageBox.Show("No hay un ID de cliente, ID de orden, prioridad o fecha seleccionada para reiniciar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return; // Salir del método si no hay nada que limpiar
             }
 
             // Limpiar los TextBox donde se ingresaron los IDs
             IDClienteTextBox.Clear();
             IDOPTextBox.Clear();
+
+            // Limpiar el ComboBox de prioridad
+            PrioridadComboBox.SelectedIndex = -1; // O PrioridadComboBox.ResetText(); si quieres restablecer el texto
+
+            // Limpiar el DateTimePicker
+            dateTimePicker1.ResetText(); // Restablecer el DateTimePicker
 
             // Limpiar el ListView antes de volver a cargar todas las órdenes
             OrdenDeSeleccionListView.Items.Clear();
@@ -249,6 +280,133 @@ namespace GrupoC.Tp3.CDU2
             CargarListaOrdenes(); // Método que recarga todas las órdenes originales
         }
 
+        private void AgregarTodasButton_Click(object sender, EventArgs e)
+        {
+            // Crear una lista temporal para almacenar los ítems a eliminar
+            List<ListViewItem> itemsAEliminar = new List<ListViewItem>();
+
+            // Iterar sobre los elementos en OrdenDeSeleccionListView
+            foreach (ListViewItem item in OrdenDeSeleccionListView.Items)
+            {
+                // Clonar el ítem para agregarlo al segundo ListView
+                ListViewItem nuevoItem = (ListViewItem)item.Clone();
+
+                // Agregar el nuevo ítem a OrdenDeSeleccion2ListView
+                OrdenDeSeleccion2ListView.Items.Add(nuevoItem);
+
+                // Agregar el ítem original a la lista de eliminación
+                itemsAEliminar.Add(item);
+            }
+
+            // Eliminar los ítems originales de OrdenDeSeleccionListView
+            foreach (var item in itemsAEliminar)
+            {
+                OrdenDeSeleccionListView.Items.Remove(item);
+            }
+
+            // Ajustar automáticamente las columnas del ListView de destino
+            OrdenDeSeleccion2ListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+        }
+
+
+
+        private void AgregarSeleccionadasButton_Click(object sender, EventArgs e)
+        {
+            // Verificar si hay ítems seleccionados en el ListView de selección
+            if (OrdenDeSeleccionListView.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Por favor, seleccione al menos un ítem para agregar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Salir si no hay ítems seleccionados
+            }
+
+            // Lista temporal para almacenar los ítems a eliminar
+            List<ListViewItem> itemsAEliminar = new List<ListViewItem>();
+
+            // Iterar sobre los ítems seleccionados y agregarlos al segundo ListView
+            foreach (ListViewItem item in OrdenDeSeleccionListView.SelectedItems)
+            {
+                // Clonar el ítem para evitar referencias compartidas
+                ListViewItem nuevoItem = (ListViewItem)item.Clone();
+
+                // Agregar el nuevo ítem al ListView de destino
+                OrdenDeSeleccion2ListView.Items.Add(nuevoItem);
+
+                // Agregar el ítem original a la lista de eliminación
+                itemsAEliminar.Add(item);
+            }
+
+            // Eliminar los ítems seleccionados del primer ListView
+            foreach (var item in itemsAEliminar)
+            {
+                OrdenDeSeleccionListView.Items.Remove(item);
+            }
+
+            // Ajustar automáticamente las columnas del ListView de destino
+            OrdenDeSeleccion2ListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+        }
+
+        private void QuitarTodasButton_Click(object sender, EventArgs e)
+        {
+            // Verificar si hay ítems en el ListView de selección 2
+            if (OrdenDeSeleccion2ListView.Items.Count == 0)
+            {
+                MessageBox.Show("No hay ítems para quitar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return; // Salir si no hay ítems
+            }
+
+            // Iterar sobre los ítems en OrdenDeSeleccion2ListView y moverlos a OrdenDeSeleccionListView
+            List<ListViewItem> itemsAMover = new List<ListViewItem>();
+
+            foreach (ListViewItem item in OrdenDeSeleccion2ListView.Items)
+            {
+                // Clonar el ítem para evitar referencias compartidas
+                ListViewItem nuevoItem = (ListViewItem)item.Clone();
+                itemsAMover.Add(nuevoItem);
+            }
+
+            // Agregar los ítems clonados al ListView original
+            foreach (ListViewItem item in itemsAMover)
+            {
+                OrdenDeSeleccionListView.Items.Add(item);
+            }
+
+            // Limpiar el ListView de destino
+            OrdenDeSeleccion2ListView.Items.Clear();
+        }
+
+
+        private void QuitarSeleccionadasButton_Click(object sender, EventArgs e)
+        {
+            // Verificar si hay ítems seleccionados en el ListView de selección 2
+            if (OrdenDeSeleccion2ListView.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Por favor, seleccione al menos un ítem para quitar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Salir si no hay ítems seleccionados
+            }
+
+            // Crear una lista temporal para almacenar los ítems a mover
+            List<ListViewItem> itemsAMover = new List<ListViewItem>();
+
+            // Iterar sobre los ítems seleccionados en OrdenDeSeleccion2ListView
+            foreach (ListViewItem item in OrdenDeSeleccion2ListView.SelectedItems)
+            {
+                // Clonar el ítem para evitar referencias compartidas
+                ListViewItem nuevoItem = (ListViewItem)item.Clone();
+                itemsAMover.Add(nuevoItem);
+            }
+
+            // Agregar los ítems clonados al ListView original
+            foreach (ListViewItem item in itemsAMover)
+            {
+                OrdenDeSeleccionListView.Items.Add(item);
+            }
+
+            // Eliminar los ítems seleccionados del ListView de destino
+            foreach (ListViewItem item in OrdenDeSeleccion2ListView.SelectedItems)
+            {
+                OrdenDeSeleccion2ListView.Items.Remove(item);
+            }
+        }
 
     }
 }
