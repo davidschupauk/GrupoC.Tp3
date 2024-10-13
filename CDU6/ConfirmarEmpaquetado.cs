@@ -169,7 +169,7 @@ namespace GrupoC.Tp3.CDU6
                 // Si el usuario selecciona 'No', no hacer nada
                 MessageBox.Show("La operación ha sido cancelada.");
             }
-
+            detalle_productos.Items.Clear();
             confirmarEmpaquetados.SelectedItems[0].Remove();
 
 
