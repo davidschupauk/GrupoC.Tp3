@@ -181,8 +181,6 @@ namespace GrupoC.Tp3.CDU2
                 dateTimePicker1.ResetText(); // Esto hará que se muestre vacío
                 PrioridadComboBox.SelectedIndex = -1; // Reiniciar el ComboBox
 
-                // Recargar la lista original de órdenes
-                CargarListaOrdenes(); // Método que recarga todas las órdenes originales
                 return; // Salir del método si no se ingresa nada
             }
 
@@ -191,6 +189,12 @@ namespace GrupoC.Tp3.CDU2
 
             // Filtrar las órdenes
             var ordenesFiltradas = model.ListaOrdenesSeleccion.AsQueryable();
+
+            // Obtener los IDs de los ítems ya seleccionados en OrdenDeSeleccion2ListView
+            var idsSeleccionados = OrdenDeSeleccion2ListView.Items
+                .Cast<ListViewItem>()
+                .Select(item => ((OrdenesDeSeleccion)item.Tag).NumeroOrden)
+                .ToList();
 
             // Filtrar por IDCliente si se ha ingresado
             if (!string.IsNullOrWhiteSpace(idClienteInput))
@@ -216,10 +220,16 @@ namespace GrupoC.Tp3.CDU2
                 ordenesFiltradas = ordenesFiltradas.Where(orden => orden.Prioridad.ToString() == prioridadInput);
             }
 
+            // Excluir los ítems seleccionados en OrdenDeSeleccion2ListView
+            if (idsSeleccionados.Any())
+            {
+                ordenesFiltradas = ordenesFiltradas.Where(orden => !idsSeleccionados.Contains(orden.NumeroOrden));
+            }
+
             // Verificar si se encontraron órdenes
             if (!ordenesFiltradas.Any())
             {
-                MessageBox.Show("No se encontraron órdenes para los criterios ingresados.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("No se encontraron órdenes para los criterios ingresados o todos los resultados ya están seleccionados.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // Limpiar los TextBoxes y el DateTimePicker
                 IDClienteTextBox.Clear();
@@ -227,8 +237,6 @@ namespace GrupoC.Tp3.CDU2
                 dateTimePicker1.ResetText(); // Esto hará que se muestre vacío
                 PrioridadComboBox.SelectedIndex = -1; // Reiniciar el ComboBox
 
-                // Recargar la lista original de órdenes
-                CargarListaOrdenes(); // Método que recarga todas las órdenes originales
                 return; // Salir del método si no se encuentran órdenes
             }
 
@@ -251,6 +259,8 @@ namespace GrupoC.Tp3.CDU2
             // Ajustar el tamaño de las columnas
             AjustarTamañoColumnas();
         }
+
+
 
         private void ReiniciarFiltroButton_Click(object sender, EventArgs e)
         {
