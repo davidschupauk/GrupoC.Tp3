@@ -25,7 +25,7 @@ namespace GrupoC.Tp3.MENU
         {
             GenerarOrdenDePreparacionForm generarOrdenDePreparacionForm = new GenerarOrdenDePreparacionForm();
             generarOrdenDePreparacionForm.Show();
-            
+
         }
 
         private void botonGenerarOrdenSeleccion_Click(object sender, EventArgs e)
@@ -64,6 +64,12 @@ namespace GrupoC.Tp3.MENU
         {
             ConsultarOrden consultarOrden = new ConsultarOrden();
             consultarOrden.Show();
+        }
+
+        private void EmpaquetarOrden_Click(object sender, EventArgs e)
+        {
+            ConfirmarEmpaquetado confirmarEmpaquetado = new ConfirmarEmpaquetado();
+            confirmarEmpaquetado.Show();
         }
     }
 }
