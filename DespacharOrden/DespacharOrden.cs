@@ -100,7 +100,7 @@ namespace GrupoC.Tp3.DespacharOrden
             }
             selectedOrderItem = OrdenesPorDespacharlistView.SelectedItems[0];
             CargarListaTransportista();
-            SeleccionarOrdenbutton.Enabled = false;
+            
             ConfirmarTransportistabutton.Enabled = true;
 
         }
@@ -117,7 +117,7 @@ namespace GrupoC.Tp3.DespacharOrden
             ultimaOrdenAprobadaItem = nuevoItem;
             OrdenesPorDespacharlistView.Items.Remove(selectedOrderItem);
             datosTrasportistas.Items.Clear();
-            ConfirmarTransportistabutton.Enabled = false;
+           
             ConfirmarDespachobutton.Enabled = true;
             selectedOrderItem = null;
 
@@ -129,9 +129,9 @@ namespace GrupoC.Tp3.DespacharOrden
             if (ultimaOrdenAprobadaItem != null)
             {
          
-                OrdenesDespachoAprobadolistView.Items.Remove(ultimaOrdenAprobadaItem);
+                OrdenesDespachoAprobadolistView.Items.Clear();
                 ultimaOrdenAprobadaItem = null;
-                SeleccionarOrdenbutton.Enabled = true;
+                
             }
             else
             {
