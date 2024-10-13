@@ -95,28 +95,14 @@ namespace GrupoC.Tp3.CDU4
             }
         }
 
-        private void confirmarBoton_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Orden Entregada", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            ListViewItem selectedItem = pedidosPreparadosListView.SelectedItems[0];
-            selectedItem.SubItems[4].Text = "Orden Entregada";
-        }
+
 
         private void pedidosPreparadosListView_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (pedidosPreparadosListView.SelectedItems.Count > 0)
             {
                 ListViewItem selectedItem = pedidosPreparadosListView.SelectedItems[0];
-                if (selectedItem.SubItems[4].Text == "Documentación Generada")
-                {
-                    confirmarBoton.Enabled = true;
-                    return;
-                }
-                if (selectedItem.SubItems[4].Text == "Preparado")
-                {
-                    confirmarBoton.Enabled = false;
-                    return;
-                }
+
                 if (selectedItem.SubItems[4].Text == "Orden Entregada")
                 {
                     generarBoton.Enabled = false;
@@ -156,5 +142,7 @@ namespace GrupoC.Tp3.CDU4
             pedidosPreparadosListView.Items.Clear();
             CargarLista(modelo.ListaPedidos);
         }
+
+        private void label1_Click(object sender, EventArgs e) { } 
     }
 }

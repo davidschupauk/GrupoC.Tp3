@@ -100,7 +100,7 @@ namespace GrupoC.Tp3.DespacharOrden
             }
             selectedOrderItem = OrdenesPorDespacharlistView.SelectedItems[0];
             CargarListaTransportista();
-            SeleccionarOrdenbutton.Enabled = false;
+
             ConfirmarTransportistabutton.Enabled = true;
 
         }
@@ -128,15 +128,39 @@ namespace GrupoC.Tp3.DespacharOrden
         {
             if (ultimaOrdenAprobadaItem != null)
             {
-         
-                OrdenesDespachoAprobadolistView.Items.Remove(ultimaOrdenAprobadaItem);
+                OrdenesDespachoAprobadolistView.Items.Clear();
                 ultimaOrdenAprobadaItem = null;
-                SeleccionarOrdenbutton.Enabled = true;
+                var confirmacion = MessageBox.Show(
+                    $"¿Estás seguro de que quieres confirmar el despacho de las ordenes seleccionadas?",
+                    "Confirmar Despacho",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+            // Si el usuario selecciona 'Yes', confirmar la orden
+                if (confirmacion == DialogResult.Yes)
+                {
+                    // Lógica para confirmar la orden
+                    MessageBox.Show("Se ha realizado el despacho exitosamente");
+
+
+                }
+                else
+                {
+                    // Si el usuario selecciona 'No', no hacer nada
+                    MessageBox.Show("La operación ha sido cancelada.");
+                }
+
             }
             else
             {
                 MessageBox.Show("No hay órdenes con transportistas confirmados para realizar el despacho.");
             }
+        }
+
+        private void cancelar_confirmacion_Click(object sender, EventArgs e)
+        {
+            OrdenesDespachoAprobadolistView.Items.Clear();
         }
     }
 }

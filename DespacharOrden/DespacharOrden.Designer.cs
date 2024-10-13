@@ -49,6 +49,7 @@
             columnHeader4 = new ColumnHeader();
             ConfirmarDespachobutton = new Button();
             label3 = new Label();
+            cancelar_confirmacion = new Button();
             SuspendLayout();
             // 
             // OrdenesPorDespacharlistView
@@ -210,11 +211,22 @@
             label3.TabIndex = 8;
             label3.Text = "Ordenes con transportista confirmado";
             // 
+            // cancelar_confirmacion
+            // 
+            cancelar_confirmacion.Location = new Point(835, 447);
+            cancelar_confirmacion.Name = "cancelar_confirmacion";
+            cancelar_confirmacion.Size = new Size(173, 29);
+            cancelar_confirmacion.TabIndex = 9;
+            cancelar_confirmacion.Text = "Cancelar";
+            cancelar_confirmacion.UseVisualStyleBackColor = true;
+            cancelar_confirmacion.Click += cancelar_confirmacion_Click;
+            // 
             // Despachar
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1210, 760);
+            Controls.Add(cancelar_confirmacion);
             Controls.Add(label3);
             Controls.Add(ConfirmarDespachobutton);
             Controls.Add(OrdenesDespachoAprobadolistView);
@@ -255,5 +267,6 @@
         private ColumnHeader nombre_transportista;
         private ColumnHeader apellidoTrasnportista;
         private ColumnHeader columnHeader4;
+        private Button cancelar_confirmacion;
     }
 }
