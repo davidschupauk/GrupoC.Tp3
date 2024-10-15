@@ -29,10 +29,6 @@
         private void InitializeComponent()
         {
             orden_empaquetado = new Label();
-            label_idOrden = new Label();
-            idOrden_textBox = new TextBox();
-            buscar_buttton = new Button();
-            reiniciar_filtro_button = new Button();
             confirmar_empaquetado = new Button();
             cancelar = new Button();
             detalle_productos = new ListView();
@@ -49,47 +45,11 @@
             // orden_empaquetado
             // 
             orden_empaquetado.AutoSize = true;
-            orden_empaquetado.Location = new Point(32, 124);
+            orden_empaquetado.Location = new Point(32, 23);
             orden_empaquetado.Name = "orden_empaquetado";
             orden_empaquetado.Size = new Size(176, 20);
             orden_empaquetado.TabIndex = 2;
             orden_empaquetado.Text = "Ordenes por Empaquetar";
-            // 
-            // label_idOrden
-            // 
-            label_idOrden.AutoSize = true;
-            label_idOrden.Location = new Point(32, 37);
-            label_idOrden.Name = "label_idOrden";
-            label_idOrden.Size = new Size(69, 20);
-            label_idOrden.TabIndex = 3;
-            label_idOrden.Text = "ID Orden";
-            // 
-            // idOrden_textBox
-            // 
-            idOrden_textBox.Location = new Point(107, 37);
-            idOrden_textBox.Name = "idOrden_textBox";
-            idOrden_textBox.Size = new Size(236, 27);
-            idOrden_textBox.TabIndex = 4;
-            // 
-            // buscar_buttton
-            // 
-            buscar_buttton.Location = new Point(107, 70);
-            buscar_buttton.Name = "buscar_buttton";
-            buscar_buttton.Size = new Size(115, 29);
-            buscar_buttton.TabIndex = 5;
-            buscar_buttton.Text = "Filtrar";
-            buscar_buttton.UseVisualStyleBackColor = true;
-            buscar_buttton.Click += buscar_Click;
-            // 
-            // reiniciar_filtro_button
-            // 
-            reiniciar_filtro_button.Location = new Point(228, 70);
-            reiniciar_filtro_button.Name = "reiniciar_filtro_button";
-            reiniciar_filtro_button.Size = new Size(115, 29);
-            reiniciar_filtro_button.TabIndex = 6;
-            reiniciar_filtro_button.Text = "Reiniciar Filtro";
-            reiniciar_filtro_button.UseVisualStyleBackColor = true;
-            reiniciar_filtro_button.Click += reiniciar_filtro_Click;
             // 
             // confirmar_empaquetado
             // 
@@ -116,9 +76,9 @@
             // 
             detalle_productos.BackColor = SystemColors.ScrollBar;
             detalle_productos.Columns.AddRange(new ColumnHeader[] { id_producto, cantidad, descripcion });
-            detalle_productos.Location = new Point(448, 147);
+            detalle_productos.Location = new Point(448, 60);
             detalle_productos.Name = "detalle_productos";
-            detalle_productos.Size = new Size(464, 423);
+            detalle_productos.Size = new Size(464, 510);
             detalle_productos.TabIndex = 9;
             detalle_productos.UseCompatibleStateImageBehavior = false;
             detalle_productos.View = View.Details;
@@ -143,7 +103,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(448, 124);
+            label1.Location = new Point(448, 32);
             label1.Name = "label1";
             label1.Size = new Size(127, 20);
             label1.TabIndex = 10;
@@ -164,10 +124,10 @@
             confirmarEmpaquetados.BackColor = SystemColors.ScrollBar;
             confirmarEmpaquetados.Columns.AddRange(new ColumnHeader[] { IdOrden, IdCliente });
             confirmarEmpaquetados.FullRowSelect = true;
-            confirmarEmpaquetados.Location = new Point(32, 148);
+            confirmarEmpaquetados.Location = new Point(32, 60);
             confirmarEmpaquetados.Margin = new Padding(3, 4, 3, 4);
             confirmarEmpaquetados.Name = "confirmarEmpaquetados";
-            confirmarEmpaquetados.Size = new Size(382, 422);
+            confirmarEmpaquetados.Size = new Size(382, 510);
             confirmarEmpaquetados.TabIndex = 12;
             confirmarEmpaquetados.UseCompatibleStateImageBehavior = false;
             confirmarEmpaquetados.View = View.Details;
@@ -193,10 +153,6 @@
             Controls.Add(detalle_productos);
             Controls.Add(cancelar);
             Controls.Add(confirmar_empaquetado);
-            Controls.Add(reiniciar_filtro_button);
-            Controls.Add(buscar_buttton);
-            Controls.Add(idOrden_textBox);
-            Controls.Add(label_idOrden);
             Controls.Add(orden_empaquetado);
             Name = "Empaquetado";
             Text = "Empaquetado";
@@ -207,10 +163,6 @@
 
         #endregion
         private Label orden_empaquetado;
-        private Label label_idOrden;
-        private TextBox idOrden_textBox;
-        private Button buscar_buttton;
-        private Button reiniciar_filtro_button;
         private Button confirmar_empaquetado;
         private Button cancelar;
         private ListView detalle_productos;

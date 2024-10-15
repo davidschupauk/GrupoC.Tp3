@@ -67,23 +67,27 @@
             // 
             // NroOrden
             // 
+            NroOrden.DisplayIndex = 2;
             NroOrden.Text = "Nro Orden";
             NroOrden.Width = 100;
             // 
             // Cliente
             // 
+            Cliente.DisplayIndex = 3;
             Cliente.Text = "Cliente";
             Cliente.Width = 100;
             // 
             // Transportista
             // 
+            Transportista.DisplayIndex = 1;
             Transportista.Text = "Transportista";
             Transportista.Width = 100;
             // 
             // codtransportista
             // 
+            codtransportista.DisplayIndex = 0;
             codtransportista.Text = "Cod. Transportista";
-            codtransportista.Width = 180;
+            codtransportista.Width = 150;
             // 
             // label1
             // 

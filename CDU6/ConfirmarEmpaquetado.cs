@@ -101,41 +101,41 @@ namespace GrupoC.Tp3.CDU6
             }
         }
 
-        private void FiltraLista()
-        {
-            confirmarEmpaquetados.Items.Clear();
+        //private void FiltraLista()
+        //{
+        //    confirmarEmpaquetados.Items.Clear();
 
-            int ordenId;
-            bool isOrdenIdValid = int.TryParse(idOrden_textBox.Text, out ordenId); // Verifica que el valor de orden_id sea numérico
+        //    int ordenId;
+        //    bool isOrdenIdValid = int.TryParse(idOrden_textBox.Text, out ordenId); // Verifica que el valor de orden_id sea numérico
 
-            foreach (var Orden in modelo2.Ordenes)
-            {
-                if (isOrdenIdValid && Orden.NroOrden == ordenId)
-                { // Cargar a la lista si coincide
-                    ListViewItem item = new ListViewItem();
-                    item.Text = Orden.NroOrden.ToString();
-                    item.SubItems.Add(Orden.Cliente);
-                    item.Tag = Orden;
-                    confirmarEmpaquetados.Items.Add(item);
-                }
+        //    foreach (var Orden in modelo2.Ordenes)
+        //    {
+        //        if (isOrdenIdValid && Orden.NroOrden == ordenId)
+        //        { // Cargar a la lista si coincide
+        //            ListViewItem item = new ListViewItem();
+        //            item.Text = Orden.NroOrden.ToString();
+        //            item.SubItems.Add(Orden.Cliente);
+        //            item.Tag = Orden;
+        //            confirmarEmpaquetados.Items.Add(item);
+        //        }
                     
-             }
+        //     }
 
-        }
+        //}
 
-        private void buscar_Click(object sender, EventArgs e)
-        {
-            detalle_productos.Items.Clear();
-            FiltraLista();
+        //private void buscar_Click(object sender, EventArgs e)
+        //{
+        //    detalle_productos.Items.Clear();
+        //    FiltraLista();
 
-        }
+        //}
 
-        private void reiniciar_filtro_Click(object sender, EventArgs e)
-        {
-            idOrden_textBox.Text = string.Empty;
-            detalle_productos.Items.Clear();
-            CargarLista();
-        }
+        //private void reiniciar_filtro_Click(object sender, EventArgs e)
+        //{
+        //    idOrden_textBox.Text = string.Empty;
+        //    detalle_productos.Items.Clear();
+        //    CargarLista();
+        //}
 
 
         private void ConfirmarButton_Click(object sender, EventArgs e)
