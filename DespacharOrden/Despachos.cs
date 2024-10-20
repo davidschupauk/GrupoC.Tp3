@@ -20,7 +20,6 @@ namespace GrupoC.Tp3.CDU6
     {
         public int NroOrden { get; set; }
         public string Cliente { get; set; }
-        public string Transportista { get; set; }
         public int CodTrasportista { get; set; }
 
     }
