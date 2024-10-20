@@ -76,6 +76,7 @@ namespace GrupoC.Tp3.CDU2
                 item.Tag = orden;
                 OrdenDeSeleccionListView.Items.Add(item);
             }
+            AgregarTodasButton.Enabled = OrdenDeSeleccionListView.Items.Count > 0;
 
             AjustarTamañoColumnas();
         }
@@ -304,6 +305,7 @@ namespace GrupoC.Tp3.CDU2
             // Ajustar automáticamente las columnas del ListView de destino
             OrdenDeSeleccion2ListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             OrdenDeSeleccion2ListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize); // Ajustar por el tamaño del encabezado también
+            AgregarTodasButton.Enabled = false;
         }
 
 
@@ -437,6 +439,11 @@ namespace GrupoC.Tp3.CDU2
                 listView.Items.Add(item);
             }
 
+        }
+
+        private void OrdenDeSeleccionListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AgregarSeleccionadasButton.Enabled = OrdenDeSeleccionListView.SelectedItems.Count > 0;
         }
     }
 }

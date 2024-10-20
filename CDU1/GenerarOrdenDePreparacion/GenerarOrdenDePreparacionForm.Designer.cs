@@ -56,9 +56,6 @@
             ID = new ColumnHeader();
             RZ = new ColumnHeader();
             CUIT = new ColumnHeader();
-            Direccion = new ColumnHeader();
-            Telefono = new ColumnHeader();
-            Email = new ColumnHeader();
             label7 = new Label();
             CuitTextBox = new TextBox();
             BuscarButton = new Button();
@@ -205,7 +202,7 @@
             AgregarButton.Name = "AgregarButton";
             AgregarButton.Size = new Size(81, 30);
             AgregarButton.TabIndex = 12;
-            AgregarButton.Text = "Agregar";
+            AgregarButton.Text = "Agregar >>";
             AgregarButton.UseVisualStyleBackColor = true;
             AgregarButton.Click += AgregarButton_Click;
             // 
@@ -216,7 +213,7 @@
             QuitarButton.Name = "QuitarButton";
             QuitarButton.Size = new Size(81, 30);
             QuitarButton.TabIndex = 13;
-            QuitarButton.Text = "Quitar";
+            QuitarButton.Text = "<< Quitar";
             QuitarButton.UseVisualStyleBackColor = true;
             QuitarButton.Click += QuitarButton_Click;
             // 
@@ -230,10 +227,10 @@
             // 
             // ConfirmarButton
             // 
-            ConfirmarButton.Location = new Point(713, 254);
+            ConfirmarButton.Location = new Point(636, 254);
             ConfirmarButton.Margin = new Padding(3, 2, 3, 2);
             ConfirmarButton.Name = "ConfirmarButton";
-            ConfirmarButton.Size = new Size(191, 30);
+            ConfirmarButton.Size = new Size(268, 30);
             ConfirmarButton.TabIndex = 15;
             ConfirmarButton.Text = "Confirmar Orden de Preparacion";
             ConfirmarButton.UseVisualStyleBackColor = true;
@@ -304,7 +301,7 @@
             // 
             // ClientesListView
             // 
-            ClientesListView.Columns.AddRange(new ColumnHeader[] { ID, RZ, CUIT, Direccion, Telefono, Email });
+            ClientesListView.Columns.AddRange(new ColumnHeader[] { ID, RZ, CUIT });
             ClientesListView.FullRowSelect = true;
             ClientesListView.Location = new Point(35, 113);
             ClientesListView.Margin = new Padding(3, 2, 3, 2);
@@ -329,21 +326,6 @@
             // 
             CUIT.Text = "CUIT";
             CUIT.Width = 37;
-            // 
-            // Direccion
-            // 
-            Direccion.Text = "Direccion";
-            Direccion.Width = 62;
-            // 
-            // Telefono
-            // 
-            Telefono.Text = "Telefono";
-            Telefono.Width = 58;
-            // 
-            // Email
-            // 
-            Email.Text = "Email";
-            Email.Width = 645;
             // 
             // label7
             // 
@@ -460,9 +442,6 @@
         private ColumnHeader ID;
         private ColumnHeader RZ;
         private ColumnHeader CUIT;
-        private ColumnHeader Direccion;
-        private ColumnHeader Telefono;
-        private ColumnHeader Email;
         private Label label7;
         private TextBox CuitTextBox;
         private Button BuscarButton;
