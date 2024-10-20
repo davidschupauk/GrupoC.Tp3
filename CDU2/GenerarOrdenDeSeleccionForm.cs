@@ -252,15 +252,6 @@ namespace GrupoC.Tp3.CDU2
 
         private void ReiniciarFiltroButton_Click(object sender, EventArgs e)
         {
-            // Verificar si hay un IDCliente, IDOrden o fecha seleccionada
-            if (string.IsNullOrWhiteSpace(IDClienteTextBox.Text) && string.IsNullOrWhiteSpace(IDOPTextBox.Text)
-                && string.IsNullOrWhiteSpace(PrioridadComboBox.SelectedItem?.ToString())
-                && !dateTimePicker1.Checked)
-            {
-                MessageBox.Show("No hay un ID de cliente, ID de orden, prioridad o fecha seleccionada para reiniciar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return; // Salir del método si no hay nada que limpiar
-            }
-
             // Limpiar los TextBox donde se ingresaron los IDs
             IDClienteTextBox.Clear();
             IDOPTextBox.Clear();
@@ -270,7 +261,7 @@ namespace GrupoC.Tp3.CDU2
 
             // Limpiar el DateTimePicker
             ClearDateTimePicker();
-
+            
             // Limpiar el ListView antes de volver a cargar todas las órdenes
             OrdenDeSeleccionListView.Items.Clear();
 
