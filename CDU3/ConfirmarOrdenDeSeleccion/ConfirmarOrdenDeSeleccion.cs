@@ -65,7 +65,7 @@ namespace GrupoC.Tp3.CDU3
             if (confirmarOrdenDeSeleccionlistView.SelectedItems.Count == 0)
             {
                 // Si no hay elementos seleccionados, mostrar un mensaje de error
-                MessageBox.Show("Debe seleccionar una orden para generar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe seleccionar una orden para consultar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return; // Salir del método
             }
 

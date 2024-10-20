@@ -166,7 +166,7 @@ namespace GrupoC.Tp3.CDU6
             {
                 // Lógica para confirmar la orden
                 MessageBox.Show("Se ha realizado la confirmacion del empaquetado");
-
+                confirmarEmpaquetados.SelectedItems[0].Remove();
 
             }
             else
@@ -175,7 +175,6 @@ namespace GrupoC.Tp3.CDU6
                 MessageBox.Show("La operación ha sido cancelada.");
             }
             detalle_productos.Items.Clear();
-            confirmarEmpaquetados.SelectedItems[0].Remove();
 
             if (confirmarEmpaquetados.Items.Count > 0)
             {

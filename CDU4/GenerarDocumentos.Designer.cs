@@ -34,7 +34,6 @@
             Cliente = new ColumnHeader();
             Transportista = new ColumnHeader();
             Fecha = new ColumnHeader();
-            Estado = new ColumnHeader();
             generarBoton = new Button();
             Filtrarbutton = new Button();
             Limpiarbutton = new Button();
@@ -56,7 +55,7 @@
             // 
             // pedidosPreparadosListView
             // 
-            pedidosPreparadosListView.Columns.AddRange(new ColumnHeader[] { Orden, Cliente, Transportista, Fecha, Estado });
+            pedidosPreparadosListView.Columns.AddRange(new ColumnHeader[] { Orden, Cliente, Transportista, Fecha });
             pedidosPreparadosListView.FullRowSelect = true;
             pedidosPreparadosListView.LabelWrap = false;
             pedidosPreparadosListView.Location = new Point(12, 153);
@@ -88,11 +87,6 @@
             // 
             Fecha.Text = "Fecha";
             Fecha.Width = 43;
-            // 
-            // Estado
-            // 
-            Estado.Text = "Estado";
-            Estado.Width = 407;
             // 
             // generarBoton
             // 
@@ -188,7 +182,6 @@
         private ColumnHeader Cliente;
         private ColumnHeader Transportista;
         private ColumnHeader Fecha;
-        private ColumnHeader Estado;
         private Button Filtrarbutton;
         private Button Limpiarbutton;
         private TextBox OrdenTextBox;
