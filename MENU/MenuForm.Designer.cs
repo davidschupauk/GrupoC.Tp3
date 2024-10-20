@@ -24,11 +24,13 @@
             botonSalir = new Button();
             ConfirmarOrdenDeSeleccion = new Button();
             consultarOrdenButton = new Button();
+            EmpaquetarOrden = new Button();
+            despacharOrden = new Button();
             SuspendLayout();
             // 
             // botonGenerarOrdenDePreparacion
             // 
-            botonGenerarOrdenDePreparacion.Location = new Point(44, 60);
+            botonGenerarOrdenDePreparacion.Location = new Point(44, 41);
             botonGenerarOrdenDePreparacion.Margin = new Padding(3, 2, 3, 2);
             botonGenerarOrdenDePreparacion.Name = "botonGenerarOrdenDePreparacion";
             botonGenerarOrdenDePreparacion.Size = new Size(613, 60);
@@ -39,7 +41,7 @@
             // 
             // botonGenerarOrdenSeleccion
             // 
-            botonGenerarOrdenSeleccion.Location = new Point(44, 135);
+            botonGenerarOrdenSeleccion.Location = new Point(44, 105);
             botonGenerarOrdenSeleccion.Margin = new Padding(3, 2, 3, 2);
             botonGenerarOrdenSeleccion.Name = "botonGenerarOrdenSeleccion";
             botonGenerarOrdenSeleccion.Size = new Size(613, 60);
@@ -50,12 +52,12 @@
             // 
             // botonGenerarDocumentos
             // 
-            botonGenerarDocumentos.Location = new Point(44, 280);
+            botonGenerarDocumentos.Location = new Point(44, 285);
             botonGenerarDocumentos.Margin = new Padding(3, 2, 3, 2);
             botonGenerarDocumentos.Name = "botonGenerarDocumentos";
-            botonGenerarDocumentos.Size = new Size(613, 60);
+            botonGenerarDocumentos.Size = new Size(613, 56);
             botonGenerarDocumentos.TabIndex = 2;
-            botonGenerarDocumentos.Text = "Generar remito y confirmar entrega";
+            botonGenerarDocumentos.Text = "Generar remito";
             botonGenerarDocumentos.UseVisualStyleBackColor = true;
             botonGenerarDocumentos.Click += botonGenerarDocumentos_Click;
             // 
@@ -70,7 +72,7 @@
             // 
             // botonSalir
             // 
-            botonSalir.Location = new Point(635, 450);
+            botonSalir.Location = new Point(526, 462);
             botonSalir.Margin = new Padding(3, 2, 3, 2);
             botonSalir.Name = "botonSalir";
             botonSalir.Size = new Size(131, 45);
@@ -81,7 +83,7 @@
             // 
             // ConfirmarOrdenDeSeleccion
             // 
-            ConfirmarOrdenDeSeleccion.Location = new Point(44, 212);
+            ConfirmarOrdenDeSeleccion.Location = new Point(44, 168);
             ConfirmarOrdenDeSeleccion.Margin = new Padding(2, 1, 2, 1);
             ConfirmarOrdenDeSeleccion.Name = "ConfirmarOrdenDeSeleccion";
             ConfirmarOrdenDeSeleccion.Size = new Size(613, 53);
@@ -92,19 +94,41 @@
             // 
             // consultarOrdenButton
             // 
-            consultarOrdenButton.Location = new Point(44, 355);
+            consultarOrdenButton.Location = new Point(44, 407);
             consultarOrdenButton.Name = "consultarOrdenButton";
-            consultarOrdenButton.Size = new Size(613, 60);
+            consultarOrdenButton.Size = new Size(613, 50);
             consultarOrdenButton.TabIndex = 6;
             consultarOrdenButton.Text = "Consultar orden";
             consultarOrdenButton.UseVisualStyleBackColor = true;
             consultarOrdenButton.Click += consultarOrdenButton_Click;
             // 
+            // EmpaquetarOrden
+            // 
+            EmpaquetarOrden.Location = new Point(44, 225);
+            EmpaquetarOrden.Name = "EmpaquetarOrden";
+            EmpaquetarOrden.Size = new Size(613, 55);
+            EmpaquetarOrden.TabIndex = 7;
+            EmpaquetarOrden.Text = "Empaquetar Orden";
+            EmpaquetarOrden.UseVisualStyleBackColor = true;
+            EmpaquetarOrden.Click += EmpaquetarOrden_Click;
+            // 
+            // despacharOrden
+            // 
+            despacharOrden.Location = new Point(44, 346);
+            despacharOrden.Name = "despacharOrden";
+            despacharOrden.Size = new Size(613, 55);
+            despacharOrden.TabIndex = 8;
+            despacharOrden.Text = "Despachar Orden";
+            despacharOrden.UseVisualStyleBackColor = true;
+            despacharOrden.Click += despacharOrden_Click;
+            // 
             // MenuForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(778, 512);
+            ClientSize = new Size(717, 535);
+            Controls.Add(despacharOrden);
+            Controls.Add(EmpaquetarOrden);
             Controls.Add(consultarOrdenButton);
             Controls.Add(ConfirmarOrdenDeSeleccion);
             Controls.Add(botonSalir);
@@ -129,5 +153,7 @@
         private Button botonSalir;
         private Button ConfirmarOrdenDeSeleccion;
         private Button consultarOrdenButton;
+        private Button EmpaquetarOrden;
+        private Button despacharOrden;
     }
 }

@@ -36,7 +36,6 @@
             Fecha = new ColumnHeader();
             Estado = new ColumnHeader();
             generarBoton = new Button();
-            confirmarBoton = new Button();
             Filtrarbutton = new Button();
             Limpiarbutton = new Button();
             OrdenTextBox = new TextBox();
@@ -53,6 +52,7 @@
             label1.Size = new Size(111, 15);
             label1.TabIndex = 0;
             label1.Text = "Pedidos Preparados";
+            label1.Click += label1_Click;
             // 
             // pedidosPreparadosListView
             // 
@@ -63,7 +63,7 @@
             pedidosPreparadosListView.Margin = new Padding(3, 2, 3, 2);
             pedidosPreparadosListView.MultiSelect = false;
             pedidosPreparadosListView.Name = "pedidosPreparadosListView";
-            pedidosPreparadosListView.Size = new Size(628, 179);
+            pedidosPreparadosListView.Size = new Size(628, 323);
             pedidosPreparadosListView.TabIndex = 1;
             pedidosPreparadosListView.UseCompatibleStateImageBehavior = false;
             pedidosPreparadosListView.View = View.Details;
@@ -96,7 +96,7 @@
             // 
             // generarBoton
             // 
-            generarBoton.Location = new Point(340, 334);
+            generarBoton.Location = new Point(493, 480);
             generarBoton.Margin = new Padding(3, 2, 3, 2);
             generarBoton.Name = "generarBoton";
             generarBoton.Size = new Size(147, 34);
@@ -104,18 +104,6 @@
             generarBoton.Text = "Generar remito";
             generarBoton.UseVisualStyleBackColor = true;
             generarBoton.Click += generarBoton_Click;
-            // 
-            // confirmarBoton
-            // 
-            confirmarBoton.Enabled = false;
-            confirmarBoton.Location = new Point(491, 335);
-            confirmarBoton.Margin = new Padding(3, 2, 3, 2);
-            confirmarBoton.Name = "confirmarBoton";
-            confirmarBoton.Size = new Size(147, 33);
-            confirmarBoton.TabIndex = 3;
-            confirmarBoton.Text = "Confirmar Entrega";
-            confirmarBoton.UseVisualStyleBackColor = true;
-            confirmarBoton.Click += confirmarBoton_Click;
             // 
             // Filtrarbutton
             // 
@@ -173,20 +161,19 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(790, 525);
+            ClientSize = new Size(659, 525);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(ClienteTextBox);
             Controls.Add(OrdenTextBox);
             Controls.Add(Limpiarbutton);
             Controls.Add(Filtrarbutton);
-            Controls.Add(confirmarBoton);
             Controls.Add(generarBoton);
             Controls.Add(pedidosPreparadosListView);
             Controls.Add(label1);
             Margin = new Padding(3, 2, 3, 2);
             Name = "GenerarDocumentos";
-            Text = "GenerarDocumentos";
+            Text = "Generar Remito";
             Load += GenerarDocumentos_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -197,7 +184,6 @@
         private Label label1;
         private ListView pedidosPreparadosListView;
         private Button generarBoton;
-        private Button confirmarBoton;
         private ColumnHeader Orden;
         private ColumnHeader Cliente;
         private ColumnHeader Transportista;

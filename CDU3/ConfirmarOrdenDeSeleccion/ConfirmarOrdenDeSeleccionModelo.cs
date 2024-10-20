@@ -16,11 +16,11 @@ namespace GrupoC.Tp3.CDU3
     {
         public List<Mercaderias> Mercaderias { get; private set; } =
         [
-        new Mercaderias { Ubicacion = "AAB", CodProducto = 22, Descripcion = "Zapatillas", Cantidad = 22 },
+        new Mercaderias { Ubicacion = "AAB", CodProducto = 22, Descripcion = "Zapatillas", Cantidad = 150 },
         new Mercaderias { Ubicacion = "ART", CodProducto = 22, Descripcion = "Zapatillas", Cantidad = 50 },
-        new Mercaderias { Ubicacion = "AAZ", CodProducto = 25, Descripcion = "Remeras", Cantidad = 50 },
-        new Mercaderias { Ubicacion = "ABT", CodProducto = 29, Descripcion = "Pantalones", Cantidad = 10 },
-        new Mercaderias { Ubicacion = "ABS", CodProducto = 30, Descripcion = "Camisas", Cantidad = 35 },
+        new Mercaderias { Ubicacion = "AAZ", CodProducto = 25, Descripcion = "Remeras", Cantidad = 300 },
+        new Mercaderias { Ubicacion = "ABT", CodProducto = 29, Descripcion = "Pantalones", Cantidad = 200 },
+        new Mercaderias { Ubicacion = "ABS", CodProducto = 30, Descripcion = "Camisas", Cantidad = 300 },
     ];
     }
 }
