@@ -77,7 +77,7 @@
             // detalle_productos
             // 
             detalle_productos.BackColor = SystemColors.ScrollBar;
-            detalle_productos.Columns.AddRange(new ColumnHeader[] { id_producto, cantidad, descripcion });
+            detalle_productos.Columns.AddRange(new ColumnHeader[] { id_producto, descripcion, cantidad });
             detalle_productos.Location = new Point(392, 45);
             detalle_productos.Margin = new Padding(3, 2, 3, 2);
             detalle_productos.Name = "detalle_productos";
@@ -93,13 +93,11 @@
             // 
             // cantidad
             // 
-            cantidad.DisplayIndex = 2;
             cantidad.Text = "Cantidad";
             cantidad.Width = 180;
             // 
             // descripcion
             // 
-            descripcion.DisplayIndex = 1;
             descripcion.Text = "Descripcion";
             descripcion.Width = 120;
             // 
