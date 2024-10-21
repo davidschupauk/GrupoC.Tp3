@@ -279,7 +279,7 @@ namespace GrupoC.Tp3.CDU1
             // Verificar si hay un IDCliente o IDOrden ingresado
             if (string.IsNullOrWhiteSpace(CuitTextBox.Text))
             {
-                MessageBox.Show("No hay un ID de cliente o un ID de orden ingresado para reiniciar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("No hay un CUIT de cliente ingresado para reiniciar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return; // Salir del método si no se ha ingresado ningún ID
             }
 

@@ -205,6 +205,7 @@
             OrdenDeSeleccionListView.TabIndex = 7;
             OrdenDeSeleccionListView.UseCompatibleStateImageBehavior = false;
             OrdenDeSeleccionListView.View = View.Details;
+            OrdenDeSeleccionListView.SelectedIndexChanged += OrdenDeSeleccionListView_SelectedIndexChanged;
             // 
             // columnHeader1
             // 
@@ -250,6 +251,7 @@
             // 
             // AgregarTodasButton
             // 
+            AgregarTodasButton.Enabled = false;
             AgregarTodasButton.Location = new Point(639, 307);
             AgregarTodasButton.Name = "AgregarTodasButton";
             AgregarTodasButton.Size = new Size(186, 23);
@@ -260,6 +262,7 @@
             // 
             // AgregarSeleccionadasButton
             // 
+            AgregarSeleccionadasButton.Enabled = false;
             AgregarSeleccionadasButton.Location = new Point(831, 307);
             AgregarSeleccionadasButton.Name = "AgregarSeleccionadasButton";
             AgregarSeleccionadasButton.Size = new Size(170, 23);

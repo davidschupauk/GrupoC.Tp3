@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,6 +22,7 @@ namespace GrupoC.Tp3.DespacharOrden
         private TransportistasModelo modelo2 = new();
         private ListViewItem selectedOrderItem;
         private ListViewItem ultimaOrdenAprobadaItem;
+        private int CodigoTransportistaActual;
 
         public Despachar()
         {
@@ -29,53 +31,20 @@ namespace GrupoC.Tp3.DespacharOrden
 
         private void DespacharOrden_Load(object sender, EventArgs e)
         {
-            OrdenesDespachoAprobadolistView.Items.Clear();
             datosTrasportistas.Items.Clear();
             ConfirmarDespachobutton.Enabled = false;
             ConfirmarTransportistabutton.Enabled = false;
-            CargarLista();
-        }
-
-        private void CargarLista()
-        {
-            OrdenesPorDespacharlistView.Items.Clear();
-
-            foreach (var Despacho in modelo.Despachos)
-            {
-                // Cargar a la lista si coincide
-                ListViewItem item = new ListViewItem();
-                item.Text = Despacho.NroOrden.ToString();
-                item.SubItems.Add(Despacho.Cliente);
-                item.SubItems.Add(Despacho.Transportista);
-                item.SubItems.Add(Despacho.CodTrasportista.ToString());
-                item.Tag = Despacho;
-                OrdenesPorDespacharlistView.Items.Add(item);
-
-            }
         }
 
         private void CargarListaTransportista()
         {
+            int dniValue;
+            bool IsNumber = int.TryParse(dniTransportistatextBox.Text, out dniValue);
             datosTrasportistas.Items.Clear();
-
-            if (OrdenesPorDespacharlistView.SelectedItems.Count == 0)
-            {
-                MessageBox.Show("Selecciona una fila en la lista de órdenes antes de cargar transportistas.");
-                return;
-            }
-
-            string codTransportista = OrdenesPorDespacharlistView.SelectedItems[0].SubItems[3].Text;
-
-            if (!int.TryParse(codTransportista, out int codTransportistaInt))
-            {
-                MessageBox.Show("El valor de la orden seleccionada no es válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
 
             foreach (var transportista in modelo2.Transportistas)
             {
-                if (transportista.CodTrasportista == codTransportistaInt)
+                if (transportista.DNI == dniValue)
                 {
 
                     ListViewItem item = new ListViewItem(transportista.CodTrasportista.ToString());
@@ -85,7 +54,13 @@ namespace GrupoC.Tp3.DespacharOrden
                     item.Tag = transportista;
 
                     datosTrasportistas.Items.Add(item);
+                    CodigoTransportistaActual = transportista.CodTrasportista;
                 }
+            }
+            if (datosTrasportistas.Items.Count > 0)
+            {
+                datosTrasportistas.Items[0].Selected = true;
+                ConfirmarTransportistabutton.Enabled = true;
             }
         }
 
@@ -100,36 +75,31 @@ namespace GrupoC.Tp3.DespacharOrden
             }
             selectedOrderItem = OrdenesPorDespacharlistView.SelectedItems[0];
             CargarListaTransportista();
-
-            ConfirmarTransportistabutton.Enabled = true;
-
         }
 
         private void ConfirmarTransportistabutton_Click(object sender, EventArgs e)
         {
 
-            ListViewItem nuevoItem = new ListViewItem(selectedOrderItem.SubItems[0].Text);
-            nuevoItem.SubItems.Add(selectedOrderItem.SubItems[1].Text);
-            nuevoItem.SubItems.Add(selectedOrderItem.SubItems[2].Text);
-            nuevoItem.SubItems.Add(selectedOrderItem.SubItems[3].Text);
-            OrdenesDespachoAprobadolistView.Items.Add(nuevoItem);
+            OrdenesPorDespacharlistView.Items.Clear();
 
-            ultimaOrdenAprobadaItem = nuevoItem;
-            OrdenesPorDespacharlistView.Items.Remove(selectedOrderItem);
-            datosTrasportistas.Items.Clear();
-            ConfirmarTransportistabutton.Enabled = false;
-            ConfirmarDespachobutton.Enabled = true;
-            selectedOrderItem = null;
+            var despachosMostrar = modelo.Despachos.FindAll(t => t.CodTrasportista == CodigoTransportistaActual);
+            foreach (var Despacho in despachosMostrar)
+            {
+                // Cargar a la lista si coincide
+                ListViewItem item = new ListViewItem();
+                item.Text = Despacho.NroOrden.ToString();
+                item.SubItems.Add(Despacho.Cliente);
+                item.SubItems.Add(Despacho.CodTrasportista.ToString());
+                item.Tag = Despacho;
+                OrdenesPorDespacharlistView.Items.Add(item);
 
-
+            }
         }
 
         private void ConfirmarDespachobutton_Click(object sender, EventArgs e)
         {
-            if (ultimaOrdenAprobadaItem != null)
+            if (OrdenesPorDespacharlistView.SelectedItems.Count > 0)
             {
-                OrdenesDespachoAprobadolistView.Items.Clear();
-                ultimaOrdenAprobadaItem = null;
                 var confirmacion = MessageBox.Show(
                     $"¿Estás seguro de que quieres confirmar el despacho de las ordenes seleccionadas?",
                     "Confirmar Despacho",
@@ -137,30 +107,41 @@ namespace GrupoC.Tp3.DespacharOrden
                     MessageBoxIcon.Question
                 );
 
-            // Si el usuario selecciona 'Yes', confirmar la orden
+                // Si el usuario selecciona 'Yes', confirmar la orden
                 if (confirmacion == DialogResult.Yes)
                 {
                     // Lógica para confirmar la orden
                     MessageBox.Show("Se ha realizado el despacho exitosamente");
-
-
+                    foreach(ListViewItem item in OrdenesPorDespacharlistView.SelectedItems)
+                    {
+                        OrdenesPorDespacharlistView.Items.Remove(item);
+                    }
                 }
                 else
                 {
                     // Si el usuario selecciona 'No', no hacer nada
                     MessageBox.Show("La operación ha sido cancelada.");
                 }
+            }
 
-            }
-            else
-            {
-                MessageBox.Show("No hay órdenes con transportistas confirmados para realizar el despacho.");
-            }
         }
 
         private void cancelar_confirmacion_Click(object sender, EventArgs e)
         {
-            OrdenesDespachoAprobadolistView.Items.Clear();
+            OrdenesPorDespacharlistView.Items.Clear();
+            datosTrasportistas.Items.Clear();
+
+            CodigoTransportistaActual = -1;
+        }
+
+        private void buscarDniTransportistabutton_Click(object sender, EventArgs e)
+        {
+            CargarListaTransportista();
+        }
+
+        private void OrdenesPorDespacharlistView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ConfirmarDespachobutton.Enabled = OrdenesPorDespacharlistView.SelectedItems.Count > 0;
         }
     }
 }

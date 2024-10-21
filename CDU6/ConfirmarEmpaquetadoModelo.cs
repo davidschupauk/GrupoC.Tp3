@@ -14,8 +14,8 @@ namespace GrupoC.Tp3.CDU6
         new Despachos { CodProducto = 22, Descripcion = "Zapatillas", Cantidad = 300 },
         new Despachos { CodProducto = 25, Descripcion = "Remeras", Cantidad = 300 },
         new Despachos { CodProducto = 29, Descripcion = "Pantalones", Cantidad = 200 },
-        new Despachos { CodProducto = 30, Descripcion = "Camisas", Cantidad = 300 }, 
-        
+        new Despachos { CodProducto = 30, Descripcion = "Camisas", Cantidad = 300 },
+
     ];
     }
 

@@ -23,10 +23,11 @@ namespace GrupoC.Tp3.CDU6
     {
         public List<Despacho> Despachos { get; private set; } =
     [
-        new Despacho { NroOrden = 102, Cliente = "Surf", Transportista = "Juan Pablo Cuneo", CodTrasportista = 55   },
-        new Despacho { NroOrden = 126, Cliente = "Fravega",Transportista = "Tadeo Zamora", CodTrasportista = 102 },
-        new Despacho { NroOrden = 124, Cliente = "Rappi" ,Transportista = "Martin Martinez", CodTrasportista = 25  },
-        new Despacho { NroOrden = 136, Cliente = "Rodo" ,Transportista = "Pablo Gonzalez", CodTrasportista = 3  },
+        new Despacho { NroOrden = 102, Cliente = "Surf", CodTrasportista = 55   },
+        new Despacho { NroOrden = 126, Cliente = "Fravega", CodTrasportista = 102 },
+        new Despacho { NroOrden = 25, Cliente = "Fravega", CodTrasportista = 102 },
+        new Despacho { NroOrden = 124, Cliente = "Rappi" , CodTrasportista = 25  },
+        new Despacho { NroOrden = 136, Cliente = "Rodo" , CodTrasportista = 3  },
     ];
     }
 

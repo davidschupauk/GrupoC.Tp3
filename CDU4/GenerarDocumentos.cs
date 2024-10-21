@@ -56,9 +56,7 @@ namespace GrupoC.Tp3.CDU4
             {
                 // Obtener el ítem seleccionado
                 ListViewItem selectedItem = pedidosPreparadosListView.SelectedItems[0];
-                if (selectedItem.SubItems[4].Text == "Preparado")
-                {
-                    selectedItem.SubItems[4].Text = "Documentación Generada";
+                
                     Pedidos? pedidoseleccionado = modelo.ListaPedidos.Find(Pedido => Pedido.Orden.ToString() == selectedItem.Text);
                     if (pedidoseleccionado != null)
                     {
@@ -80,12 +78,7 @@ namespace GrupoC.Tp3.CDU4
                             MessageBoxIcon.Information
                             );
                     }
-                }
-                else
-                {
-                    MessageBox.Show("La documentacion de esta orden ya fue generada previamente", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+                pedidosPreparadosListView.SelectedItems[0].Remove();
             }
             else
             {
@@ -93,6 +86,7 @@ namespace GrupoC.Tp3.CDU4
                 MessageBox.Show("Por favor selecciona un pedido primero.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
         }
 
 

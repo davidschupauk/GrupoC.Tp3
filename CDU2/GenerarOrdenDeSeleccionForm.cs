@@ -76,6 +76,7 @@ namespace GrupoC.Tp3.CDU2
                 item.Tag = orden;
                 OrdenDeSeleccionListView.Items.Add(item);
             }
+            AgregarTodasButton.Enabled = OrdenDeSeleccionListView.Items.Count > 0;
 
             AjustarTamañoColumnas();
         }
@@ -251,15 +252,6 @@ namespace GrupoC.Tp3.CDU2
 
         private void ReiniciarFiltroButton_Click(object sender, EventArgs e)
         {
-            // Verificar si hay un IDCliente, IDOrden o fecha seleccionada
-            if (string.IsNullOrWhiteSpace(IDClienteTextBox.Text) && string.IsNullOrWhiteSpace(IDOPTextBox.Text)
-                && string.IsNullOrWhiteSpace(PrioridadComboBox.SelectedItem?.ToString())
-                && !dateTimePicker1.Checked)
-            {
-                MessageBox.Show("No hay un ID de cliente, ID de orden, prioridad o fecha seleccionada para reiniciar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return; // Salir del método si no hay nada que limpiar
-            }
-
             // Limpiar los TextBox donde se ingresaron los IDs
             IDClienteTextBox.Clear();
             IDOPTextBox.Clear();
@@ -269,7 +261,7 @@ namespace GrupoC.Tp3.CDU2
 
             // Limpiar el DateTimePicker
             ClearDateTimePicker();
-
+            
             // Limpiar el ListView antes de volver a cargar todas las órdenes
             OrdenDeSeleccionListView.Items.Clear();
 
@@ -304,6 +296,7 @@ namespace GrupoC.Tp3.CDU2
             // Ajustar automáticamente las columnas del ListView de destino
             OrdenDeSeleccion2ListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             OrdenDeSeleccion2ListView.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize); // Ajustar por el tamaño del encabezado también
+            AgregarTodasButton.Enabled = false;
         }
 
 
@@ -437,6 +430,11 @@ namespace GrupoC.Tp3.CDU2
                 listView.Items.Add(item);
             }
 
+        }
+
+        private void OrdenDeSeleccionListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AgregarSeleccionadasButton.Enabled = OrdenDeSeleccionListView.SelectedItems.Count > 0;
         }
     }
 }

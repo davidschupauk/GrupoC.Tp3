@@ -45,17 +45,18 @@
             // orden_empaquetado
             // 
             orden_empaquetado.AutoSize = true;
-            orden_empaquetado.Location = new Point(32, 23);
+            orden_empaquetado.Location = new Point(28, 17);
             orden_empaquetado.Name = "orden_empaquetado";
-            orden_empaquetado.Size = new Size(176, 20);
+            orden_empaquetado.Size = new Size(139, 15);
             orden_empaquetado.TabIndex = 2;
             orden_empaquetado.Text = "Ordenes por Empaquetar";
             // 
             // confirmar_empaquetado
             // 
-            confirmar_empaquetado.Location = new Point(32, 576);
+            confirmar_empaquetado.Location = new Point(28, 432);
+            confirmar_empaquetado.Margin = new Padding(3, 2, 3, 2);
             confirmar_empaquetado.Name = "confirmar_empaquetado";
-            confirmar_empaquetado.Size = new Size(176, 29);
+            confirmar_empaquetado.Size = new Size(154, 22);
             confirmar_empaquetado.TabIndex = 7;
             confirmar_empaquetado.Text = "Empaquetar";
             confirmar_empaquetado.UseVisualStyleBackColor = true;
@@ -64,9 +65,10 @@
             // cancelar
             // 
             cancelar.BackgroundImageLayout = ImageLayout.Stretch;
-            cancelar.Location = new Point(32, 611);
+            cancelar.Location = new Point(28, 458);
+            cancelar.Margin = new Padding(3, 2, 3, 2);
             cancelar.Name = "cancelar";
-            cancelar.Size = new Size(176, 29);
+            cancelar.Size = new Size(154, 22);
             cancelar.TabIndex = 8;
             cancelar.Text = "Cerrar";
             cancelar.UseVisualStyleBackColor = true;
@@ -75,10 +77,11 @@
             // detalle_productos
             // 
             detalle_productos.BackColor = SystemColors.ScrollBar;
-            detalle_productos.Columns.AddRange(new ColumnHeader[] { id_producto, cantidad, descripcion });
-            detalle_productos.Location = new Point(448, 60);
+            detalle_productos.Columns.AddRange(new ColumnHeader[] { id_producto, descripcion, cantidad });
+            detalle_productos.Location = new Point(392, 45);
+            detalle_productos.Margin = new Padding(3, 2, 3, 2);
             detalle_productos.Name = "detalle_productos";
-            detalle_productos.Size = new Size(464, 510);
+            detalle_productos.Size = new Size(406, 384);
             detalle_productos.TabIndex = 9;
             detalle_productos.UseCompatibleStateImageBehavior = false;
             detalle_productos.View = View.Details;
@@ -90,30 +93,29 @@
             // 
             // cantidad
             // 
-            cantidad.DisplayIndex = 2;
             cantidad.Text = "Cantidad";
             cantidad.Width = 180;
             // 
             // descripcion
             // 
-            descripcion.DisplayIndex = 1;
             descripcion.Text = "Descripcion";
             descripcion.Width = 120;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(448, 32);
+            label1.Location = new Point(392, 24);
             label1.Name = "label1";
-            label1.Size = new Size(127, 20);
+            label1.Size = new Size(100, 15);
             label1.TabIndex = 10;
             label1.Text = "Detalle Productos";
             // 
             // mostrar_detalle
             // 
-            mostrar_detalle.Location = new Point(214, 576);
+            mostrar_detalle.Location = new Point(187, 432);
+            mostrar_detalle.Margin = new Padding(3, 2, 3, 2);
             mostrar_detalle.Name = "mostrar_detalle";
-            mostrar_detalle.Size = new Size(176, 29);
+            mostrar_detalle.Size = new Size(154, 22);
             mostrar_detalle.TabIndex = 11;
             mostrar_detalle.Text = "Mostrar Detalle";
             mostrar_detalle.UseVisualStyleBackColor = true;
@@ -123,11 +125,11 @@
             // 
             confirmarEmpaquetados.BackColor = SystemColors.ScrollBar;
             confirmarEmpaquetados.Columns.AddRange(new ColumnHeader[] { IdOrden, IdCliente });
+            confirmarEmpaquetados.Enabled = false;
             confirmarEmpaquetados.FullRowSelect = true;
-            confirmarEmpaquetados.Location = new Point(32, 60);
-            confirmarEmpaquetados.Margin = new Padding(3, 4, 3, 4);
+            confirmarEmpaquetados.Location = new Point(28, 45);
             confirmarEmpaquetados.Name = "confirmarEmpaquetados";
-            confirmarEmpaquetados.Size = new Size(382, 510);
+            confirmarEmpaquetados.Size = new Size(335, 384);
             confirmarEmpaquetados.TabIndex = 12;
             confirmarEmpaquetados.UseCompatibleStateImageBehavior = false;
             confirmarEmpaquetados.View = View.Details;
@@ -144,9 +146,9 @@
             // 
             // Empaquetado
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(935, 665);
+            ClientSize = new Size(818, 499);
             Controls.Add(confirmarEmpaquetados);
             Controls.Add(mostrar_detalle);
             Controls.Add(label1);
@@ -154,6 +156,7 @@
             Controls.Add(cancelar);
             Controls.Add(confirmar_empaquetado);
             Controls.Add(orden_empaquetado);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Empaquetado";
             Text = "Empaquetado";
             Load += Empaquetado_Load;
